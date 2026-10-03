@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dvfxbqrha5cow" path="res://Scarecrow/scarecrow.gd" id="1_hqi6l"]
 [ext_resource type="Script" uid="uid://bap10ep5nwip6" path="res://Scarecrow/scarecrow_navigation.gd" id="2_loohh"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gei8a"]
+[ext_resource type="PackedScene" uid="uid://d2a0qxntbg1hk" path="res://Scarecrow/scarecrow.glb" id="3_vthn0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gei8a"]
 
@@ -13,19 +12,17 @@ script = ExtResource("1_hqi6l")
 [node name="ScarecrowNavigation" type="Node" parent="." unique_id=1604503550]
 script = ExtResource("2_loohh")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=552844623]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_gei8a")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1637854529]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_gei8a")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2138410000]
 unique_name_in_owner = true
-debug_enabled = true
 
 [node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="." unique_id=1949276570]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 aabb = AABB(-0.4, -1, -0.5, 0.8, 2, 1)
+
+[node name="scarecrow" parent="." unique_id=160853289 instance=ExtResource("3_vthn0")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)

@@ -10,7 +10,7 @@ enum State {
 @export var acceleration: float = 18.0
 @export var rotation_speed: float = 8.0
 @export var gravity: float = 22.0
-@export var follow_distance: float = 3.0
+@export var follow_distance: float = 6.0
 
 @export_category("Navigation")
 @export var navigation_update_interval: float = 0.2
