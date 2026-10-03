@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c0t1c3gn7vxji"]
 
 [ext_resource type="Script" uid="uid://bn0fki8y0qjc2" path="res://Player/player.gd" id="1_l8h54"]
+[ext_resource type="Script" uid="uid://ci7n70qe3q7gb" path="res://Player/player_movement.gd" id="2_4ntmi"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gei8a"]
 
@@ -8,6 +9,9 @@
 
 [node name="Player" type="CharacterBody3D" unique_id=691486365]
 script = ExtResource("1_l8h54")
+
+[node name="PlayerMovement" type="Node" parent="." unique_id=261545658]
+script = ExtResource("2_4ntmi")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1311742208]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
