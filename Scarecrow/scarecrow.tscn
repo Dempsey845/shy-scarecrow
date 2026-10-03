@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ftdsrb54n214"]
 
 [ext_resource type="Script" uid="uid://dvfxbqrha5cow" path="res://Scarecrow/scarecrow.gd" id="1_hqi6l"]
+[ext_resource type="Script" uid="uid://bap10ep5nwip6" path="res://Scarecrow/scarecrow_navigation.gd" id="2_loohh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gei8a"]
 
@@ -8,6 +9,9 @@
 
 [node name="Scarecrow" type="CharacterBody3D" unique_id=974775381]
 script = ExtResource("1_hqi6l")
+
+[node name="ScarecrowNavigation" type="Node" parent="." unique_id=1604503550]
+script = ExtResource("2_loohh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=552844623]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
