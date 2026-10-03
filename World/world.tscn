@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dqqwssul657tx"]
 
 [ext_resource type="PackedScene" uid="uid://c0t1c3gn7vxji" path="res://Player/player.tscn" id="1_62w18"]
+[ext_resource type="PackedScene" uid="uid://ftdsrb54n214" path="res://Scarecrow/scarecrow.tscn" id="2_8a836"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u1ndb"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -13,6 +14,10 @@ sky_material = SubResource("ProceduralSkyMaterial_u1ndb")
 background_mode = 2
 sky = SubResource("Sky_62w18")
 glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_gei8a"]
+vertices = PackedVector3Array(-49.5, 0.35, -49.5, -49.5, 0.35, 49.5, 49.5, 0.35, 49.5, 49.5, 0.35, -49.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="Gradient" id="Gradient_70f2h"]
 colors = PackedColorArray(0.3785353, 0.49347597, 0.16719264, 1, 0.55951464, 0.6745295, 0.19803196, 1)
@@ -35,12 +40,19 @@ environment = SubResource("Environment_8a836")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=144576258]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1098189040]
+navigation_mesh = SubResource("NavigationMesh_gei8a")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" unique_id=144576258]
 use_collision = true
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=107594507]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=107594507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 size = Vector3(100, 0.1, 100)
 material = SubResource("StandardMaterial3D_gei8a")
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
+
+[node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player") instance=ExtResource("2_8a836")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+player = NodePath("../Player")

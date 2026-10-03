@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://ftdsrb54n214"]
+
+[ext_resource type="Script" uid="uid://dvfxbqrha5cow" path="res://Scarecrow/scarecrow.gd" id="1_hqi6l"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gei8a"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gei8a"]
+
+[node name="Scarecrow" type="CharacterBody3D" unique_id=974775381]
+script = ExtResource("1_hqi6l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=552844623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_gei8a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1637854529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_gei8a")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2138410000]
+unique_name_in_owner = true
+debug_enabled = true
