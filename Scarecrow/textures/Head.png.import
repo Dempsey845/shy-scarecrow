@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf1mvuk6q1y6g"
-path.s3tc="res://.godot/imported/scarecrow_Head.png-98668de83c2a40e266c7f36e1c0b2dbb.s3tc.ctex"
+uid="uid://w5o3i6epmx84"
+path.s3tc="res://.godot/imported/Head.png-ae79631fc341efd2d8f0d8715c81e0ba.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "30de6d181d462dc4525f41d369483b66"
-}
 
 [deps]
 
-source_file="res://Scarecrow/scarecrow_Head.png"
-dest_files=["res://.godot/imported/scarecrow_Head.png-98668de83c2a40e266c7f36e1c0b2dbb.s3tc.ctex"]
+source_file="res://Scarecrow/textures/Head.png"
+dest_files=["res://.godot/imported/Head.png-ae79631fc341efd2d8f0d8715c81e0ba.s3tc.ctex"]
 
 [params]
 
