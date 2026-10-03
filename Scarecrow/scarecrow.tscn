@@ -24,3 +24,8 @@ shape = SubResource("CapsuleShape3D_gei8a")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2138410000]
 unique_name_in_owner = true
 debug_enabled = true
+
+[node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="." unique_id=1949276570]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+aabb = AABB(-0.4, -1, -0.5, 0.8, 2, 1)

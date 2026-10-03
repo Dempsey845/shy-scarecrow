@@ -28,6 +28,10 @@ var navigation_update_timer: float = 0.0
 var last_navigation_target: Vector3
 var has_navigation_target: bool = false
 
+func _ready() -> void:
+	scarecrow.screen_entered.connect(stop_following)
+	scarecrow.screen_exited.connect(start_following)
+
 func _physics_process(delta: float) -> void:
 	match current_state:
 		State.IDLE:
@@ -164,3 +168,10 @@ func _rotate_towards_position(
 		target_rotation,
 		rotation_speed * delta
 	)
+
+func stop_following():
+	scarecrow.velocity = Vector3.ZERO
+	current_state = State.IDLE
+
+func start_following():
+	current_state = State.FOLLOWING
