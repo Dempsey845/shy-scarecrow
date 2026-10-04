@@ -43,6 +43,7 @@ rings = 10
 [sub_resource type="SphereShape3D" id="SphereShape3D_gei8a"]
 
 [node name="Pumpkin" type="StaticBody3D" unique_id=1922719514]
+collision_layer = 9
 script = ExtResource("1_6i55v")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=375201634]

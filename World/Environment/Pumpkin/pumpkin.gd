@@ -1,3 +1,4 @@
+class_name Pumpkin
 extends StaticBody3D
 
 @onready var pumpkin_mesh: MeshInstance3D = $MeshInstance3D
@@ -13,7 +14,7 @@ func hide_outline(duration: float = 0.2) -> void:
 
 
 func _set_outline_strength(target: float, duration: float) -> void:
-	var material := pumpkin_mesh.material_override as ShaderMaterial
+	var material := pumpkin_mesh.material_overlay as ShaderMaterial
 
 	if not material:
 		return
