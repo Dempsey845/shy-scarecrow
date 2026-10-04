@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cn74elrusxvsl"]
+
+[ext_resource type="Shader" uid="uid://cx3t5mq8q5w5p" path="res://Shaders/pumpkin_outline.gdshader" id="1_3j8uj"]
+[ext_resource type="Script" uid="uid://d2qdoeostreba" path="res://World/Environment/Pumpkin/pumpkin_visual.gd" id="1_8ny3f"]
+[ext_resource type="Shader" uid="uid://dccm0ikgud8s7" path="res://World/Environment/Pumpkin/pumpkin.gdshader" id="2_8ny3f"]
+[ext_resource type="PackedScene" uid="uid://hrq8u4uru3gq" path="res://World/Environment/Pumpkin/Pumpkin.glb" id="3_dlmmm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v0tbu"]
+render_priority = 0
+shader = ExtResource("1_3j8uj")
+shader_parameter/outline_color = Color(0.05, 0.03, 0.1, 1)
+shader_parameter/outline_thickness = 0.02
+shader_parameter/outline_strength = 0.0
+shader_parameter/segment_count = 8
+shader_parameter/ridge_rotation = 0.0
+shader_parameter/indentation = 0.0870000041325
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7xg00"]
+render_priority = 1
+shader = ExtResource("2_8ny3f")
+shader_parameter/skin_color = Color(0.839216, 0.462745, 0.329412, 1)
+shader_parameter/highlight_color = Color(1, 0.701961, 0.47451, 1)
+shader_parameter/groove_color = Color(0.592157, 0.254902, 0.2, 1)
+shader_parameter/stem_socket_color = Color(0.2, 0.09, 0.055, 1)
+shader_parameter/stem_socket_radius = 0.08700000343398
+shader_parameter/stem_socket_softness = 0.138000006555
+shader_parameter/stem_socket_height = 0.42
+shader_parameter/stem_socket_height_fade = 0.08800000418000001
+shader_parameter/segment_count = 8
+shader_parameter/ridge_rotation = 0.0
+shader_parameter/indentation = 0.0870000041325
+shader_parameter/ridge_strength = 1.0
+shader_parameter/groove_darkness = 1.0
+shader_parameter/highlight_strength = 0.25
+shader_parameter/surface_roughness = 0.5530000262675
+
+[sub_resource type="SphereMesh" id="SphereMesh_1k373"]
+material = SubResource("ShaderMaterial_7xg00")
+height = 0.8
+radial_segments = 16
+rings = 10
+
+[node name="PumpkinVisual" type="Node3D" unique_id=1568835860]
+script = ExtResource("1_8ny3f")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2101479078]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.360058, 0)
+material_overlay = SubResource("ShaderMaterial_v0tbu")
+mesh = SubResource("SphereMesh_1k373")
+
+[node name="PumpkinStem" parent="." unique_id=26383576 instance=ExtResource("3_dlmmm")]
+transform = Transform3D(0.56, 0, 0, 0, 0.56, 0, 0, 0, 0.56, 0.013572216, 0.74005556, -0.013955101)

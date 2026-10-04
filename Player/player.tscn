@@ -35,6 +35,12 @@ unique_name_in_owner = true
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 8
 
+[node name="PickupHolder" type="Node3D" parent="Head/Camera3D" unique_id=940609368]
+
+[node name="PumpkinSlot" type="Node3D" parent="Head/Camera3D/PickupHolder" unique_id=1379844448]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.97, -1)
+
 [node name="ScarecrowVisibiltyRays" type="Node3D" parent="Head" unique_id=1258030992]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=980824139]

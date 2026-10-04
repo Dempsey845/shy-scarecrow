@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://45qjv1yl14gf"]
+
+[ext_resource type="PackedScene" uid="uid://cn74elrusxvsl" path="res://World/Environment/Pumpkin/pumpkin_visual.tscn" id="1_2v4pn"]
+
+[node name="PumpkinItem" type="Node3D" unique_id=1654375474]
+
+[node name="PumpkinVisual" parent="." unique_id=1568835860 instance=ExtResource("1_2v4pn")]
