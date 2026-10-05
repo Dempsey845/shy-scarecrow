@@ -79,6 +79,7 @@ interact={
 [layer_names]
 
 3d_physics/layer_4="Pumpkin"
+3d_physics/layer_5="PumpkinCart"
 
 [physics]
 

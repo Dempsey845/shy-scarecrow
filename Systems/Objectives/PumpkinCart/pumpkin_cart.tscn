@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d3e63qvw7robm"]
+
+[ext_resource type="PackedScene" uid="uid://skrp2w127x5i" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart_visual.tscn" id="1_8t4u0"]
+[ext_resource type="Script" uid="uid://bx6dkjkkd7pgq" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart.gd" id="1_yl3ed"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(2.0786743, 1.2004395, 2.5950928)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yl3ed"]
+size = Vector3(0.27240753, 0.9624424, 0.8349838)
+
+[node name="PumpkinCart" type="CharacterBody3D" unique_id=2000541155]
+collision_layer = 17
+script = ExtResource("1_yl3ed")
+
+[node name="PumpkinCartVisual" parent="." unique_id=44277710 instance=ExtResource("1_8t4u0")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1161168634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00015258789, 0.5958252, 0.0021362305)
+shape = SubResource("BoxShape3D_xrivr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1272586837]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0053215027, 0.79131913, -1.7081134)
+shape = SubResource("BoxShape3D_yl3ed")

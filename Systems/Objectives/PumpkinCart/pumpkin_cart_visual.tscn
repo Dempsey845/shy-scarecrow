@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://skrp2w127x5i"]
+
+[ext_resource type="PackedScene" uid="uid://dm7c8saqdpccp" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart.glb" id="1_xil3t"]
+[ext_resource type="Shader" uid="uid://cqab3ky70xe4j" path="res://Shaders/outline.gdshader" id="2_6yc6d"]
+[ext_resource type="Script" uid="uid://d0ioosil2rake" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart_visual.gd" id="2_onrah"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6yc6d"]
+render_priority = 0
+shader = ExtResource("2_6yc6d")
+shader_parameter/outline_color = Color(0.05, 0.03, 0.1, 1)
+shader_parameter/outline_thickness = 0.02
+
+[node name="PumpkinCartVisual" unique_id=44277710 instance=ExtResource("1_xil3t")]
+script = ExtResource("2_onrah")
+
+[node name="Cart" parent="." index="0" unique_id=1676898185]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3627057, 0)
+material_overlay = SubResource("ShaderMaterial_6yc6d")
+
+[node name="BackRight" parent="." index="1" unique_id=466398858]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9885837, 0.302545, -0.95466673)
+
+[node name="BackLeft" parent="." index="2" unique_id=1241765487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9885837, 0.302545, -0.95466673)
+
+[node name="FrontLeft" parent="." index="3" unique_id=132274736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9885837, 0.302545, 0.95466673)
+
+[node name="FrontRight" parent="." index="4" unique_id=1814042372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9885837, 0.302545, 0.95466673)
+
+[node name="Banners" parent="." index="5" unique_id=1954358917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3627057, 0)

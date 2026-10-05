@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bn0fki8y0qjc2" path="res://Player/player.gd" id="1_l8h54"]
 [ext_resource type="Script" uid="uid://ci7n70qe3q7gb" path="res://Player/player_movement.gd" id="2_4ntmi"]
-[ext_resource type="Script" uid="uid://cfahcgt23fh0l" path="res://Player/player_pickup.gd" id="3_btcbx"]
+[ext_resource type="Script" uid="uid://cfahcgt23fh0l" path="res://Player/player_interact.gd" id="3_btcbx"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gei8a"]
 
@@ -14,7 +14,7 @@ script = ExtResource("1_l8h54")
 [node name="PlayerMovement" type="Node" parent="." unique_id=261545658]
 script = ExtResource("2_4ntmi")
 
-[node name="PlayerPickup" type="Node" parent="." unique_id=1691903113]
+[node name="PlayerInteract" type="Node" parent="." unique_id=1691903113]
 script = ExtResource("3_btcbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1311742208]
@@ -30,10 +30,10 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
 current = true
 
-[node name="PickupCast" type="RayCast3D" parent="Head/Camera3D" unique_id=1955131550]
+[node name="InteractCast" type="RayCast3D" parent="Head/Camera3D" unique_id=1955131550]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -1.5)
-collision_mask = 8
+collision_mask = 24
 
 [node name="PickupHolder" type="Node3D" parent="Head/Camera3D" unique_id=940609368]
 
