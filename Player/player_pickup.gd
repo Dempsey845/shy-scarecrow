@@ -10,25 +10,38 @@ var current_held_pumpkin: Node3D
 
 
 func _process(_delta: float) -> void:
-    if pickup_cast.is_colliding():
-        if !current_hovered_pumpkin and !current_held_pumpkin:
-            var collider: Object = pickup_cast.get_collider()
+	var target_pumpkin: Pumpkin = null
 
-            if collider is Pumpkin:
-                current_hovered_pumpkin = collider
-                current_hovered_pumpkin.show_outline()
-        elif Input.is_action_just_pressed("interact") and !current_held_pumpkin:
-            if current_hovered_pumpkin.is_too_large:
-                current_hovered_pumpkin.show_too_heavy_warning()
-                player.emit_pumpkin_too_large(current_hovered_pumpkin)
-            else:
-                current_hovered_pumpkin.pickup()
-                current_hovered_pumpkin = null
+	if pickup_cast.is_colliding():
+		var collider := pickup_cast.get_collider()
 
-                current_held_pumpkin = PSSR.pumpkin_item_scene.instantiate()
+		if collider is Pumpkin:
+			if not is_instance_valid(current_held_pumpkin) or collider.is_too_large:
+				target_pumpkin = collider
 
-                pumpkin_slot.add_child(current_held_pumpkin)
-    else:
-        if current_hovered_pumpkin:
-            current_hovered_pumpkin.hide_outline()
-            current_hovered_pumpkin = null
+	if current_hovered_pumpkin != target_pumpkin:
+		if is_instance_valid(current_hovered_pumpkin):
+			current_hovered_pumpkin.hide_outline()
+
+		current_hovered_pumpkin = target_pumpkin
+
+		if is_instance_valid(current_hovered_pumpkin):
+			current_hovered_pumpkin.show_outline()
+
+	if not is_instance_valid(current_hovered_pumpkin):
+		return
+
+	if not Input.is_action_just_pressed("interact"):
+		return
+
+	if current_hovered_pumpkin.is_too_large:
+		current_hovered_pumpkin.show_too_heavy_warning()
+		player.emit_pumpkin_too_large(current_hovered_pumpkin)
+		return
+
+	current_hovered_pumpkin.hide_outline()
+	current_hovered_pumpkin.pickup()
+	current_hovered_pumpkin = null
+
+	current_held_pumpkin = PSSR.pumpkin_item_scene.instantiate()
+	pumpkin_slot.add_child(current_held_pumpkin)

@@ -28,8 +28,8 @@ func _set_outline_strength(target: float, duration: float) -> void:
 
 	outline_tween.tween_method(
 		func(value: float):
-			material.set_shader_parameter("outline_strength", value),
-		float(material.get_shader_parameter("outline_strength")),
+			pumpkin_mesh.set_instance_shader_parameter("outline_strength", value),
+		float(pumpkin_mesh.get_instance_shader_parameter("outline_strength")),
 		target,
 		duration
 	)
