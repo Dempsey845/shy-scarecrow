@@ -71,3 +71,7 @@ player = NodePath("../Player")
 [node name="Pumpkin" parent="." unique_id=1903081124 instance=ExtResource("3_j8job")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -2)
 is_too_large = true
+
+[node name="Pumpkin2" parent="." unique_id=1922719514 instance=ExtResource("3_j8job")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2790956, 0, -2)
+is_too_large = true

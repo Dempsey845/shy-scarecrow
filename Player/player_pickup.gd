@@ -19,6 +19,7 @@ func _process(_delta: float) -> void:
                 current_hovered_pumpkin.show_outline()
         elif Input.is_action_just_pressed("interact") and !current_held_pumpkin:
             if current_hovered_pumpkin.is_too_large:
+                current_hovered_pumpkin.show_too_heavy_warning()
                 player.emit_pumpkin_too_large(current_hovered_pumpkin)
             else:
                 current_hovered_pumpkin.pickup()

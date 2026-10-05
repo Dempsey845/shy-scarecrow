@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://cl5qgkphf3dqq" path="res://World/Environment/Pumpkin/pumpkin.gd" id="1_6i55v"]
 [ext_resource type="PackedScene" uid="uid://cn74elrusxvsl" path="res://World/Environment/Pumpkin/pumpkin_visual.tscn" id="2_bh681"]
+[ext_resource type="PackedScene" uid="uid://blmsd27psjwtw" path="res://World/Environment/Pumpkin/Warnings/TooHeavy/too_heavy_warning.tscn" id="3_6i55v"]
+[ext_resource type="Script" uid="uid://cob4k1v17m2pt" path="res://World/Environment/Pumpkin/Warnings/TooHeavy/too_heavy_warning.gd" id="4_n0w4o"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gei8a"]
 
@@ -14,3 +16,6 @@ script = ExtResource("1_6i55v")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=521388596]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 shape = SubResource("SphereShape3D_gei8a")
+
+[node name="TooHeavyWarning" parent="." unique_id=34247283 instance=ExtResource("3_6i55v")]
+script = ExtResource("4_n0w4o")
