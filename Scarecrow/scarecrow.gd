@@ -11,12 +11,23 @@ signal screen_exited
 
 signal task_changed(new_task: Task)
 
+signal pumpkin_pickup(pumpkin: Pumpkin)
+
 @export_category("References")
 @export var player: Player
+
+@export_category("Pumpkin Interaction")
+@export var interaction_distance: float = 1.5
+
+@onready var interaction_distance_sq: float = interaction_distance * interaction_distance
 
 @onready var notifier: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier
 
 var current_task: Task = Task.Follow
+
+var target_pumpkin: Pumpkin
+
+var is_holding_pumpkin: bool = false
 
 func _ready() -> void:
 	notifier.screen_entered.connect(_on_screen_entered)
@@ -29,6 +40,27 @@ func _on_screen_exited():
 	screen_exited.emit()
 
 func change_task(task: Task):
+	if current_task == task:
+		return
+
 	current_task = task
 
 	task_changed.emit(task)
+
+func try_assign_pumpkin_target(pumpkin: Pumpkin) -> bool:
+	if is_instance_valid(target_pumpkin) or is_holding_pumpkin:
+		return false
+
+	target_pumpkin = pumpkin
+
+	change_task(Task.PickupPumpkin)
+
+	return true
+
+func attempt_pickup_pumpkin(pumpkin: Pumpkin):
+	if is_holding_pumpkin:
+		return
+	
+	pumpkin_pickup.emit(pumpkin)
+
+	is_holding_pumpkin = true

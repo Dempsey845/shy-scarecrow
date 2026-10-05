@@ -1,8 +1,9 @@
 extends Node
 
 enum State {
-	IDLE,
 	FOLLOWING,
+	GO_TO_TARGET,
+	INTERACT_WITH_TARGET
 }
 
 @export_category("Movement")
@@ -28,23 +29,28 @@ var navigation_update_timer: float = 0.0
 var last_navigation_target: Vector3
 var has_navigation_target: bool = false
 
+var can_move: bool
+
+var current_target: Node3D
+var interacted_with_current_target: bool
+
 func _ready() -> void:
-	scarecrow.screen_entered.connect(stop_following)
-	scarecrow.screen_exited.connect(start_following)
+	scarecrow.screen_entered.connect(_on_scarecrow_screen_entered)
+	scarecrow.screen_exited.connect(_on_scarecrow_screen_exited)
+	scarecrow.task_changed.connect(_on_scarecrow_task_changed)
 
 func _physics_process(delta: float) -> void:
 	match current_state:
-		State.IDLE:
-			_process_idle(delta)
 		State.FOLLOWING:
 			_process_following(delta)
+		State.GO_TO_TARGET:
+			_process_go_to_target(delta)
+		State.INTERACT_WITH_TARGET:
+			_process_interact_with_target(delta)
 
 	scarecrow.move_and_slide()
 
-func _process_idle(delta: float):
-	pass
-
-func _process_following(delta):
+func _process_following(delta: float):
 	if !is_instance_valid(scarecrow.player):
 		return
 	
@@ -55,7 +61,38 @@ func _process_following(delta):
 	else:
 		_slow_down(delta)
 
+func _process_go_to_target(delta: float):
+	if !is_instance_valid(current_target):
+		return
+	
+	var distance_to_target_sq: float = scarecrow.global_position.distance_squared_to(current_target.global_position)
+
+	if distance_to_target_sq > scarecrow.interaction_distance_sq:
+		_move_towards_position(current_target.global_position, delta)
+	else:
+		scarecrow.velocity = Vector3.ZERO
+		_change_state(State.INTERACT_WITH_TARGET)
+
+func _process_interact_with_target(_delta: float):
+	if interacted_with_current_target:
+		current_target = null
+		interacted_with_current_target = false
+		scarecrow.change_task(Scarecrow.Task.Follow)
+		return
+
+	if !is_instance_valid(current_target):
+		push_warning("Trying to interact with a non-valid target.")
+		return
+	
+	if current_target is Pumpkin:
+		var pumpkin: Pumpkin = current_target as Pumpkin
+		scarecrow.attempt_pickup_pumpkin(pumpkin)
+		interacted_with_current_target = true
+
 func _move_towards_position(target_position: Vector3, delta: float) -> void:
+	if !can_move:
+		return
+
 	var direction: Vector3
 
 	if is_instance_valid(navigation_agent):
@@ -150,6 +187,9 @@ func _rotate_towards_position(
 	target_position: Vector3,
 	delta: float
 ) -> void:
+	if !can_move:
+		return
+
 	var direction: Vector3 = target_position - scarecrow.global_position
 	direction.y = 0.0
 
@@ -169,9 +209,28 @@ func _rotate_towards_position(
 		rotation_speed * delta
 	)
 
-func stop_following():
-	scarecrow.velocity = Vector3.ZERO
-	current_state = State.IDLE
+func _change_state(state: State):
+	if current_state == state:
+		return
 
-func start_following():
-	current_state = State.FOLLOWING
+	current_state = state
+
+func _on_scarecrow_screen_entered():
+	scarecrow.velocity = Vector3.ZERO
+	can_move = false
+
+func _on_scarecrow_screen_exited():
+	can_move = true
+
+func _on_scarecrow_task_changed(new_task: Scarecrow.Task):
+	match new_task:
+		Scarecrow.Task.Follow:
+			_change_state(State.FOLLOWING)
+		Scarecrow.Task.PickupPumpkin:
+			if !is_instance_valid(scarecrow.target_pumpkin):
+				push_error("Scarecrow does not have an assigned pumpkin.")
+				scarecrow.change_task(Scarecrow.Task.Follow)
+			else:
+				interacted_with_current_target = false
+				current_target = scarecrow.target_pumpkin
+				_change_state(State.GO_TO_TARGET)
