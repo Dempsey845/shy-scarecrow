@@ -66,5 +66,8 @@ func _interact_with_pumpkin(pumpkin: Pumpkin) -> void:
 	current_held_pumpkin.scale = pumpkin_scale
 
 
-func _interact_with_cart(_cart: PumpkinCart) -> void:
-	print("Interacted with cart!")
+func _interact_with_cart(cart: PumpkinCart) -> void:
+	if is_instance_valid(current_held_pumpkin):
+		current_held_pumpkin.queue_free()
+		current_held_pumpkin = null
+		cart.add_small_pumpkin()

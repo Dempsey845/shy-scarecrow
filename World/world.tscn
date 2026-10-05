@@ -72,7 +72,13 @@ player = NodePath("../Player")
 [node name="Pumpkin" parent="." unique_id=1903081124 instance=ExtResource("3_j8job")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.7942848, 0, -2)
 
-[node name="Pumpkin3" parent="." unique_id=1922719514 instance=ExtResource("3_j8job")]
+[node name="Pumpkin4" parent="." unique_id=1922719514 instance=ExtResource("3_j8job")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 2.6742249, 0, -2)
+
+[node name="Pumpkin5" parent="." unique_id=576354432 instance=ExtResource("3_j8job")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 6.515828, 0, -2)
+
+[node name="Pumpkin3" parent="." unique_id=632433769 instance=ExtResource("3_j8job")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 5.374053, 0, -2)
 
 [node name="Pumpkin2" parent="." unique_id=1762759535 instance=ExtResource("3_j8job")]

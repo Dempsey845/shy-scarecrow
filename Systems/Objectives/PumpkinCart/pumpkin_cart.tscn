@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://skrp2w127x5i" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart_visual.tscn" id="1_8t4u0"]
 [ext_resource type="Script" uid="uid://bx6dkjkkd7pgq" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart.gd" id="1_yl3ed"]
+[ext_resource type="PackedScene" uid="uid://cn74elrusxvsl" path="res://World/Environment/Pumpkin/pumpkin_visual.tscn" id="3_3s4ov"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
 size = Vector3(2.0786743, 1.2004395, 2.5950928)
@@ -27,13 +28,32 @@ shape = SubResource("BoxShape3D_yl3ed")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30994564, 0)
 
 [node name="SmallSlot" type="Marker3D" parent="PumpkinSlots" unique_id=552948470]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0.34202665, 0, -0.80686015)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34202665, 0, -0.80686015)
+visible = false
+
+[node name="PumpkinVisual" parent="PumpkinSlots/SmallSlot" unique_id=1568835860 instance=ExtResource("3_3s4ov")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="SmallSlot2" type="Marker3D" parent="PumpkinSlots" unique_id=1605947730]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.38288242, 0, -0.80719316)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38288242, 0, -0.80719316)
+visible = false
+
+[node name="PumpkinVisual" parent="PumpkinSlots/SmallSlot2" unique_id=364032656 instance=ExtResource("3_3s4ov")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="SmallSlot3" type="Marker3D" parent="PumpkinSlots" unique_id=343122400]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.033501565, 0, -0.20246851)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.033501565, 0, -0.20246851)
+visible = false
+
+[node name="PumpkinVisual" parent="PumpkinSlots/SmallSlot3" unique_id=2018369956 instance=ExtResource("3_3s4ov")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0)
 
 [node name="LargeSlot" type="Marker3D" parent="PumpkinSlots" unique_id=584598422]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029066026, 0, 0.60089755)
+visible = false
+
+[node name="PumpkinVisual" parent="PumpkinSlots/LargeSlot" unique_id=130101182 instance=ExtResource("3_3s4ov")]
