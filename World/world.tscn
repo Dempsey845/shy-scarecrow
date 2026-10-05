@@ -70,10 +70,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 player = NodePath("../Player")
 
 [node name="Pumpkin" parent="." unique_id=1903081124 instance=ExtResource("3_j8job")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7942848, 0, -2)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.7942848, 0, -2)
 
 [node name="Pumpkin3" parent="." unique_id=1922719514 instance=ExtResource("3_j8job")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.374053, 0, -2)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 5.374053, 0, -2)
 
 [node name="Pumpkin2" parent="." unique_id=1762759535 instance=ExtResource("3_j8job")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 1.2790956, 0, -2)

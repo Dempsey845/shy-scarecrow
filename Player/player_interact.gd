@@ -57,10 +57,13 @@ func _interact_with_pumpkin(pumpkin: Pumpkin) -> void:
 		return
 
 	_set_hovered_target(null)
+
+	var pumpkin_scale: Vector3 = pumpkin.scale
 	pumpkin.pickup()
 
 	current_held_pumpkin = PSSR.pumpkin_item_scene.instantiate()
 	pumpkin_slot.add_child(current_held_pumpkin)
+	current_held_pumpkin.scale = pumpkin_scale
 
 
 func _interact_with_cart(_cart: PumpkinCart) -> void:
