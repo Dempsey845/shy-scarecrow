@@ -13,11 +13,15 @@ func _on_pumpkin_pickup(pumpkin: Pumpkin):
 	if is_instance_valid(current_held_pumpkin):
 		drop_current_pumpkin()
 
+	var pumpkin_scale: Vector3 = pumpkin.scale
+
 	pumpkin.pickup()
 
 	current_held_pumpkin = PSSR.pumpkin_item_scene.instantiate()
 
 	pumpkin_slot.add_child(current_held_pumpkin)
+
+	current_held_pumpkin.scale = pumpkin_scale
 
 	scarecrow.is_holding_pumpkin = true
 
