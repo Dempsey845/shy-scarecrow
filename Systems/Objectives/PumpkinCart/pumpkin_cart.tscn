@@ -57,3 +57,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.029066026, 0, 0.60089755)
 visible = false
 
 [node name="PumpkinVisual" parent="PumpkinSlots/LargeSlot" unique_id=130101182 instance=ExtResource("3_3s4ov")]
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=2078665984]
+radius = 2.69
+height = 1.2
+vertices = PackedVector3Array(-1.3000001, 0, -2.4, 1.3000001, 0, -2.4, 1.3000001, 0, 1.6, -1.3000001, 0, 1.6)
+use_3d_avoidance = true

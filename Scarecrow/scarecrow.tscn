@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://d2a0qxntbg1hk" path="res://Scarecrow/scarecrow.glb" id="3_vthn0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gei8a"]
+radius = 0.4
 
 [node name="Scarecrow" type="CharacterBody3D" unique_id=974775381]
 script = ExtResource("1_hqi6l")
+interaction_distance = 2.0
 
 [node name="ScarecrowNavigation" type="Node" parent="." unique_id=1604503550]
 script = ExtResource("2_loohh")
@@ -22,6 +24,10 @@ shape = SubResource("CapsuleShape3D_gei8a")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=2138410000]
 unique_name_in_owner = true
+avoidance_enabled = true
+radius = 0.6
+use_3d_avoidance = true
+debug_enabled = true
 
 [node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="." unique_id=1949276570]
 unique_name_in_owner = true

@@ -36,11 +36,18 @@ var current_interaction_position: Vector3
 var interacted_with_current_target: bool
 
 func _ready() -> void:
+	navigation_agent.velocity_computed.connect(_on_navigation_velocity_computed)
+
 	scarecrow.screen_entered.connect(_on_scarecrow_screen_entered)
 	scarecrow.screen_exited.connect(_on_scarecrow_screen_exited)
 	scarecrow.task_changed.connect(_on_scarecrow_task_changed)
 
 func _physics_process(delta: float) -> void:
+	navigation_update_timer = max(
+		navigation_update_timer - delta,
+		0.0
+	)
+
 	match current_state:
 		State.FOLLOWING:
 			_process_following(delta)
@@ -48,6 +55,8 @@ func _physics_process(delta: float) -> void:
 			_process_go_to_target(delta)
 		State.INTERACT_WITH_TARGET:
 			_process_interact_with_target(delta)
+
+	scarecrow.move_and_slide()
 
 	scarecrow.move_and_slide()
 
@@ -75,7 +84,7 @@ func _process_go_to_target(delta: float):
 	if distance_to_interaction_position_sq > scarecrow.interaction_distance_sq:
 		_move_towards_position(current_interaction_position, delta)
 	else:
-		scarecrow.velocity = Vector3.ZERO
+		navigation_agent.velocity = Vector3.ZERO
 		interacted_with_current_target = false
 		_change_state(State.INTERACT_WITH_TARGET)
 
@@ -143,14 +152,14 @@ func _move_towards_position(target_position: Vector3, delta: float) -> void:
 
 	var target_velocity: Vector3 = direction * move_speed
 
-	scarecrow.velocity.x = move_toward(
-		scarecrow.velocity.x,
+	navigation_agent.velocity.x = move_toward(
+		navigation_agent.velocity.x,
 		target_velocity.x,
 		acceleration * delta
 	)
 
-	scarecrow.velocity.z = move_toward(
-		scarecrow.velocity.z,
+	navigation_agent.velocity.z = move_toward(
+		navigation_agent.velocity.z,
 		target_velocity.z,
 		acceleration * delta
 	)
@@ -181,14 +190,14 @@ func _update_navigation_target(target_position: Vector3) -> void:
 	navigation_update_timer = navigation_update_interval
 
 func _slow_down(delta: float) -> void:
-	scarecrow.velocity.x = move_toward(
-		scarecrow.velocity.x,
+	navigation_agent.velocity.x = move_toward(
+		navigation_agent.velocity.x,
 		0.0,
 		acceleration * delta
 	)
 
-	scarecrow.velocity.z = move_toward(
-		scarecrow.velocity.z,
+	navigation_agent.velocity.z = move_toward(
+		navigation_agent.velocity.z,
 		0.0,
 		acceleration * delta
 	)
@@ -238,7 +247,7 @@ func _calculate_interaction_position() -> void:
 	)
 
 func _on_scarecrow_screen_entered():
-	scarecrow.velocity = Vector3.ZERO
+	navigation_agent.velocity = Vector3.ZERO
 	can_move = false
 
 func _on_scarecrow_screen_exited():
@@ -272,3 +281,7 @@ func _set_interaction_target(target: Node3D) -> void:
 	_calculate_interaction_position()
 
 	_change_state(State.GO_TO_TARGET)
+
+func _on_navigation_velocity_computed(safe_velocity: Vector3) -> void:
+	scarecrow.velocity.x = safe_velocity.x
+	scarecrow.velocity.z = safe_velocity.z
