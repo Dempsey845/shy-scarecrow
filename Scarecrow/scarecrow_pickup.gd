@@ -8,6 +8,7 @@ var current_held_pumpkin: Node3D
 
 func _ready() -> void:
 	scarecrow.pumpkin_pickup.connect(_on_pumpkin_pickup)
+	scarecrow.attempt_drop.connect(_on_attempt_drop)
 
 func _on_pumpkin_pickup(pumpkin: Pumpkin):
 	if is_instance_valid(current_held_pumpkin):
@@ -24,6 +25,9 @@ func _on_pumpkin_pickup(pumpkin: Pumpkin):
 	current_held_pumpkin.scale = pumpkin_scale
 
 	scarecrow.is_holding_pumpkin = true
+
+func _on_attempt_drop():
+	drop_current_pumpkin()
 
 func drop_current_pumpkin():
 	current_held_pumpkin.queue_free()

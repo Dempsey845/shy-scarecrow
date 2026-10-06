@@ -32,6 +32,7 @@ var has_navigation_target: bool = false
 var can_move: bool
 
 var current_target: Node3D
+var current_interaction_position: Vector3
 var interacted_with_current_target: bool
 
 func _ready() -> void:
@@ -64,13 +65,18 @@ func _process_following(delta: float):
 func _process_go_to_target(delta: float):
 	if !is_instance_valid(current_target):
 		return
-	
-	var distance_to_target_sq: float = scarecrow.global_position.distance_squared_to(current_target.global_position)
 
-	if distance_to_target_sq > scarecrow.interaction_distance_sq:
-		_move_towards_position(current_target.global_position, delta)
+	var distance_to_interaction_position_sq := (
+		scarecrow.global_position.distance_squared_to(
+			current_interaction_position
+		)
+	)
+
+	if distance_to_interaction_position_sq > scarecrow.interaction_distance_sq:
+		_move_towards_position(current_interaction_position, delta)
 	else:
 		scarecrow.velocity = Vector3.ZERO
+		interacted_with_current_target = false
 		_change_state(State.INTERACT_WITH_TARGET)
 
 func _process_interact_with_target(_delta: float):
@@ -87,6 +93,11 @@ func _process_interact_with_target(_delta: float):
 	if current_target is Pumpkin:
 		var pumpkin: Pumpkin = current_target as Pumpkin
 		scarecrow.attempt_pickup_pumpkin(pumpkin)
+		interacted_with_current_target = true
+	elif current_target is PumpkinCart:
+		scarecrow.drop_current_held_pumpkin()
+		var cart: PumpkinCart = current_target as PumpkinCart
+		cart.add_large_pumpkin()
 		interacted_with_current_target = true
 
 func _move_towards_position(target_position: Vector3, delta: float) -> void:
@@ -215,6 +226,17 @@ func _change_state(state: State):
 
 	current_state = state
 
+func _calculate_interaction_position() -> void:
+	if !is_instance_valid(current_target):
+		return
+
+	var navigation_map := navigation_agent.get_navigation_map()
+
+	current_interaction_position = NavigationServer3D.map_get_closest_point(
+		navigation_map,
+		current_target.global_position
+	)
+
 func _on_scarecrow_screen_entered():
 	scarecrow.velocity = Vector3.ZERO
 	can_move = false
@@ -225,12 +247,28 @@ func _on_scarecrow_screen_exited():
 func _on_scarecrow_task_changed(new_task: Scarecrow.Task):
 	match new_task:
 		Scarecrow.Task.Follow:
+			current_target = null
 			_change_state(State.FOLLOWING)
+
 		Scarecrow.Task.PickupPumpkin:
 			if !is_instance_valid(scarecrow.target_pumpkin):
 				push_error("Scarecrow does not have an assigned pumpkin.")
 				scarecrow.change_task(Scarecrow.Task.Follow)
 			else:
-				interacted_with_current_target = false
-				current_target = scarecrow.target_pumpkin
-				_change_state(State.GO_TO_TARGET)
+				_set_interaction_target(scarecrow.target_pumpkin)
+
+		Scarecrow.Task.LoadCart:
+			if !is_instance_valid(scarecrow.target_cart):
+				push_error("Scarecrow does not have an assigned cart.")
+				scarecrow.change_task(Scarecrow.Task.Follow)
+			else:
+				_set_interaction_target(scarecrow.target_cart)
+
+
+func _set_interaction_target(target: Node3D) -> void:
+	interacted_with_current_target = false
+	current_target = target
+
+	_calculate_interaction_position()
+
+	_change_state(State.GO_TO_TARGET)

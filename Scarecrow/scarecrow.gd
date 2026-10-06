@@ -3,7 +3,8 @@ extends CharacterBody3D
 
 enum Task {
 	Follow,
-	PickupPumpkin
+	PickupPumpkin,
+	LoadCart
 }
 
 signal screen_entered
@@ -12,6 +13,8 @@ signal screen_exited
 signal task_changed(new_task: Task)
 
 signal pumpkin_pickup(pumpkin: Pumpkin)
+
+signal attempt_drop
 
 @export_category("References")
 @export var player: Player
@@ -27,7 +30,11 @@ var current_task: Task = Task.Follow
 
 var target_pumpkin: Pumpkin
 
+var target_cart: PumpkinCart
+
 var is_holding_pumpkin: bool = false
+
+var current_held_pumpkin: Pumpkin
 
 func _ready() -> void:
 	notifier.screen_entered.connect(_on_screen_entered)
@@ -64,3 +71,7 @@ func attempt_pickup_pumpkin(pumpkin: Pumpkin):
 	pumpkin_pickup.emit(pumpkin)
 
 	is_holding_pumpkin = true
+
+func drop_current_held_pumpkin():
+	attempt_drop.emit()
+	is_holding_pumpkin = false
