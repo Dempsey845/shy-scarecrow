@@ -1,0 +1,16 @@
+Shy Scarecrow Color Palette
+
+| Deep navy | `#100B2A` |
+| Dark plum | `#2A213A` |
+| Dark forest green | `#314743` |
+| Muted green | `#65856D` |
+| Sage green | `#ADCA9A` |
+| Pale lime cream | `#ECFECA` |
+| Dark brown | `#582D27` |
+| Brick red | `#974133` |
+| Terracotta | `#D67654` |
+| Muted burgundy | `#5D3441` |
+| Dusty rose brown | `#A3685B` |
+| Warm peach | `#FFB379` |
+| Straw cream | `#FFE6A9` |
+| White | `#FFFFFF` |
