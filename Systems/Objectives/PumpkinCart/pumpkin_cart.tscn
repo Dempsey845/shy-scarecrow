@@ -10,6 +10,8 @@ size = Vector3(2.0786743, 1.2004395, 2.5950928)
 [sub_resource type="BoxShape3D" id="BoxShape3D_yl3ed"]
 size = Vector3(0.27240753, 0.9624424, 0.8349838)
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_gei8a"]
+
 [node name="PumpkinCart" type="CharacterBody3D" unique_id=2000541155]
 collision_layer = 17
 script = ExtResource("1_yl3ed")
@@ -63,3 +65,15 @@ radius = 2.69
 height = 1.2
 vertices = PackedVector3Array(-1.3000001, 0, -2.4, 1.3000001, 0, -2.4, 1.3000001, 0, 1.6, -1.3000001, 0, 1.6)
 use_3d_avoidance = true
+
+[node name="PushZone" type="Area3D" parent="." unique_id=1129464217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -2)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PushZone" unique_id=349694090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19999999, 0.20000005)
+shape = SubResource("SphereShape3D_gei8a")
+
+[node name="PushPosition" type="Marker3D" parent="." unique_id=21738433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)

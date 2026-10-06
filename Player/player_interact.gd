@@ -9,16 +9,28 @@ var current_held_pumpkin: Node3D
 
 
 func _process(_delta: float) -> void:
+	if is_instance_valid(player.pushing_cart):
+		_set_hovered_target(null)
+
+		if Input.is_action_just_pressed("interact"):
+			player.stop_pushing_cart()
+
+		return
+
 	var target: Node3D = null
 
 	if interact_cast.is_colliding():
 		var collider := interact_cast.get_collider()
 
 		if collider is Pumpkin:
-			if not is_instance_valid(current_held_pumpkin) or collider.is_too_large:
+			if (
+				not is_instance_valid(current_held_pumpkin)
+				or collider.is_too_large
+			):
 				target = collider
+
 		elif collider is PumpkinCart:
-			if is_instance_valid(current_held_pumpkin):
+			if _can_interact_with_cart(collider):
 				target = collider
 
 	_set_hovered_target(target)
@@ -29,9 +41,16 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		if current_hovered_target is Pumpkin:
 			_interact_with_pumpkin(current_hovered_target)
+
 		elif current_hovered_target is PumpkinCart:
-			if is_instance_valid(current_held_pumpkin):
-				_interact_with_cart(current_hovered_target)
+			_interact_with_cart(current_hovered_target)
+
+
+func _can_interact_with_cart(cart: PumpkinCart) -> bool:
+	if is_instance_valid(current_held_pumpkin):
+		return cart.current_small_slot < cart.small_slots.size() - 1
+
+	return cart.can_start_pushing(player)
 
 
 func _set_hovered_target(target: Node3D) -> void:
@@ -68,6 +87,13 @@ func _interact_with_pumpkin(pumpkin: Pumpkin) -> void:
 
 func _interact_with_cart(cart: PumpkinCart) -> void:
 	if is_instance_valid(current_held_pumpkin):
-		current_held_pumpkin.queue_free()
-		current_held_pumpkin = null
-		cart.add_small_pumpkin()
+		if cart.add_small_pumpkin():
+			current_held_pumpkin.queue_free()
+			current_held_pumpkin = null
+
+			_set_hovered_target(null)
+
+		return
+
+	player.start_pushing_cart(cart)
+	_set_hovered_target(null)

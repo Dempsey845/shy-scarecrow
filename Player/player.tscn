@@ -4,11 +4,10 @@
 [ext_resource type="Script" uid="uid://ci7n70qe3q7gb" path="res://Player/player_movement.gd" id="2_4ntmi"]
 [ext_resource type="Script" uid="uid://cfahcgt23fh0l" path="res://Player/player_interact.gd" id="3_btcbx"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gei8a"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gei8a"]
 
 [node name="Player" type="CharacterBody3D" unique_id=691486365]
+collision_layer = 5
 script = ExtResource("1_l8h54")
 
 [node name="PlayerMovement" type="Node" parent="." unique_id=261545658]
@@ -16,10 +15,6 @@ script = ExtResource("2_4ntmi")
 
 [node name="PlayerInteract" type="Node" parent="." unique_id=1691903113]
 script = ExtResource("3_btcbx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1311742208]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_gei8a")
 
 [node name="Head" type="Node3D" parent="." unique_id=1229271798]
 unique_name_in_owner = true

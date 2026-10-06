@@ -20,12 +20,18 @@ extends Node
 
 @onready var camera: Camera3D = %Camera3D
 @onready var head: Node3D = %Head
-@onready var body: CharacterBody3D = get_parent()
+@onready var body: Player = get_parent()
+
+@export var pushing_camera_height: float = 1.0
+@export var camera_offset_speed: float = 6.0
+
+var default_camera_position: Vector3
 
 var camera_pitch: float = 0.0
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	default_camera_position = camera.position
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -40,8 +46,18 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	_apply_gravity(delta)
-
+	_update_camera_offset(delta)
 	_apply_controller_look(delta)
+
+	if is_instance_valid(body.pushing_cart):
+		var player_velocity := body.pushing_cart.push(delta)
+
+		body.velocity.x = player_velocity.x
+		body.velocity.z = player_velocity.z
+
+		body.move_and_slide()
+		return
+
 	_handle_jump()
 	_handle_movement(delta)
 
@@ -65,7 +81,12 @@ func _handle_movement(delta: float) -> void:
 		body.global_basis * local_direction
 	).normalized()
 
-	var target_velocity: Vector3 = move_direction * move_speed
+	var current_move_speed: float = move_speed
+
+	if is_instance_valid(body.pushing_cart):
+		current_move_speed = body.pushing_cart.push_speed
+
+	var target_velocity: Vector3 = move_direction * current_move_speed
 
 	var acceleration: float
 
@@ -90,6 +111,9 @@ func _handle_movement(delta: float) -> void:
 
 
 func _handle_jump() -> void:
+	if is_instance_valid(body.pushing_cart):
+		return
+
 	if Input.is_action_just_pressed("jump") and body.is_on_floor():
 		body.velocity.y = jump_velocity
 
@@ -136,7 +160,8 @@ func _rotate_camera(
 	yaw_amount: float,
 	pitch_amount: float
 ) -> void:
-	body.rotate_y(-yaw_amount)
+	if not is_instance_valid(body.pushing_cart):
+		body.rotate_y(-yaw_amount)
 
 	camera_pitch -= pitch_amount
 	camera_pitch = clamp(
@@ -146,6 +171,27 @@ func _rotate_camera(
 	)
 
 	head.rotation.x = camera_pitch
+
+func _update_camera_offset(delta: float) -> void:
+	var target_position := default_camera_position
+
+	if is_instance_valid(body.pushing_cart):
+		var raised_position := camera.global_position
+		raised_position.y += pushing_camera_height
+
+		var local_offset = (
+			camera.get_parent().to_local(raised_position)
+			- camera.position
+		)
+
+		target_position += local_offset
+
+	var weight := 1.0 - exp(-camera_offset_speed * delta)
+
+	camera.position = camera.position.lerp(
+		target_position,
+		weight
+	)
 
 func _toggle_mouse_capture() -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
