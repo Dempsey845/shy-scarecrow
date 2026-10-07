@@ -1,30 +1,20 @@
-[gd_scene format=4 uid="uid://p3rdsenbtih0"]
+[gd_scene format=3 uid="uid://p3rdsenbtih0"]
 
 [ext_resource type="Script" uid="uid://c7ghh8vvofx8n" path="res://Systems/Objectives/Gate/gate_pressure_plate.gd" id="1_7ypy6"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_u4acg"]
-_surfaces = [{
-"aabb": AABB(-1, -0.1, -1, 2, 0.2, 2),
-"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
-"format": 34359738391,
-"primitive": 3,
-"uv_scale": Vector4(0, 0, 0, 0),
-"vertex_count": 36,
-"vertex_data": PackedByteArray("AACAv83MzL0AAIA/AACAv83MzL0AAIC/AACAv83MzD0AAIC/AACAP83MzL0AAIC/AACAv83MzL0AAIC/AACAv83MzL0AAIA/AACAv83MzD0AAIC/AACAv83MzL0AAIC/AACAP83MzL0AAIC/AACAv83MzD0AAIC/AACAv83MzD0AAIA/AACAv83MzL0AAIA/AACAv83MzL0AAIA/AACAv83MzD0AAIA/AACAP83MzD0AAIA/AACAP83MzD0AAIA/AACAv83MzD0AAIA/AACAv83MzD0AAIC/AACAv83MzL0AAIA/AACAP83MzL0AAIA/AACAP83MzL0AAIC/AACAP83MzD0AAIA/AACAP83MzL0AAIA/AACAv83MzL0AAIA/AACAP83MzL0AAIC/AACAP83MzL0AAIA/AACAP83MzD0AAIA/AACAP83MzL0AAIC/AACAP83MzD0AAIC/AACAv83MzD0AAIC/AACAv83MzD0AAIC/AACAP83MzD0AAIC/AACAP83MzD0AAIA/AACAP83MzD0AAIA/AACAP83MzD0AAIC/AACAP83MzL0AAIC/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
-}]
+[ext_resource type="PackedScene" uid="uid://wlvtx73vllpd" path="res://Systems/Objectives/Gate/pressure_plate.glb" id="2_0pwrl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
 size = Vector3(2, 0.2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ypy6"]
-size = Vector3(1.7246017, 0.240625, 1.776001)
+size = Vector3(1.7, 0.3, 1.7)
 
-[node name="GatePressurePlate" type="StaticBody3D" unique_id=856560751]
+[node name="GatePressurePlate" type="StaticBody3D" unique_id=856560751 node_paths=PackedStringArray("plate")]
 script = ExtResource("1_7ypy6")
+plate = NodePath("pressure_plate/Plate")
 
-[node name="PressurePlatePrototype" type="MeshInstance3D" parent="." unique_id=2131943584]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
-mesh = SubResource("ArrayMesh_u4acg")
+[node name="pressure_plate" parent="." unique_id=1256678597 instance=ExtResource("2_0pwrl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.040311217, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1798072003]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
@@ -35,5 +25,7 @@ collision_layer = 0
 collision_mask = 36
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PressureDetectionArea" unique_id=1131277332]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.010112762, 0.1203125, 0.012756348)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 0)
 shape = SubResource("BoxShape3D_7ypy6")
+
+[editable path="pressure_plate"]

@@ -94,5 +94,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 player = NodePath("../Player")
 
 [node name="GatePressurePlate" parent="." unique_id=856560751 node_paths=PackedStringArray("gate") instance=ExtResource("8_eidgh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06081617, -0.049999714, 0.3330059)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061, -0.08191994, 0.333)
 gate = NodePath("../NavigationRegion3D/Gate")
