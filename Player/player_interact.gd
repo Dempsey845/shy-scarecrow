@@ -33,6 +33,10 @@ func _process(_delta: float) -> void:
 			if _can_interact_with_cart(collider):
 				target = collider
 
+		elif collider is PumpkinGroundPatch:
+			if !collider.is_too_large and !collider.has_pumpkin:
+				target = collider
+
 	_set_hovered_target(target)
 
 	if not is_instance_valid(current_hovered_target):
@@ -44,6 +48,9 @@ func _process(_delta: float) -> void:
 
 		elif current_hovered_target is PumpkinCart:
 			_interact_with_cart(current_hovered_target)
+
+		elif current_hovered_target is PumpkinGroundPatch:
+			_interact_with_patch(current_hovered_target)
 
 
 func _can_interact_with_cart(cart: PumpkinCart) -> bool:
@@ -77,7 +84,7 @@ func _interact_with_pumpkin(pumpkin: Pumpkin) -> void:
 
 	_set_hovered_target(null)
 
-	var pumpkin_scale: Vector3 = pumpkin.scale
+	var pumpkin_scale: Vector3 = pumpkin.patch.scale
 	pumpkin.pickup()
 
 	current_held_pumpkin = PSSR.pumpkin_item_scene.instantiate()
@@ -97,3 +104,10 @@ func _interact_with_cart(cart: PumpkinCart) -> void:
 
 	player.start_pushing_cart(cart)
 	_set_hovered_target(null)
+
+func _interact_with_patch(patch: PumpkinGroundPatch):
+	if is_instance_valid(current_held_pumpkin):
+		patch.add_pumpkin()
+		current_held_pumpkin.queue_free()
+		current_held_pumpkin = null
+		_set_hovered_target(null)

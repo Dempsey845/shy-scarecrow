@@ -14,7 +14,7 @@ func _on_pumpkin_pickup(pumpkin: Pumpkin):
 	if is_instance_valid(current_held_pumpkin):
 		drop_current_pumpkin()
 
-	var pumpkin_scale: Vector3 = pumpkin.scale
+	var pumpkin_scale: Vector3 = pumpkin.patch.scale
 
 	pumpkin.pickup()
 

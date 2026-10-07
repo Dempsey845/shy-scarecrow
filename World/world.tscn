@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c0t1c3gn7vxji" path="res://Player/player.tscn" id="1_62w18"]
 [ext_resource type="Script" uid="uid://b6ucma8ueu0d6" path="res://Systems/Shared/player_scarecrow_shared_resources.gd" id="1_k8do8"]
 [ext_resource type="PackedScene" uid="uid://ftdsrb54n214" path="res://Scarecrow/scarecrow.tscn" id="2_8a836"]
-[ext_resource type="PackedScene" uid="uid://deyp5cg30c5eu" path="res://World/Environment/Pumpkin/pumpkin.tscn" id="3_j8job"]
+[ext_resource type="PackedScene" uid="uid://bb2g0rm668mut" path="res://World/Environment/Pumpkin/pumpkin_ground_patch.tscn" id="5_eidgh"]
 [ext_resource type="PackedScene" uid="uid://uv8xbhg5xeb3" path="res://Systems/Objectives/Gate/gate.tscn" id="5_yf0ba"]
 [ext_resource type="PackedScene" uid="uid://d3e63qvw7robm" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart.tscn" id="6_bkhv4"]
 [ext_resource type="PackedScene" uid="uid://p3rdsenbtih0" path="res://Systems/Objectives/Gate/gate_pressure_plate.tscn" id="8_eidgh"]
@@ -67,24 +67,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 size = Vector3(100, 0.1, 100)
 material = SubResource("StandardMaterial3D_gei8a")
 
-[node name="Pumpkin" parent="NavigationRegion3D" unique_id=1903081124 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.7942848, 0, -2)
-
-[node name="Pumpkin4" parent="NavigationRegion3D" unique_id=1922719514 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 2.6742249, 0, -2)
-
-[node name="Pumpkin3" parent="NavigationRegion3D" unique_id=632433769 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 5.374053, 0, -2)
-
-[node name="Pumpkin2" parent="NavigationRegion3D" unique_id=1762759535 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 1.2790956, 0, -2)
-is_too_large = true
-
 [node name="PumpkinCart" parent="NavigationRegion3D" unique_id=2000541155 groups=["navigation_mesh_source_group"] instance=ExtResource("6_bkhv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.758, -0.041, -7.22)
 
 [node name="Gate" parent="NavigationRegion3D" unique_id=299287746 instance=ExtResource("5_yf0ba")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.3445883)
+
+[node name="PumpkinGroundPatch" parent="NavigationRegion3D" unique_id=75869302 instance=ExtResource("5_eidgh")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.7942848, 0, -2)
+
+[node name="PumpkinGroundPatch2" parent="NavigationRegion3D" unique_id=804006039 instance=ExtResource("5_eidgh")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 2.6742249, 0, -2)
+
+[node name="PumpkinGroundPatch3" parent="NavigationRegion3D" unique_id=1334286334 instance=ExtResource("5_eidgh")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 5.374053, 0, -2)
+
+[node name="PumpkinGroundPatch4" parent="NavigationRegion3D" unique_id=2022072590 instance=ExtResource("5_eidgh")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 1.2790956, 0, -2)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.599295, 0, 0)

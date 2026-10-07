@@ -28,7 +28,7 @@ current = true
 [node name="InteractCast" type="RayCast3D" parent="Head/Camera3D" unique_id=1955131550]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -1.5)
-collision_mask = 24
+collision_mask = 88
 
 [node name="PickupHolder" type="Node3D" parent="Head/Camera3D" unique_id=940609368]
 
