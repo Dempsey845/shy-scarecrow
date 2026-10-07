@@ -17,11 +17,19 @@ enum State {
 @export var navigation_update_interval: float = 0.2
 @export var navigation_target_threshold: float = 0.75
 
+@export_category("Steps")
+@export var max_step_height: float = 0.35
+@export var step_probe_distance: float = 0.4
+@export var step_clearance: float = 0.02
+@export var feet_offset_y: float = 0.0
+
 @onready var follow_distance_sq: float = follow_distance * follow_distance
 
 @onready var navigation_agent: NavigationAgent3D = %NavigationAgent3D
 
 @onready var scarecrow: Scarecrow = get_parent()
+
+@onready var step_cast: RayCast3D = %StepCast
 
 var current_state: State = State.FOLLOWING
 
@@ -42,6 +50,9 @@ func _ready() -> void:
 	scarecrow.screen_exited.connect(_on_scarecrow_screen_exited)
 	scarecrow.task_changed.connect(_on_scarecrow_task_changed)
 
+	step_cast.add_exception(scarecrow)
+	step_cast.add_exception(scarecrow.player)
+
 func _physics_process(delta: float) -> void:
 	navigation_update_timer = max(
 		navigation_update_timer - delta,
@@ -56,8 +67,12 @@ func _physics_process(delta: float) -> void:
 		State.INTERACT_WITH_TARGET:
 			_process_interact_with_target(delta)
 
-	scarecrow.move_and_slide()
+	if scarecrow.is_on_floor():
+		scarecrow.velocity.y = 0.0
+	else:
+		scarecrow.velocity.y -= gravity * delta
 
+	_try_step_up(delta)
 	scarecrow.move_and_slide()
 
 func _process_following(delta: float):
@@ -228,6 +243,75 @@ func _rotate_towards_position(
 		target_rotation,
 		rotation_speed * delta
 	)
+
+func _try_step_up(delta: float) -> void:
+	if not can_move or not scarecrow.is_on_floor():
+		return
+
+	var horizontal_velocity: Vector3 = Vector3(
+		scarecrow.velocity.x,
+		0.0,
+		scarecrow.velocity.z
+	)
+
+	if horizontal_velocity.length_squared() < 0.001:
+		return
+
+	var forward_motion: Vector3 = horizontal_velocity * delta
+
+	if not scarecrow.test_move(
+		scarecrow.global_transform,
+		forward_motion
+	):
+		return
+
+	var direction: Vector3 = horizontal_velocity.normalized()
+	var feet_y: float = scarecrow.global_position.y + feet_offset_y
+
+	var probe_origin: Vector3 = scarecrow.global_position
+	probe_origin += direction * (
+		step_probe_distance + forward_motion.length()
+	)
+	probe_origin.y = feet_y + max_step_height + step_clearance
+
+	step_cast.global_position = probe_origin
+
+	var probe_end: Vector3 = probe_origin
+	probe_end.y = feet_y - step_clearance
+
+	step_cast.target_position = step_cast.to_local(probe_end)
+	step_cast.force_raycast_update()
+
+	if not step_cast.is_colliding():
+		return
+
+	var surface_normal: Vector3 = step_cast.get_collision_normal()
+	if surface_normal.dot(Vector3.UP) < cos(scarecrow.floor_max_angle):
+		return
+
+	var step_height: float = step_cast.get_collision_point().y - feet_y
+
+	if step_height <= step_clearance or step_height > max_step_height:
+		return
+
+	var upward_motion: Vector3 = Vector3.UP * (
+		step_height + step_clearance
+	)
+
+	if scarecrow.test_move(
+		scarecrow.global_transform,
+		upward_motion
+	):
+		return
+
+	var raised_transform: Transform3D = scarecrow.global_transform
+	raised_transform.origin += upward_motion
+
+	if scarecrow.test_move(raised_transform, forward_motion):
+		return
+
+	scarecrow.global_position += upward_motion
+	scarecrow.velocity.y = 0.0
 
 func _change_state(state: State):
 	if current_state == state:
