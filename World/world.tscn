@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b6ucma8ueu0d6" path="res://Systems/Shared/player_scarecrow_shared_resources.gd" id="1_k8do8"]
 [ext_resource type="PackedScene" uid="uid://ftdsrb54n214" path="res://Scarecrow/scarecrow.tscn" id="2_8a836"]
 [ext_resource type="PackedScene" uid="uid://deyp5cg30c5eu" path="res://World/Environment/Pumpkin/pumpkin.tscn" id="3_j8job"]
+[ext_resource type="PackedScene" uid="uid://uv8xbhg5xeb3" path="res://Systems/Objectives/Gate/gate.tscn" id="5_yf0ba"]
 [ext_resource type="PackedScene" uid="uid://d3e63qvw7robm" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart.tscn" id="6_bkhv4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u1ndb"]
@@ -20,8 +21,9 @@ sky = SubResource("Sky_62w18")
 glow_enabled = true
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_gei8a"]
-vertices = PackedVector3Array(2.25, 0.35, -9, 3, 0.35, -9, 3.25, 0.35, -10, 3.75, 0.35, -49.5, 3.75, 0.35, -10, 2, 0.35, -8.5, -49.5, 0.35, -49.5, -49.5, 0.35, -8.5, 4.25, 0.35, -10, 4.5, 0.35, -9, 5.25, 0.35, -9, 5.5, 0.35, -8.5, 49.5, 0.35, -8.5, 49.5, 0.35, -49.5, 3.5, 0.35, -3, 3.5, 0.35, -5.25, 2, 0.35, -5.5, 0.75, 0.35, -3.25, 0, 0.35, -2, -49.5, 0.35, -2, 5.5, 0.35, -5.5, 7, 0.35, -3, 7.5, 0.35, -2, 49.5, 0.35, -2, 0.25, 0.35, -1.25, -49.5, 0.35, 49.5, 0.25, 0.35, 49.5, 6.75, 0.35, -1, 6.75, 0.35, 49.5, 49.5, 0.35, 49.5, 4.5, 0.35, -1.25, 0.75, 0.35, -0.75)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 4, 2), PackedInt32Array(0, 5, 3), PackedInt32Array(3, 5, 7), PackedInt32Array(3, 7, 6), PackedInt32Array(9, 8, 10), PackedInt32Array(10, 8, 3), PackedInt32Array(8, 4, 3), PackedInt32Array(10, 3, 11), PackedInt32Array(11, 3, 12), PackedInt32Array(12, 3, 13), PackedInt32Array(15, 14, 16), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 18, 16), PackedInt32Array(16, 18, 5), PackedInt32Array(5, 18, 19), PackedInt32Array(5, 19, 7), PackedInt32Array(15, 20, 14), PackedInt32Array(14, 20, 21), PackedInt32Array(21, 11, 22), PackedInt32Array(22, 11, 23), PackedInt32Array(23, 11, 12), PackedInt32Array(21, 20, 11), PackedInt32Array(18, 24, 19), PackedInt32Array(19, 24, 26), PackedInt32Array(19, 26, 25), PackedInt32Array(22, 23, 27), PackedInt32Array(27, 23, 28), PackedInt32Array(28, 23, 29), PackedInt32Array(30, 27, 31), PackedInt32Array(31, 27, 28), PackedInt32Array(31, 28, 26), PackedInt32Array(26, 24, 31)]
+vertices = PackedVector3Array(3.25, 0.35, -10, 3.75, 0.35, -10, 3.75, 0.35, -49.5, 2, 0.35, -8.5, -49.5, 0.35, -49.5, -49.5, 0.35, -8.5, 4.25, 0.35, -10, 5.5, 0.35, -8.5, 49.5, 0.35, -8.5, 49.5, 0.35, -49.5, -1.5, 0.35, 3.5, -1.25, 0.35, 4.25, 1.25, 0.35, 4.25, 1.75, 0.35, 3.5, 0.75, 0.35, -0.75, 0, 0.35, -1.5, 3.5, 0.35, -3, 3.5, 0.35, -5.25, 2, 0.35, -5.5, 0.75, 0.35, -3.25, -2.5, 0.35, 3.5, 0, 0.35, -2.5, -49.5, 0.35, 4.5, 1.75, 0.35, -0.75, -2.75, 0.35, 4.5, 5.5, 0.35, -5.5, 6, 0.35, -3, 6.25, 0.35, -2, 49.5, 0.35, -2, 6, 0.35, -1, 4.5, 0.35, -1.25, 2.75, 0.35, 3.75, 2.75, 0.35, 4.75, 3, 0.35, 49.5, 49.5, 0.35, 49.5, 1.5, 0.35, 5.25, -1.5, 0.35, 5.25, -3, 0.35, 49.5, -2.5, 0.35, 5.25, 2.5, 0.35, 5.25, -2.75, 0.35, 4.75, -49.5, 0.35, 49.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(0, 3, 2), PackedInt32Array(2, 3, 5), PackedInt32Array(2, 5, 4), PackedInt32Array(6, 1, 2), PackedInt32Array(6, 2, 7), PackedInt32Array(7, 2, 8), PackedInt32Array(8, 2, 9), PackedInt32Array(11, 10, 12), PackedInt32Array(12, 10, 13), PackedInt32Array(13, 10, 14), PackedInt32Array(14, 10, 15), PackedInt32Array(17, 16, 18), PackedInt32Array(18, 16, 19), PackedInt32Array(10, 20, 15), PackedInt32Array(15, 20, 21), PackedInt32Array(21, 20, 3), PackedInt32Array(3, 20, 5), PackedInt32Array(5, 20, 22), PackedInt32Array(19, 21, 18), PackedInt32Array(18, 21, 3), PackedInt32Array(14, 23, 13), PackedInt32Array(20, 24, 22), PackedInt32Array(17, 25, 16), PackedInt32Array(16, 25, 26), PackedInt32Array(26, 25, 27), PackedInt32Array(27, 25, 7), PackedInt32Array(27, 7, 28), PackedInt32Array(28, 7, 8), PackedInt32Array(30, 29, 23), PackedInt32Array(23, 29, 31), PackedInt32Array(23, 31, 13), PackedInt32Array(31, 29, 32), PackedInt32Array(32, 29, 28), PackedInt32Array(32, 28, 33), PackedInt32Array(33, 28, 34), PackedInt32Array(29, 27, 28), PackedInt32Array(12, 35, 11), PackedInt32Array(11, 35, 36), PackedInt32Array(36, 35, 33), PackedInt32Array(36, 33, 37), PackedInt32Array(37, 38, 36), PackedInt32Array(39, 32, 33), PackedInt32Array(37, 40, 38), PackedInt32Array(35, 39, 33), PackedInt32Array(40, 37, 24), PackedInt32Array(24, 37, 41), PackedInt32Array(24, 41, 22)]
+geometry_source_geometry_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_70f2h"]
 colors = PackedColorArray(0.3785353, 0.49347597, 0.16719264, 1, 0.55951464, 0.6745295, 0.19803196, 1)
@@ -56,7 +58,7 @@ shadow_enabled = true
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1098189040]
 navigation_mesh = SubResource("NavigationMesh_gei8a")
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" unique_id=144576258]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D" unique_id=144576258 groups=["navigation_mesh_source_group"]]
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=107594507]
@@ -64,21 +66,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 size = Vector3(100, 0.1, 100)
 material = SubResource("StandardMaterial3D_gei8a")
 
-[node name="Pumpkin" parent="NavigationRegion3D" unique_id=1903081124 instance=ExtResource("3_j8job")]
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=204025037]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.2574453)
+size = Vector3(2, 0.2, 2)
+
+[node name="Pumpkin" parent="NavigationRegion3D" unique_id=1903081124 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.7942848, 0, -2)
 
-[node name="Pumpkin4" parent="NavigationRegion3D" unique_id=1922719514 instance=ExtResource("3_j8job")]
+[node name="Pumpkin4" parent="NavigationRegion3D" unique_id=1922719514 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 2.6742249, 0, -2)
 
-[node name="Pumpkin3" parent="NavigationRegion3D" unique_id=632433769 instance=ExtResource("3_j8job")]
+[node name="Pumpkin3" parent="NavigationRegion3D" unique_id=632433769 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 5.374053, 0, -2)
 
-[node name="Pumpkin2" parent="NavigationRegion3D" unique_id=1762759535 instance=ExtResource("3_j8job")]
+[node name="Pumpkin2" parent="NavigationRegion3D" unique_id=1762759535 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 1.2790956, 0, -2)
 is_too_large = true
 
-[node name="PumpkinCart" parent="NavigationRegion3D" unique_id=2000541155 instance=ExtResource("6_bkhv4")]
+[node name="PumpkinCart" parent="NavigationRegion3D" unique_id=2000541155 groups=["navigation_mesh_source_group"] instance=ExtResource("6_bkhv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.758, -0.041, -7.22)
+
+[node name="Gate" parent="NavigationRegion3D" unique_id=299287746 instance=ExtResource("5_yf0ba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.3445883)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
 
