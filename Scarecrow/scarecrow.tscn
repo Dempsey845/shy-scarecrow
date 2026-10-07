@@ -9,6 +9,7 @@
 radius = 0.4
 
 [node name="Scarecrow" type="CharacterBody3D" unique_id=974775381]
+collision_layer = 33
 script = ExtResource("1_hqi6l")
 interaction_distance = 2.0
 

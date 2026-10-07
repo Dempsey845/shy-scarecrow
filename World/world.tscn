@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://deyp5cg30c5eu" path="res://World/Environment/Pumpkin/pumpkin.tscn" id="3_j8job"]
 [ext_resource type="PackedScene" uid="uid://uv8xbhg5xeb3" path="res://Systems/Objectives/Gate/gate.tscn" id="5_yf0ba"]
 [ext_resource type="PackedScene" uid="uid://d3e63qvw7robm" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart.tscn" id="6_bkhv4"]
+[ext_resource type="PackedScene" uid="uid://p3rdsenbtih0" path="res://Systems/Objectives/Gate/gate_pressure_plate.tscn" id="8_eidgh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u1ndb"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -66,10 +67,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 size = Vector3(100, 0.1, 100)
 material = SubResource("StandardMaterial3D_gei8a")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D" unique_id=204025037]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.2574453)
-size = Vector3(2, 0.2, 2)
-
 [node name="Pumpkin" parent="NavigationRegion3D" unique_id=1903081124 groups=["navigation_mesh_source_group"] instance=ExtResource("3_j8job")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 3.7942848, 0, -2)
 
@@ -90,7 +87,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.758, -0.041, -7.22)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.3445883)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.599295, 0, 0)
 
 [node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player") instance=ExtResource("2_8a836")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
 player = NodePath("../Player")
+
+[node name="GatePressurePlate" parent="." unique_id=856560751 node_paths=PackedStringArray("gate") instance=ExtResource("8_eidgh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.06081617, -0.049999714, 0.3330059)
+gate = NodePath("../NavigationRegion3D/Gate")

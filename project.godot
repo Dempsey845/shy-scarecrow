@@ -85,6 +85,7 @@ interact={
 3d_physics/layer_3="Player"
 3d_physics/layer_4="Pumpkin"
 3d_physics/layer_5="PumpkinCart"
+3d_physics/layer_6="Scarecrow"
 
 [physics]
 
