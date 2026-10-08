@@ -37,6 +37,10 @@ func _process(_delta: float) -> void:
 			if !collider.is_too_large and !collider.has_pumpkin:
 				target = collider
 		
+		elif collider is PumpkinWorkbench:
+			if not is_instance_valid(current_held_pumpkin) and collider.can_interact(player):
+				target = collider
+
 		elif collider is DrawWheel:
 			target = collider
 
@@ -54,6 +58,11 @@ func _process(_delta: float) -> void:
 
 		elif current_hovered_target is PumpkinGroundPatch:
 			_interact_with_patch(current_hovered_target)
+
+		elif current_hovered_target is PumpkinWorkbench:
+			var workbench: PumpkinWorkbench = current_hovered_target
+			_set_hovered_target(null)
+			workbench.interact(player)
 
 		elif current_hovered_target is DrawWheel:
 			_interact_with_draw_wheel(current_hovered_target)

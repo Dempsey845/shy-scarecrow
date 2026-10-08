@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://p3rdsenbtih0" path="res://Systems/Objectives/Gate/gate_pressure_plate.tscn" id="8_eidgh"]
 [ext_resource type="PackedScene" uid="uid://gmhnnr4qfwro" path="res://Systems/Objectives/DitchBridge/ditch_bridge.tscn" id="9_oe8m4"]
 [ext_resource type="PackedScene" uid="uid://2wtu47wvgpb1" path="res://Systems/Objectives/DitchBridge/draw_wheel.tscn" id="10_w47uh"]
+[ext_resource type="PackedScene" uid="uid://cr80ypw5hfrux" path="res://Systems/Objectives/PumpkinCarving/pumpkin_workbench.tscn" id="13_0wqet"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lo5ox"]
 shader = ExtResource("3_lo5ox")
@@ -143,3 +144,6 @@ ditch_bridge = NodePath("../Bridge/DitchBridge")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, -0.1, 18)
 ditch_bridge = NodePath("../Bridge/DitchBridge")
 release_after_draw = false
+
+[node name="PumpkinWorkbench" parent="." unique_id=882102942 instance=ExtResource("13_0wqet")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
