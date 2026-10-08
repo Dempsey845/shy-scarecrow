@@ -2,6 +2,7 @@ class_name DrawWheel
 extends StaticBody3D
 
 @export var ditch_bridge: DitchBridge
+@export var release_after_draw: bool = true
 
 @onready var visual: DrawWheelVisual = $DrawWheelVisual
 @onready var release_timer: Timer = $ReleaseTimer
@@ -14,7 +15,7 @@ func try_spin_wheel(source: Node3D) -> bool:
 		if ditch_bridge.is_up:
 			ditch_bridge.draw_down()
 
-			if source is Player:
+			if source is Player and release_after_draw:
 				release_timer.start()
 		else:
 			ditch_bridge.draw_up()

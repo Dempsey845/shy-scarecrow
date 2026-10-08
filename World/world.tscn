@@ -106,3 +106,8 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 0
 [node name="DrawWheel" parent="." unique_id=1790700235 node_paths=PackedStringArray("ditch_bridge") instance=ExtResource("10_w47uh")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, -0.1, 7)
 ditch_bridge = NodePath("../Bridge/DitchBridge")
+
+[node name="DrawWheel2" parent="." unique_id=1406907187 node_paths=PackedStringArray("ditch_bridge") instance=ExtResource("10_w47uh")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10, -0.1, 18)
+ditch_bridge = NodePath("../Bridge/DitchBridge")
+release_after_draw = false
