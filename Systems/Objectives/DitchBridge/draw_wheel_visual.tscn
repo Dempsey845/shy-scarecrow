@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://bc7iw8a2jktl2"]
+
+[ext_resource type="PackedScene" uid="uid://gsa6gryuetjc" path="res://Systems/Objectives/DitchBridge/draw_wheel.glb" id="1_sy3kf"]
+[ext_resource type="Shader" uid="uid://cqab3ky70xe4j" path="res://Shaders/outline.gdshader" id="2_dmkdx"]
+[ext_resource type="Script" uid="uid://b68frtr2pdxpi" path="res://Systems/Objectives/DitchBridge/draw_wheel_visual.gd" id="2_lcxgm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lcxgm"]
+render_priority = 0
+shader = ExtResource("2_dmkdx")
+shader_parameter/outline_color = Color(0.05, 0.03, 0.1, 1)
+shader_parameter/outline_thickness = 0.02
+
+[sub_resource type="Animation" id="Animation_dmkdx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_lcxgm"]
+resource_name = "spin_wheel"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Circle:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 6.2831855)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gfak3"]
+_data = {
+&"RESET": SubResource("Animation_dmkdx"),
+&"spin_wheel": SubResource("Animation_lcxgm")
+}
+
+[node name="DrawWheelVisual" unique_id=450812269 instance=ExtResource("1_sy3kf")]
+script = ExtResource("2_lcxgm")
+
+[node name="Circle" parent="." index="1" unique_id=217075335]
+material_overlay = SubResource("ShaderMaterial_lcxgm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2" unique_id=1028709379]
+libraries/ = SubResource("AnimationLibrary_gfak3")

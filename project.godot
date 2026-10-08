@@ -87,6 +87,7 @@ interact={
 3d_physics/layer_5="PumpkinCart"
 3d_physics/layer_6="Scarecrow"
 3d_physics/layer_7="PumpkinGroundPatch"
+3d_physics/layer_8="DrawWheel"
 
 [physics]
 

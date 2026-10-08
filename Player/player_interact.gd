@@ -36,6 +36,9 @@ func _process(_delta: float) -> void:
 		elif collider is PumpkinGroundPatch:
 			if !collider.is_too_large and !collider.has_pumpkin:
 				target = collider
+		
+		elif collider is DrawWheel:
+			target = collider
 
 	_set_hovered_target(target)
 
@@ -51,6 +54,9 @@ func _process(_delta: float) -> void:
 
 		elif current_hovered_target is PumpkinGroundPatch:
 			_interact_with_patch(current_hovered_target)
+
+		elif current_hovered_target is DrawWheel:
+			_interact_with_draw_wheel(current_hovered_target)
 
 
 func _can_interact_with_cart(cart: PumpkinCart) -> bool:
@@ -111,3 +117,6 @@ func _interact_with_patch(patch: PumpkinGroundPatch):
 		current_held_pumpkin.queue_free()
 		current_held_pumpkin = null
 		_set_hovered_target(null)
+
+func _interact_with_draw_wheel(wheel: DrawWheel):
+	wheel.try_spin_wheel(player)
