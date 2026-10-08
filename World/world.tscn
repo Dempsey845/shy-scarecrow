@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://uv8xbhg5xeb3" path="res://Systems/Objectives/Gate/gate.tscn" id="5_yf0ba"]
 [ext_resource type="PackedScene" uid="uid://d3e63qvw7robm" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart.tscn" id="6_bkhv4"]
 [ext_resource type="PackedScene" uid="uid://p3rdsenbtih0" path="res://Systems/Objectives/Gate/gate_pressure_plate.tscn" id="8_eidgh"]
+[ext_resource type="PackedScene" uid="uid://dm8o805xl5tjq" path="res://Systems/Objectives/DitchBridge/ditch_bridge.glb" id="9_oe8m4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_u1ndb"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -95,3 +96,6 @@ player = NodePath("../Player")
 [node name="GatePressurePlate" parent="." unique_id=856560751 node_paths=PackedStringArray("gate") instance=ExtResource("8_eidgh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061, -0.08191994, 0.333)
 gate = NodePath("../NavigationRegion3D/Gate")
+
+[node name="ditch_bridge" parent="." unique_id=827768900 instance=ExtResource("9_oe8m4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4838166, -0.05000019, 9.348465)

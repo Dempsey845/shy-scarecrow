@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://gmhnnr4qfwro"]
+
+[ext_resource type="PackedScene" uid="uid://dm8o805xl5tjq" path="res://Systems/Objectives/DitchBridge/ditch_bridge.glb" id="1_uxrun"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(3.7758484, 0.5430908, 6.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uxrun"]
+size = Vector3(0.45076293, 0.62763673, 5.867383)
+
+[sub_resource type="Animation" id="Animation_uxrun"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_607bv"]
+resource_name = "draw_down"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j05cb"]
+resource_name = "draw_up"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5707964, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vy5he"]
+_data = {
+&"RESET": SubResource("Animation_uxrun"),
+&"draw_down": SubResource("Animation_607bv"),
+&"draw_up": SubResource("Animation_j05cb")
+}
+
+[node name="DitchBridge" type="AnimatableBody3D" unique_id=2069338343]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="ditch_bridge" parent="." unique_id=827768900 instance=ExtResource("1_uxrun")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=972200691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.017745972, 0.2715454, -3.05)
+shape = SubResource("BoxShape3D_xrivr")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1029083511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5524538, 0.85772705, -3.0836914)
+shape = SubResource("BoxShape3D_uxrun")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=496178572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.551233, 0.85772705, -3.0836914)
+shape = SubResource("BoxShape3D_uxrun")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=209597041]
+libraries/ = SubResource("AnimationLibrary_vy5he")
