@@ -98,6 +98,10 @@ player = NodePath("../Player")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061, -0.08191994, 0.333)
 gate = NodePath("../NavigationRegion3D/Gate")
 
+[node name="GatePressurePlate2" parent="." unique_id=1804250790 node_paths=PackedStringArray("gate") instance=ExtResource("8_eidgh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061, -0.08191994, 10.333)
+gate = NodePath("../NavigationRegion3D/Gate")
+
 [node name="Bridge" type="Node3D" parent="." unique_id=2039071848]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7, 0, 10)
 

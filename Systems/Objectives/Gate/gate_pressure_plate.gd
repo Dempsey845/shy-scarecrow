@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	if empty_timer >= exit_time:
 		gate_active = false
 		empty_timer = 0.0
-		gate.close_gate()
+		gate.set_pressure_pad_active(self, false)
 		_animate_plate(false)
 
 
@@ -51,8 +51,13 @@ func _on_pressure_area_body_entered(body: Node3D) -> void:
 
 	if not gate_active:
 		gate_active = true
-		gate.open_gate()
+		gate.set_pressure_pad_active(self, true)
 		_animate_plate(true)
+
+
+func _exit_tree() -> void:
+	if is_instance_valid(gate):
+		gate.set_pressure_pad_active(self, false)
 
 
 func _animate_plate(pressed: bool) -> void:
