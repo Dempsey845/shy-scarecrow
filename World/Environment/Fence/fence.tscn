@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dmo5wolb11jgn"]
+
+[ext_resource type="PackedScene" uid="uid://pyalm65db6sh" path="res://World/Environment/Fence/fence.glb" id="1_kwmkw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(2.2, 2.3, 0.4)
+
+[node name="Fence" type="StaticBody3D" unique_id=480337362]
+
+[node name="fence" parent="." unique_id=688616345 instance=ExtResource("1_kwmkw")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1305096299]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9802322e-08, 1.15, 1.4901161e-08)
+shape = SubResource("BoxShape3D_xrivr")

@@ -2270,95 +2270,94 @@ shape = SubResource("BorderContinuousWallShape")
 [node name="Tree" parent="." unique_id=196644785 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
 transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, -10, 0, 8)
 
-[node name="ScatteredTrees" type="Node3D" parent="."]
+[node name="ScatteredTrees" type="Node3D" parent="." unique_id=814171194]
 
-[node name="Tree01" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.874619, 0, -0.387788, 0, 0.956733, 0, 0.387788, 0, 0.874619, -10.286716, 0, -32.571954)
+[node name="Tree01" parent="ScatteredTrees" unique_id=539577608 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.874619, 0, -0.387788, 0, 0.956733, 0, 0.387788, 0, 0.874619, -10.286716, 0, -32.571953)
 
-[node name="Tree02" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.110316, 0, -1.036154, 0, 1.042010, 0, 1.036154, 0, -0.110316, 9.467410, 0, -33.080614)
+[node name="Tree02" parent="ScatteredTrees" unique_id=1604505592 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.110316, 0, -1.036154, 0, 1.04201, 0, 1.036154, 0, -0.110316, 9.46741, 0, -33.080612)
 
-[node name="Tree03" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(1.047570, 0, -0.152373, 0, 1.058594, 0, 0.152373, 0, 1.047570, 23.758766, 0, -32.575130)
+[node name="Tree03" parent="ScatteredTrees" unique_id=212350520 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(1.04757, 0, -0.152373, 0, 1.058594, 0, 0.152373, 0, 1.04757, 23.758766, 0, -32.57513)
 
-[node name="Tree04" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(1.083659, 0, 0.039399, 0, 1.084375, 0, -0.039399, 0, 1.083659, 31.926797, 0, 16.952252)
+[node name="Tree04" parent="ScatteredTrees" unique_id=1054485507 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(1.083659, 0, 0.039399, 0, 1.084375, 0, -0.039399, 0, 1.083659, 31.926798, 0, 16.952251)
 
-[node name="Tree05" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.860398, 0, 0.313708, 0, 0.915805, 0, -0.313708, 0, -0.860398, 32.667793, 0, 23.680936)
+[node name="Tree05" parent="ScatteredTrees" unique_id=2084513295 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.860398, 0, 0.313708, 0, 0.915805, 0, -0.313708, 0, -0.860398, 32.667793, 0, 23.680937)
 
-[node name="Tree06" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.156434, 0, 0.952483, 0, 0.965244, 0, -0.952483, 0, -0.156434, 33.446589, 0, 30.756390)
+[node name="Tree06" parent="ScatteredTrees" unique_id=137350343 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.156434, 0, 0.952483, 0, 0.965244, 0, -0.952483, 0, -0.156434, 33.44659, 0, 30.75639)
 
-[node name="Tree07" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+[node name="Tree07" parent="ScatteredTrees" unique_id=1818430879 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
 transform = Transform3D(0.097435, 0, -1.088312, 0, 1.092665, 0, 1.088312, 0, 0.097435, -31.311323, 0, 31.687563)
 
-[node name="Tree08" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.238162, 0, -1.028530, 0, 1.055744, 0, 1.028530, 0, -0.238162, -25.199401, 0, 31.743704)
+[node name="Tree08" parent="ScatteredTrees" unique_id=1169683485 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.238162, 0, -1.02853, 0, 1.055744, 0, 1.02853, 0, -0.238162, -25.199402, 0, 31.743704)
 
-[node name="Tree09" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.329759, 0, -0.928462, 0, 0.985283, 0, 0.928462, 0, 0.329759, -10.220321, 0, 32.848032)
+[node name="Tree09" parent="ScatteredTrees" unique_id=849049944 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.329759, 0, -0.928462, 0, 0.985283, 0, 0.928462, 0, 0.329759, -10.220321, 0, 32.848034)
 
-[node name="Tree10" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.928597, 0, 0.272758, 0, 0.967827, 0, -0.272758, 0, 0.928597, 9.708658, 0, 32.576898)
+[node name="Tree10" parent="ScatteredTrees" unique_id=929559747 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.928597, 0, 0.272758, 0, 0.967827, 0, -0.272758, 0, 0.928597, 9.708658, 0, 32.576897)
 
-[node name="Tree11" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.734326, 0, 0.769799, 0, 1.063873, 0, -0.769799, 0, -0.734326, 17.400900, 0, 32.064037)
+[node name="Tree11" parent="ScatteredTrees" unique_id=1943232854 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.734326, 0, 0.769799, 0, 1.063873, 0, -0.769799, 0, -0.734326, 17.4009, 0, 32.064037)
 
-[node name="Tree12" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.571611, 0, 0.840730, 0, 1.016645, 0, -0.840730, 0, -0.571611, 24.092136, 0, 31.850023)
+[node name="Tree12" parent="ScatteredTrees" unique_id=383769683 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.571611, 0, 0.84073, 0, 1.016645, 0, -0.84073, 0, -0.571611, 24.092136, 0, 31.850023)
 
-[node name="Tree13" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.732784, 0, 0.743910, 0, 1.044210, 0, -0.743910, 0, -0.732784, -32.166183, 0, -31.607109)
+[node name="Tree13" parent="ScatteredTrees" unique_id=97335588 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.732784, 0, 0.74391, 0, 1.04421, 0, -0.74391, 0, -0.732784, -32.166183, 0, -31.60711)
 
-[node name="Tree14" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(1.118893, 0, 0.042579, 0, 1.119703, 0, -0.042579, 0, 1.118893, -33.435727, 0, 16.563831)
+[node name="Tree14" parent="ScatteredTrees" unique_id=1713155850 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(1.118893, 0, 0.042579, 0, 1.119703, 0, -0.042579, 0, 1.118893, -33.435726, 0, 16.563831)
 
-[node name="Tree15" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.074580, 0, -0.900839, 0, 0.903921, 0, 0.900839, 0, 0.074580, -31.966261, 0, 24.819590)
+[node name="Tree15" parent="ScatteredTrees" unique_id=856907183 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.07458, 0, -0.900839, 0, 0.903921, 0, 0.900839, 0, 0.07458, -31.96626, 0, 24.81959)
 
-[node name="Tree16" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.230676, 0, 1.017072, 0, 1.042903, 0, -1.017072, 0, -0.230676, -12.446809, 0, 18.370759)
+[node name="Tree16" parent="ScatteredTrees" unique_id=979904656 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.230676, 0, 1.017072, 0, 1.042903, 0, -1.017072, 0, -0.230676, -12.446809, 0, 18.370758)
 
-[node name="Tree17" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.006926, 0, 1.060716, 0, 1.060739, 0, -1.060716, 0, -0.006926, -26.953899, 0, 19.071082)
+[node name="Tree17" parent="ScatteredTrees" unique_id=1694550368 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.006926, 0, 1.060716, 0, 1.060739, 0, -1.060716, 0, -0.006926, -26.9539, 0, 19.071081)
 
-[node name="Tree18" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(1.078755, 0, -0.261503, 0, 1.109998, 0, 0.261503, 0, 1.078755, -24.641922, 0, 25.491908)
+[node name="Tree18" parent="ScatteredTrees" unique_id=1429951029 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(1.078755, 0, -0.261503, 0, 1.109998, 0, 0.261503, 0, 1.078755, -24.641922, 0, 25.491907)
 
-[node name="Tree19" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.906342, 0, 0.116447, 0, 0.913792, 0, -0.116447, 0, 0.906342, -10.024846, 0, 25.817494)
+[node name="Tree19" parent="ScatteredTrees" unique_id=978977444 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.906342, 0, 0.116447, 0, 0.913792, 0, -0.116447, 0, 0.906342, -10.024846, 0, 25.817493)
 
-[node name="Tree20" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.609090, 0, -0.636559, 0, 0.881021, 0, 0.636559, 0, -0.609090, 13.585786, 0, 17.944985)
+[node name="Tree20" parent="ScatteredTrees" unique_id=79366063 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.60909, 0, -0.636559, 0, 0.881021, 0, 0.636559, 0, -0.60909, 13.585786, 0, 17.944984)
 
-[node name="Tree21" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.327509, 0, -0.959164, 0, 1.013537, 0, 0.959164, 0, 0.327509, 25.389700, 0, 24.636264)
+[node name="Tree21" parent="ScatteredTrees" unique_id=1737735344 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.327509, 0, -0.959164, 0, 1.013537, 0, 0.959164, 0, 0.327509, 25.3897, 0, 24.636265)
 
-[node name="Tree22" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.827078, 0, 0.462330, 0, 0.947527, 0, -0.462330, 0, 0.827078, 10.972350, 0, 26.428277)
+[node name="Tree22" parent="ScatteredTrees" unique_id=974986992 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.827078, 0, 0.46233, 0, 0.947527, 0, -0.46233, 0, 0.827078, 10.97235, 0, 26.428276)
 
-[node name="Tree23" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.238029, 0, 0.866841, 0, 0.898928, 0, -0.866841, 0, 0.238029, 17.291896, 0, 22.676987)
+[node name="Tree23" parent="ScatteredTrees" unique_id=1247233731 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.238029, 0, 0.866841, 0, 0.898928, 0, -0.866841, 0, 0.238029, 17.291897, 0, 22.676987)
 
-[node name="Tree24" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.446385, 0, -0.818452, 0, 0.932267, 0, 0.818452, 0, 0.446385, 24.257667, 0, 17.297065)
+[node name="Tree24" parent="ScatteredTrees" unique_id=652211879 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.446385, 0, -0.818452, 0, 0.932267, 0, 0.818452, 0, 0.446385, 24.257668, 0, 17.297066)
 
-[node name="Tree25" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+[node name="Tree25" parent="ScatteredTrees" unique_id=368817515 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
 transform = Transform3D(-0.886751, 0, 0.316129, 0, 0.941416, 0, -0.316129, 0, -0.886751, 10.774916, 0, -17.225775)
 
-[node name="Tree26" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+[node name="Tree26" parent="ScatteredTrees" unique_id=1121499515 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
 transform = Transform3D(-0.946311, 0, 0.588437, 0, 1.114344, 0, -0.588437, 0, -0.946311, 9.087104, 0, -25.319378)
 
-[node name="Tree27" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(0.811604, 0, -0.500984, 0, 0.953775, 0, 0.500984, 0, 0.811604, -11.252488, 0, -16.672922)
+[node name="Tree27" parent="ScatteredTrees" unique_id=143379991 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(0.811604, 0, -0.500984, 0, 0.953775, 0, 0.500984, 0, 0.811604, -11.252488, 0, -16.072922)
 
-[node name="Tree28" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+[node name="Tree28" parent="ScatteredTrees" unique_id=1179726378 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
 transform = Transform3D(-0.040842, 0, 1.097493, 0, 1.098253, 0, -1.097493, 0, -0.040842, -12.113065, 0, -10.003815)
 
-[node name="Tree29" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
-transform = Transform3D(-0.469939, 0, -1.011026, 0, 1.114906, 0, 1.011026, 0, -0.469939, 18.158975, 0, -7.320355)
+[node name="Tree29" parent="ScatteredTrees" unique_id=199526117 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+transform = Transform3D(-0.469939, 0, -1.011026, 0, 1.114906, 0, 1.011026, 0, -0.469939, 18.158976, 0, -7.320355)
 
-[node name="Tree30" parent="ScatteredTrees" groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
+[node name="Tree30" parent="ScatteredTrees" unique_id=2018726720 groups=["navigation_mesh_source_group"] instance=ExtResource("10_5yf6k")]
 transform = Transform3D(-0.939896, 0, -0.413093, 0, 1.026669, 0, 0.413093, 0, -0.939896, 12.010152, 0, -9.940248)
-

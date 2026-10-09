@@ -7,9 +7,6 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
 size = Vector3(2.0786743, 1.2004395, 2.5950928)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_yl3ed"]
-size = Vector3(0.27240753, 0.9624424, 0.8349838)
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_gei8a"]
 
 [node name="PumpkinCart" type="CharacterBody3D" unique_id=2000541155]
@@ -21,10 +18,6 @@ script = ExtResource("1_yl3ed")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1161168634]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00015258789, 0.5958252, 0.0021362305)
 shape = SubResource("BoxShape3D_xrivr")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1272586837]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0053215027, 0.79131913, -1.7081134)
-shape = SubResource("BoxShape3D_yl3ed")
 
 [node name="PumpkinSlots" type="Node3D" parent="." unique_id=663983366]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30994564, 0)
@@ -61,6 +54,7 @@ visible = false
 [node name="PumpkinVisual" parent="PumpkinSlots/LargeSlot" unique_id=130101182 instance=ExtResource("3_3s4ov")]
 
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="." unique_id=2078665984]
+visible = false
 radius = 2.69
 height = 1.2
 vertices = PackedVector3Array(-1.3000001, 0, -2.4, 1.3000001, 0, -2.4, 1.3000001, 0, 1.6, -1.3000001, 0, 1.6)

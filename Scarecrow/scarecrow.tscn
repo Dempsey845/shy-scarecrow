@@ -15,6 +15,7 @@ interaction_distance = 2.0
 
 [node name="ScarecrowNavigation" type="Node" parent="." unique_id=1604503550]
 script = ExtResource("2_loohh")
+max_step_height = 0.45
 
 [node name="ScarecrowPickup" type="Node" parent="." unique_id=1269956324]
 script = ExtResource("3_7162q")
