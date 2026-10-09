@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://gmhnnr4qfwro" path="res://Systems/Objectives/DitchBridge/ditch_bridge.tscn" id="9_oe8m4"]
 [ext_resource type="PackedScene" uid="uid://2wtu47wvgpb1" path="res://Systems/Objectives/DitchBridge/draw_wheel.tscn" id="10_w47uh"]
 [ext_resource type="PackedScene" uid="uid://cr80ypw5hfrux" path="res://Systems/Objectives/PumpkinCarving/pumpkin_workbench.tscn" id="13_0wqet"]
+[ext_resource type="PackedScene" uid="uid://bc5rrrv8n2im" path="res://World/Environment/Tree/tree.tscn" id="15_f23eu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lo5ox"]
 shader = ExtResource("3_lo5ox")
@@ -92,6 +93,7 @@ shadow_enabled = true
 
 [node name="Moon" type="DirectionalLight3D" parent="." unique_id=551483692]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1098189040]
 navigation_mesh = SubResource("NavigationMesh_gei8a")
@@ -124,6 +126,11 @@ transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 1.2790956, 0, -2)
 
 [node name="PumpkinWorkbench" parent="NavigationRegion3D" unique_id=882102942 groups=["navigation_mesh_source_group"] instance=ExtResource("13_0wqet")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+
+[node name="Trees" type="Node3D" parent="NavigationRegion3D" unique_id=1055521009]
+
+[node name="Tree" parent="NavigationRegion3D/Trees" unique_id=835706957 instance=ExtResource("15_f23eu")]
+transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, -10, 0, 8)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.599295, 0, 0)
