@@ -5,6 +5,7 @@ enum Task {
 	Follow,
 	PickupPumpkin,
 	LoadCart,
+	DrawWheel,
 	EquipMask
 }
 
@@ -39,9 +40,15 @@ var target_cart: PumpkinCart
 
 var target_mask: PumpkinVisual
 
+var target_wheel: DrawWheel
+
 var is_holding_pumpkin: bool = false
 
 var current_held_pumpkin: Pumpkin
+
+var drawn_wheel_task_completed: bool = false
+
+var bridge_locked: bool = false
 
 func _ready() -> void:
 	notifier.screen_entered.connect(_on_screen_entered)

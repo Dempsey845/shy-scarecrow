@@ -103,30 +103,6 @@ func _process_go_to_target(delta: float):
 		interacted_with_current_target = false
 		_change_state(State.INTERACT_WITH_TARGET)
 
-func _process_interact_with_target(_delta: float):
-	if interacted_with_current_target:
-		current_target = null
-		interacted_with_current_target = false
-		scarecrow.change_task(Scarecrow.Task.Follow)
-		return
-
-	if !is_instance_valid(current_target):
-		push_warning("Trying to interact with a non-valid target.")
-		return
-	
-	if current_target is Pumpkin:
-		var pumpkin: Pumpkin = current_target as Pumpkin
-		scarecrow.attempt_pickup_pumpkin(pumpkin)
-		interacted_with_current_target = true
-	elif current_target is PumpkinCart:
-		scarecrow.drop_current_held_pumpkin()
-		var cart: PumpkinCart = current_target as PumpkinCart
-		cart.add_large_pumpkin()
-		interacted_with_current_target = true
-	elif current_target is PumpkinVisual:
-		scarecrow.equip_pumpkin_mask(current_target)
-		interacted_with_current_target = true
-
 func _move_towards_position(target_position: Vector3, delta: float) -> void:
 	if !can_move:
 		return
@@ -366,6 +342,45 @@ func _on_scarecrow_task_changed(new_task: Scarecrow.Task):
 				scarecrow.change_task(Scarecrow.Task.Follow)
 			else:
 				_set_interaction_target(scarecrow.target_mask)
+
+		Scarecrow.Task.DrawWheel:
+			if !is_instance_valid(scarecrow.target_wheel):
+				push_error("Scarecrow does not have an assigned draw wheel.")
+				scarecrow.change_task(Scarecrow.Task.Follow)
+			else:
+				_set_interaction_target(scarecrow.target_wheel)
+
+func _process_interact_with_target(_delta: float):
+	if interacted_with_current_target:
+		current_target = null
+		interacted_with_current_target = false
+		scarecrow.change_task(Scarecrow.Task.Follow)
+		return
+
+	if !is_instance_valid(current_target):
+		push_warning("Trying to interact with a non-valid target.")
+		return
+	
+	if current_target is Pumpkin:
+		var pumpkin: Pumpkin = current_target as Pumpkin
+		scarecrow.attempt_pickup_pumpkin(pumpkin)
+		interacted_with_current_target = true
+	elif current_target is PumpkinCart:
+		scarecrow.drop_current_held_pumpkin()
+		var cart: PumpkinCart = current_target as PumpkinCart
+		cart.add_large_pumpkin()
+		interacted_with_current_target = true
+	elif current_target is PumpkinVisual:
+		scarecrow.equip_pumpkin_mask(current_target)
+		interacted_with_current_target = true
+	elif current_target is DrawWheel:
+		if !scarecrow.drawn_wheel_task_completed and current_target.ditch_bridge.is_up and current_target.try_spin_wheel(scarecrow):
+			scarecrow.drawn_wheel_task_completed = true
+			current_target.can_player_interact = false
+			return
+
+		if scarecrow.bridge_locked:
+			interacted_with_current_target = true
 
 
 func _set_interaction_target(target: Node3D) -> void:

@@ -5,6 +5,7 @@ signal pumpkin_too_large(pumpkin: Pumpkin)
 
 var pushing_cart: PumpkinCart
 
+var drawn_second_wheel: bool
 
 func emit_pumpkin_too_large(pumpkin: Pumpkin) -> void:
 	pumpkin_too_large.emit(pumpkin)

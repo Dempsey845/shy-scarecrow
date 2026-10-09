@@ -41,7 +41,7 @@ func _process(_delta: float) -> void:
 			if not is_instance_valid(current_held_pumpkin) and collider.can_interact(player):
 				target = collider
 
-		elif collider is DrawWheel:
+		elif collider is DrawWheel and collider.can_player_interact:
 			target = collider
 
 	_set_hovered_target(target)
@@ -64,7 +64,7 @@ func _process(_delta: float) -> void:
 			_set_hovered_target(null)
 			workbench.interact(player)
 
-		elif current_hovered_target is DrawWheel:
+		elif current_hovered_target is DrawWheel and current_hovered_target.can_player_interact:
 			_interact_with_draw_wheel(current_hovered_target)
 
 
