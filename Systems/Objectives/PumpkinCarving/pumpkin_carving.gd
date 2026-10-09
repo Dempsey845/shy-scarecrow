@@ -6,6 +6,7 @@ signal progress_changed(coverage: Vector3, stray_ratio: float, ready: bool)
 const SIZE := 256
 const FACE_SIZE := Vector2(0.72, 0.56)
 const MAX_UNDO := 20
+
 @export_range(0.005, 0.08) var brush_radius: float = 0.022
 @export_range(0.1, 1.0) var required_coverage: float = 0.72
 @export_range(0.0, 1.0) var maximum_stray_ratio: float = 0.22
@@ -34,8 +35,7 @@ func _ready() -> void:
 	material = source.duplicate() as ShaderMaterial
 	material.shader = preload("uid://so1kmm3rbjf3")
 	shell.material_override = material
-	# Hide the pumpkin outline while drawing the face.
-	shell.material_overlay = null
+	
 	mask = Image.create(SIZE, SIZE, false, Image.FORMAT_L8)
 	mask.fill(Color.BLACK)
 	mask_texture = ImageTexture.create_from_image(mask)

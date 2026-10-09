@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dvfxbqrha5cow" path="res://Scarecrow/scarecrow.gd" id="1_hqi6l"]
 [ext_resource type="Script" uid="uid://bap10ep5nwip6" path="res://Scarecrow/scarecrow_navigation.gd" id="2_loohh"]
 [ext_resource type="Script" uid="uid://dmkh7hvx56hmf" path="res://Scarecrow/scarecrow_pickup.gd" id="3_7162q"]
-[ext_resource type="PackedScene" uid="uid://d2a0qxntbg1hk" path="res://Scarecrow/scarecrow.glb" id="3_vthn0"]
+[ext_resource type="PackedScene" uid="uid://lqqwx7ny4bvo" path="res://Scarecrow/scarecrow_visual.tscn" id="4_dr0de"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gei8a"]
 radius = 0.4
@@ -35,7 +35,8 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 aabb = AABB(-0.4, -1, -0.5, 0.8, 2, 1)
 
-[node name="scarecrow" parent="." unique_id=160853289 instance=ExtResource("3_vthn0")]
+[node name="ScarecrowVisual" parent="." unique_id=1994586894 instance=ExtResource("4_dr0de")]
+unique_name_in_owner = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="PickupHolder" type="Node3D" parent="." unique_id=1065831031]
@@ -48,3 +49,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.39999998, -0.9)
 [node name="StepCast" type="RayCast3D" parent="." unique_id=319415477]
 unique_name_in_owner = true
 target_position = Vector3(0, 0, -0.5)
+
+[node name="PumpkinMask" type="Node3D" parent="." unique_id=1936529620]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.1401331, 0)

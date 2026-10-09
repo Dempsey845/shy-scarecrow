@@ -1,7 +1,7 @@
 class_name PumpkinWorkbench
 extends StaticBody3D
 
-signal task_completed(mask_image: Image)
+signal task_completed(pumpkin_visual)
 signal carving_started
 signal carving_ended
 
@@ -11,7 +11,12 @@ signal carving_ended
 @onready var carving: PumpkinCarving = $PumpkinCarving
 @onready var camera: Camera3D = $CarvingCamera
 @onready var camera_pose: Marker3D = $CameraPose
-@onready var tabletop: MeshInstance3D = $Tabletop
+@onready var pumpkin_visual: PumpkinVisual = %PumpkinVisual
+
+@onready var _ui: CanvasLayer = $CarvingUI
+@onready var _status: Label = $CarvingUI/Panel/Column/Status
+@onready var _finish: Button = $CarvingUI/Panel/Column/Buttons/Finish
+@onready var _guide: CheckButton = $CarvingUI/Panel/Column/Guide
 
 var active := false
 var transitioning := false
@@ -21,10 +26,7 @@ var _previous_mouse_mode: Input.MouseMode
 var _locked_nodes: Array[Node] = []
 var _previous_modes: Array[int] = []
 var _camera_tween: Tween
-@onready var _ui: CanvasLayer = $CarvingUI
-@onready var _status: Label = $CarvingUI/Panel/Column/Status
-@onready var _finish: Button = $CarvingUI/Panel/Column/Buttons/Finish
-@onready var _guide: CheckButton = $CarvingUI/Panel/Column/Guide
+
 var _painting := false
 var _erase := false
 var _finished_pending := false
@@ -42,11 +44,11 @@ func can_interact(player: CharacterBody3D) -> bool:
 
 
 func show_outline() -> void:
-	tabletop.set_instance_shader_parameter("outline_strength", 1.0)
+	pumpkin_visual.show_outline()
 
 
 func hide_outline() -> void:
-	tabletop.set_instance_shader_parameter("outline_strength", 0.0)
+	pumpkin_visual.hide_outline()
 
 
 func interact(player: CharacterBody3D) -> void:
@@ -123,15 +125,15 @@ func _on_left() -> void:
 	carving_ended.emit()
 	if _finished_pending:
 		_finished_pending = false
-		task_completed.emit(carving.export_mask())
+		task_completed.emit(pumpkin_visual)
 
 
 func _restore_controls() -> void:
 	if is_instance_valid(_previous_camera):
 		_previous_camera.make_current()
 	for i in _locked_nodes.size():
-		if is_instance_valid(_locked_nodes[i]):
-			_locked_nodes[i].process_mode = _previous_modes[i]
+		if is_instance_valid(_locked_nodes[i]): 
+			_locked_nodes[i].process_mode = _previous_modes[i] as Node.ProcessMode
 	_locked_nodes.clear()
 	_previous_modes.clear()
 	Input.mouse_mode = _previous_mouse_mode
@@ -206,7 +208,7 @@ func _complete() -> void:
 	leave()
 
 
-func _on_progress(value: Vector3, stray: float, ready: bool) -> void:
+func _on_progress(value: Vector3, stray: float, is_ready: bool) -> void:
 	_status.text = (
 		"Left eye %d%%   Right eye %d%%   Smile %d%%\n%s"
 		% [
@@ -215,7 +217,7 @@ func _on_progress(value: Vector3, stray: float, ready: bool) -> void:
 			int(value.z * 100),
 			(
 				"Your friendly mask is ready!"
-				if ready
+				if is_ready
 				else (
 					"Erase a few stray cuts outside the guide."
 					if stray > carving.maximum_stray_ratio
@@ -224,7 +226,7 @@ func _on_progress(value: Vector3, stray: float, ready: bool) -> void:
 			)
 		]
 	)
-	_finish.disabled = not ready
+	_finish.disabled = not is_ready
 
 
 func _on_guide_toggled(enabled: bool) -> void:

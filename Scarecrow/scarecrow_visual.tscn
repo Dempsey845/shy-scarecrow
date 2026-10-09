@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://lqqwx7ny4bvo"]
+
+[ext_resource type="PackedScene" uid="uid://d2a0qxntbg1hk" path="res://Scarecrow/scarecrow.glb" id="1_m3o3f"]
+[ext_resource type="Script" uid="uid://76ss4yqeliyb" path="res://Scarecrow/scarecrow_visual.gd" id="2_lex3b"]
+
+[node name="ScarecrowVisual" unique_id=1994586894 instance=ExtResource("1_m3o3f")]
+script = ExtResource("2_lex3b")

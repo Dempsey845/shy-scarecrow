@@ -123,6 +123,9 @@ func _process_interact_with_target(_delta: float):
 		var cart: PumpkinCart = current_target as PumpkinCart
 		cart.add_large_pumpkin()
 		interacted_with_current_target = true
+	elif current_target is PumpkinVisual:
+		scarecrow.equip_pumpkin_mask(current_target)
+		interacted_with_current_target = true
 
 func _move_towards_position(target_position: Vector3, delta: float) -> void:
 	if !can_move:
@@ -356,6 +359,13 @@ func _on_scarecrow_task_changed(new_task: Scarecrow.Task):
 				scarecrow.change_task(Scarecrow.Task.Follow)
 			else:
 				_set_interaction_target(scarecrow.target_cart)
+
+		Scarecrow.Task.EquipMask:
+			if !is_instance_valid(scarecrow.target_mask):
+				push_error("Scarecrow does not have an assigned pumpkin mask.")
+				scarecrow.change_task(Scarecrow.Task.Follow)
+			else:
+				_set_interaction_target(scarecrow.target_mask)
 
 
 func _set_interaction_target(target: Node3D) -> void:

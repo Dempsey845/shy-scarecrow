@@ -4,7 +4,8 @@ extends CharacterBody3D
 enum Task {
 	Follow,
 	PickupPumpkin,
-	LoadCart
+	LoadCart,
+	EquipMask
 }
 
 signal screen_entered
@@ -18,6 +19,7 @@ signal attempt_drop
 
 @export_category("References")
 @export var player: Player
+@export var pumpkin_workbench: PumpkinWorkbench
 
 @export_category("Pumpkin Interaction")
 @export var interaction_distance: float = 1.5
@@ -26,11 +28,16 @@ signal attempt_drop
 
 @onready var notifier: VisibleOnScreenNotifier3D = %VisibleOnScreenNotifier
 
+@onready var pumpkin_mask: Node3D = %PumpkinMask
+@onready var scarecrow_visual: ScarecrowVisual = %ScarecrowVisual
+
 var current_task: Task = Task.Follow
 
 var target_pumpkin: Pumpkin
 
 var target_cart: PumpkinCart
+
+var target_mask: PumpkinVisual
 
 var is_holding_pumpkin: bool = false
 
@@ -39,12 +46,7 @@ var current_held_pumpkin: Pumpkin
 func _ready() -> void:
 	notifier.screen_entered.connect(_on_screen_entered)
 	notifier.screen_exited.connect(_on_screen_exited)
-
-func _on_screen_entered():
-	screen_entered.emit()
-
-func _on_screen_exited():
-	screen_exited.emit()
+	pumpkin_workbench.task_completed.connect(_on_pumpkin_workbench_task_completed)
 
 func change_task(task: Task):
 	if current_task == task:
@@ -75,3 +77,19 @@ func attempt_pickup_pumpkin(pumpkin: Pumpkin):
 func drop_current_held_pumpkin():
 	attempt_drop.emit()
 	is_holding_pumpkin = false
+
+func equip_pumpkin_mask(pumpkin_visual: PumpkinVisual):
+	pumpkin_visual.reparent(pumpkin_mask)
+	pumpkin_visual.position = Vector3.ZERO
+	pumpkin_visual.rotation = Vector3.ZERO
+	scarecrow_visual.hide_head()
+
+func _on_screen_entered():
+	screen_entered.emit()
+
+func _on_screen_exited():
+	screen_exited.emit()
+
+func _on_pumpkin_workbench_task_completed(pumpkin_visual: PumpkinVisual):
+	target_mask = pumpkin_visual
+	change_task(Task.EquipMask)
