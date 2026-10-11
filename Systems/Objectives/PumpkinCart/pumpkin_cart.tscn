@@ -11,6 +11,7 @@ size = Vector3(2.0786743, 1.2004395, 2.5950928)
 
 [node name="PumpkinCart" type="CharacterBody3D" unique_id=2000541155]
 collision_layer = 17
+floor_snap_length = 0.25
 script = ExtResource("1_yl3ed")
 
 [node name="PumpkinCartVisual" parent="." unique_id=44277710 instance=ExtResource("1_8t4u0")]

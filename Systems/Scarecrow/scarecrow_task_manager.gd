@@ -26,6 +26,9 @@ func _ready() -> void:
 	next_area.body_entered.connect(_on_next_area_body_entered)
 
 func _on_player_pumpkin_too_large(pumpkin: Pumpkin):
+	if pumpkin_cart.has_large_pumpkin:
+		return
+
 	scarecrow.try_assign_pumpkin_target(pumpkin)
 
 func _on_scarecrow_pumpkin_pickup(_pumpkin: Pumpkin):

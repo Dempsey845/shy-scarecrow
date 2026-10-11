@@ -18,6 +18,9 @@ extends Node
 @export var minimum_pitch: float = -85.0
 @export var maximum_pitch: float = 85.0
 
+@export_category("Steps")
+@export var step_height: float = 0.2
+
 @onready var camera: Camera3D = %Camera3D
 @onready var head: Node3D = %Head
 @onready var body: Player = get_parent()
@@ -61,7 +64,21 @@ func _physics_process(delta: float) -> void:
 	_handle_jump()
 	_handle_movement(delta)
 
+	var lift := PumpkinCart.get_step_lift(
+		body,
+		body.velocity * delta,
+		step_height
+	)
+
+	if lift > 0.0:
+		body.global_position.y += lift
+		body.velocity.y = 0.0
+
+	var attempted_velocity := body.velocity
+
 	body.move_and_slide()
+
+	_nudge_carts(attempted_velocity, delta)
 
 func _handle_movement(delta: float) -> void:
 	var input_direction: Vector2 = Input.get_vector(
@@ -198,3 +215,34 @@ func _toggle_mouse_capture() -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _nudge_carts(
+	attempted_velocity: Vector3,
+	delta: float
+) -> void:
+	var horizontal_velocity := Vector3(
+		attempted_velocity.x,
+		0.0,
+		attempted_velocity.z
+	)
+
+	for index in range(body.get_slide_collision_count()):
+		var collision := body.get_slide_collision(index)
+		var cart := collision.get_collider() as PumpkinCart
+
+		if cart == null:
+			continue
+
+		var push_direction := -collision.get_normal()
+		push_direction.y = 0.0
+
+		if push_direction.length_squared() < 0.0001:
+			continue
+
+		push_direction = push_direction.normalized()
+
+		var push_amount := horizontal_velocity.dot(push_direction)
+
+		if push_amount > 0.0:
+			cart.nudge(push_direction, push_amount, delta)
+			return

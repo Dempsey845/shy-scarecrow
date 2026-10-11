@@ -7,6 +7,11 @@ extends CharacterBody3D
 @export_range(-180.0, 180.0) var forward_angle_offset: float = 180.0
 @export var steering_degrees_per_second: float = 70.0
 
+@export var bump_push_speed: float = 1.5
+
+@export_category("Steps")
+@export var step_height: float = 0.2
+
 @onready var push_position: Marker3D = $PushPosition
 
 @onready var visual: PumpkinCartVisual = $PumpkinCartVisual
@@ -174,6 +179,17 @@ func push(delta: float) -> Vector3:
 	velocity.z = drive_velocity.z
 
 	_apply_gravity(delta)
+
+	var cart_lift := get_step_lift(
+		self,
+		drive_velocity * delta,
+		step_height
+	)
+
+	if cart_lift > 0.0:
+		global_position.y += cart_lift
+		velocity.y = 0.0
+
 	move_and_slide()
 
 	var player_motion := (
@@ -182,10 +198,23 @@ func push(delta: float) -> Vector3:
 	)
 	player_motion.y = 0.0
 
-	if pushing_player.test_move(
-		pushing_player.global_transform,
-		player_motion
-	):
+	var player_lift := get_step_lift(
+		pushing_player,
+		player_motion,
+		step_height
+	)
+
+	if player_lift < 0.0:
+		global_transform = previous_transform
+
+		velocity.x = 0.0
+		velocity.z = 0.0
+
+		return Vector3.ZERO
+
+	if player_lift > 0.0:
+		pushing_player.global_position.y += player_lift
+		pushing_player.velocity.y = 0.0
 		var updated_height := global_position.y
 
 		global_transform = previous_transform
@@ -229,3 +258,76 @@ func _steer(move_velocity: Vector3, delta: float) -> void:
 		target_angle,
 		weight
 	)
+
+static func get_step_lift(
+	target: CharacterBody3D,
+	motion: Vector3,
+	max_height: float
+) -> float:
+	var horizontal_motion := Vector3(motion.x, 0.0, motion.z)
+
+	if horizontal_motion.length_squared() < 0.000001:
+		return 0.0
+
+	var start := target.global_transform
+
+	if not target.test_move(start, horizontal_motion):
+		return 0.0
+
+	if (
+		not target.is_on_floor()
+		or target.velocity.y > 0.0
+		or max_height <= 0.0
+	):
+		return -1.0
+
+	var up_motion := Vector3.UP * max_height
+
+	if target.test_move(start, up_motion):
+		return -1.0
+
+	var raised := start
+	raised.origin += up_motion
+
+	if target.test_move(raised, horizontal_motion):
+		return -1.0
+
+	var above_destination := raised
+	above_destination.origin += horizontal_motion
+
+	var landing := KinematicCollision3D.new()
+	var down_motion := Vector3.DOWN * (max_height + 0.02)
+
+	if not target.test_move(
+		above_destination,
+		down_motion,
+		landing
+	):
+		return -1.0
+
+	if (
+		landing.get_normal().dot(Vector3.UP)
+		< cos(target.floor_max_angle)
+	):
+		return -1.0
+
+	var lift := max_height + landing.get_travel().y
+
+	if lift <= 0.001 or lift > max_height + 0.001:
+		return -1.0
+
+	return lift
+
+func nudge(direction: Vector3, speed: float, delta: float) -> void:
+	if not is_full() or is_instance_valid(pushing_player):
+		return
+
+	var motion := direction * minf(speed, bump_push_speed) * delta
+
+	var lift := get_step_lift(self, motion, step_height)
+
+	if lift > 0.0:
+		global_position.y += lift
+		velocity.y = 0.0
+
+	move_and_collide(motion)

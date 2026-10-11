@@ -8,6 +8,7 @@
 
 [node name="Player" type="CharacterBody3D" unique_id=691486365]
 collision_layer = 5
+floor_snap_length = 0.25
 script = ExtResource("1_l8h54")
 
 [node name="PlayerMovement" type="Node" parent="." unique_id=261545658]
