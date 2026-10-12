@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dmo5wolb11jgn" path="res://World/Environment/Fence/fence.tscn" id="12_f23eu"]
 [ext_resource type="PackedScene" uid="uid://cr80ypw5hfrux" path="res://Systems/Objectives/PumpkinCarving/pumpkin_workbench.tscn" id="13_0wqet"]
 [ext_resource type="PackedScene" uid="uid://y31gv7rprctf" path="res://World/Environment/autumn_farm.tscn" id="15_oeat8"]
+[ext_resource type="PackedScene" uid="uid://ca2lnu2lv2yha" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand.glb" id="16_oeat8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lo5ox"]
 shader = ExtResource("3_lo5ox")
@@ -59,6 +60,7 @@ script = ExtResource("1_h2aik")
 world_environment = NodePath("../WorldEnvironment")
 sun_light = NodePath("../Sun")
 moon_light = NodePath("../Moon")
+cycle_duration_seconds = 300.0
 
 [node name="PlayerScarecrowSharedResources" type="Node" parent="." unique_id=1082040689]
 script = ExtResource("1_k8do8")
@@ -691,7 +693,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.40
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.402124, 0.016518593, -15.616606)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 1, -13)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 10)
 
 [node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player", "pumpkin_workbench") instance=ExtResource("2_8a836")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, -28)
@@ -705,3 +707,6 @@ gate = NodePath("../NavigationRegion3D/Gate")
 [node name="GatePressurePlate2" parent="." unique_id=1804250790 node_paths=PackedStringArray("gate") instance=ExtResource("8_eidgh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.439, -0.08191994, -10.566999)
 gate = NodePath("../NavigationRegion3D/Gate")
+
+[node name="hot_chocolate_stand" parent="." unique_id=1348784661 instance=ExtResource("16_oeat8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 3)
