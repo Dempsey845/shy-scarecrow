@@ -41,6 +41,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.605, -1)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8271744, -1)
 
+[node name="HotChocolateSlot" type="Node3D" parent="Head/Camera3D/PickupHolder" unique_id=1056485211]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.245, -0.252, -0.29)
+
 [node name="ScarecrowVisibiltyRays" type="Node3D" parent="Head" unique_id=1258030992]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=980824139]

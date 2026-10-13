@@ -52,7 +52,7 @@ func _process(_delta: float) -> void:
 			target = collider
 
 		elif collider is HotChocolateStand:
-			if is_instance_valid(current_held_hot_chocolate_machine):
+			if is_instance_valid(current_held_hot_chocolate_machine) or collider.has_chocolate_machine:
 				target = collider
 
 		elif collider is HotChocolateMachinePickup:
@@ -152,9 +152,12 @@ func _interact_with_draw_wheel(wheel: DrawWheel):
 	wheel.try_spin_wheel(player)
 
 func _interact_with_hot_chocolate_stand(stand: HotChocolateStand):
-	if stand.try_add_hot_chocolate_machine() and is_instance_valid(current_held_hot_chocolate_machine):
-		current_held_hot_chocolate_machine.queue_free()
-		current_held_hot_chocolate_machine = null
+	if !stand.has_chocolate_machine:
+		if is_instance_valid(current_held_hot_chocolate_machine) and stand.try_add_hot_chocolate_machine():
+			current_held_hot_chocolate_machine.queue_free()
+			current_held_hot_chocolate_machine = null
+	else:
+		stand.try_make_hot_chocolate()
 
 func _interact_with_hot_chocolate_machine_pickup(pickup: HotChocolateMachinePickup):
 	pickup.pickup()

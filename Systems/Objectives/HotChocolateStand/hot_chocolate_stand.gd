@@ -1,22 +1,73 @@
 class_name HotChocolateStand
 extends StaticBody3D
 
-@onready var hot_chocolate_machine_visual: Node3D = $hot_chocolate_machine
+@export var player: Player
+
+@onready var hot_chocolate_machine_visual: HotChocolateMachineVisual = $HotChocolateMachineVisual
 @onready var hot_chocolate_stand_visual: HotChocolateStandVisual = $HotChocolateStandVisual
+@onready var hot_chocolate_cup: HotChocolateCup = $HotChocolateCup
+
+var has_chocolate_machine: bool = false
+
+var can_make_hot_chocolate: bool = true
+
+var claimed_hot_chocolate: bool = false
+
+var is_hot_chocolate_made: bool = false
+
+func _ready() -> void:
+	hot_chocolate_cup.filled.connect(func():
+		is_hot_chocolate_made = true
+	)
 
 func show_outline():
-    hot_chocolate_stand_visual.show_outline()
+	if !can_make_hot_chocolate:
+		return
+
+	if has_chocolate_machine:
+		hot_chocolate_machine_visual.show_outline()
+	else:
+		hot_chocolate_stand_visual.show_outline()
 
 func hide_outline():
-    hot_chocolate_stand_visual.hide_outline()
+	hot_chocolate_machine_visual.hide_outline()
+	hot_chocolate_stand_visual.hide_outline()
 
 func try_add_hot_chocolate_machine() -> bool:
-    if hot_chocolate_machine_visual.visible:
-        return false
-    
-    hot_chocolate_machine_visual.visible = true
+	if hot_chocolate_machine_visual.visible or has_chocolate_machine:
+		return false
+	
+	hot_chocolate_machine_visual.visible = true
 
-    PlayerTasks.complete_task(&"return_hot_choco_machine")
+	hot_chocolate_machine_visual.show_outline()
 
-    return true
+	hot_chocolate_stand_visual.hide_outline()
 
+	PlayerTasks.complete_task(&"return_hot_choco_machine")
+
+	has_chocolate_machine = true
+
+	return true
+
+func try_make_hot_chocolate():
+	if !has_chocolate_machine:
+		return
+
+	if !can_make_hot_chocolate:
+		if is_hot_chocolate_made and !claimed_hot_chocolate:
+			hot_chocolate_cup.hide_outline()
+			hot_chocolate_cup.reparent(player.hot_chocolate_slot)
+			hot_chocolate_cup.position = Vector3.ZERO
+			hot_chocolate_cup.rotation_degrees = Vector3.ZERO
+			claimed_hot_chocolate = true
+		return
+
+	hot_chocolate_cup.visible = true
+
+	hot_chocolate_cup.fill_cup()
+
+	hot_chocolate_machine_visual.hide_outline()
+
+	hot_chocolate_cup.show_outline()
+
+	can_make_hot_chocolate = false

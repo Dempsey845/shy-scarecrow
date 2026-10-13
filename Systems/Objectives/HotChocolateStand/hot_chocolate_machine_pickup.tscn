@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://6fogmgvyiao"]
 
 [ext_resource type="Script" uid="uid://cvuq1ag8igly2" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine_pickup.gd" id="1_3obmv"]
-[ext_resource type="PackedScene" uid="uid://c7dwfgxsto6qj" path="res://Systems/Objectives/HotChocolateStand/hot_chcolate_machine_visual.tscn" id="1_xp0au"]
+[ext_resource type="PackedScene" uid="uid://c7dwfgxsto6qj" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine_visual.tscn" id="1_xp0au"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xrivr"]
 height = 0.8

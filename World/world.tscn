@@ -98,7 +98,7 @@ visible = false
 navigation_mesh = SubResource("NavigationMesh_gei8a")
 
 [node name="Maze" parent="NavigationRegion3D" unique_id=694593406 groups=["navigation_mesh_source_group"] instance=ExtResource("13_kcyjf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.862438, 0, 24.640388)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.862438, -0.2, 24.640388)
 
 [node name="PumpkinCart" parent="NavigationRegion3D" unique_id=2000541155 groups=["navigation_mesh_source_group"] instance=ExtResource("6_bkhv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.242, -0.041, -3.2199998)
@@ -703,7 +703,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.40
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.402124, 0.016518593, -15.616606)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1, -29)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, 7)
 
 [node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player", "pumpkin_workbench", "next_area") instance=ExtResource("2_8a836")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, -28)
@@ -719,11 +719,15 @@ gate = NodePath("../NavigationRegion3D/Gate")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.439, -0.08191994, -10.566999)
 gate = NodePath("../NavigationRegion3D/Gate")
 
-[node name="HotChocolateStand" parent="." unique_id=1399182672 instance=ExtResource("16_oeat8")]
+[node name="HotChocolateStand" parent="." unique_id=1399182672 node_paths=PackedStringArray("player") instance=ExtResource("16_oeat8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 3)
+player = NodePath("../Player")
 
 [node name="HotChocolateMachinePickup" parent="." unique_id=1768625590 instance=ExtResource("17_5xkvv")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.436975, 0, 37.34714)
 
 [node name="PumpkinCartDeliveryDestination" parent="." unique_id=1228330110 instance=ExtResource("22_dqu5g")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26.8, 0, 3)
+
+[node name="HotChocolateMachinePickup2" parent="." unique_id=369292514 instance=ExtResource("17_5xkvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 4)

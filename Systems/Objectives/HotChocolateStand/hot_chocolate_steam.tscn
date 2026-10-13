@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://cqrspsmjc6svc"]
+
+[sub_resource type="Gradient" id="Gradient_fade"]
+offsets = PackedFloat32Array(0, 0.16, 0.48, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 0.6, 1, 1, 1, 0.38, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture_fade"]
+gradient = SubResource("Gradient_fade")
+
+[sub_resource type="Curve" id="Curve_growth"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.4), 0.0, 1.1, 0, 0, Vector2(1, 1.5), 1.1, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_growth"]
+curve = SubResource("Curve_growth")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_steam"]
+resource_local_to_scene = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.003
+emission_ring_radius = 0.035
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 12.0
+initial_velocity_min = 0.07
+initial_velocity_max = 0.12
+gravity = Vector3(0, 0.025, 0)
+scale_min = 0.7
+scale_max = 1.1
+scale_curve = SubResource("CurveTexture_growth")
+color_ramp = SubResource("GradientTexture_fade")
+turbulence_enabled = true
+turbulence_noise_strength = 0.12
+turbulence_noise_scale = 2.0
+turbulence_noise_speed = Vector3(0.015, 0.035, 0)
+turbulence_influence_min = 0.04
+
+[sub_resource type="Shader" id="Shader_steam"]
+code = "shader_type spatial;
+render_mode unshaded, blend_mix, depth_draw_never, cull_disabled, shadows_disabled;
+
+uniform float opacity : hint_range(0.0, 1.0) = 0.48;
+uniform vec4 steam_color : source_color = vec4(0.94, 0.93, 0.90, 1.0);
+varying vec4 particle_color;
+varying float phase;
+
+float hash(vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+}
+float noise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+    return mix(mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+               mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0)), f.x), f.y);
+}
+void vertex() {
+    particle_color = COLOR;
+    phase = float(INSTANCE_ID) * 2.718;
+    vec3 particle_scale = vec3(length(MODEL_MATRIX[0].xyz),
+                               length(MODEL_MATRIX[1].xyz),
+                               length(MODEL_MATRIX[2].xyz));
+    MODELVIEW_MATRIX = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0],
+                                         INV_VIEW_MATRIX[1],
+                                         INV_VIEW_MATRIX[2],
+                                         MODEL_MATRIX[3]);
+    VERTEX *= particle_scale;
+}
+void fragment() {
+    vec2 p = UV * 2.0 - 1.0;
+    p.x += sin(p.y * 4.0 + TIME * 0.65 + phase) * 0.12;
+    float edge = 1.0 - smoothstep(0.15, 1.0, length(p));
+    vec2 flow = UV * vec2(3.0, 4.0) + vec2(phase, -TIME * 0.22);
+    float wisps = noise(flow) * 0.65 + noise(flow * 2.1) * 0.35;
+    float mask = edge * edge * smoothstep(0.12, 0.80, wisps);
+    ALBEDO = steam_color.rgb * particle_color.rgb;
+    ALPHA = mask * particle_color.a * steam_color.a * opacity;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_steam"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_steam")
+shader_parameter/opacity = 0.48
+shader_parameter/steam_color = Color(0.94, 0.93, 0.9, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_steam"]
+material = SubResource("ShaderMaterial_steam")
+size = Vector2(0.12, 0.24)
+
+[node name="HotChocolateSteam" type="Node3D" unique_id=1073080789]
+
+[node name="Steam" type="GPUParticles3D" parent="." unique_id=921568699]
+cast_shadow = 0
+emitting = false
+amount = 20
+lifetime = 2.8
+preprocess = 2.8
+randomness = 0.25
+visibility_aabb = AABB(-1, -0.5, -1, 2, 2.5, 2)
+draw_order = 3
+process_material = SubResource("ParticleProcessMaterial_steam")
+draw_pass_1 = SubResource("QuadMesh_steam")

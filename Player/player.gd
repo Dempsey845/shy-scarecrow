@@ -3,6 +3,8 @@ extends CharacterBody3D
 
 signal pumpkin_too_large(pumpkin: Pumpkin)
 
+@onready var hot_chocolate_slot: Node3D = %HotChocolateSlot
+
 var pushing_cart: PumpkinCart
 
 var drawn_second_wheel: bool

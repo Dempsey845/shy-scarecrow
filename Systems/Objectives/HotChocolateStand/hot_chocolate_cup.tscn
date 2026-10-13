@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://cnim2iostjiw2"]
+
+[ext_resource type="PackedScene" uid="uid://cgvib2odj5f5b" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_cup.glb" id="1_cbcrx"]
+[ext_resource type="Script" uid="uid://dospkr8200sc7" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_cup.gd" id="2_cgkpw"]
+[ext_resource type="Shader" uid="uid://cf5ostk03gc6c" path="res://Shaders/hot_chocolate_fill.gdshader" id="2_h22e8"]
+[ext_resource type="Shader" uid="uid://cqab3ky70xe4j" path="res://Shaders/outline.gdshader" id="3_x7r8t"]
+[ext_resource type="PackedScene" uid="uid://cqrspsmjc6svc" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_steam.tscn" id="4_cgkpw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ug4i"]
+render_priority = 0
+shader = ExtResource("3_x7r8t")
+shader_parameter/outline_color = Color(0.05, 0.03, 0.1, 1)
+shader_parameter/outline_thickness = 0.0050000002375
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cgkpw"]
+render_priority = 0
+shader = ExtResource("2_h22e8")
+shader_parameter/fill_amount = 0.0
+shader_parameter/bottom_y = 0.06
+shader_parameter/top_y = 1.0
+shader_parameter/bottom_radius = 0.3
+shader_parameter/top_radius = 0.5
+shader_parameter/chocolate_color = Color(0.41257903, 0.18307096, 0.08564923, 1)
+
+[node name="HotChocolateCup" unique_id=1957135557 instance=ExtResource("1_cbcrx")]
+script = ExtResource("2_cgkpw")
+
+[node name="Cup" parent="." index="0" unique_id=1916251713]
+material_overlay = SubResource("ShaderMaterial_5ug4i")
+cast_shadow = 0
+
+[node name="CupFill" parent="." index="1" unique_id=816579118]
+material_override = SubResource("ShaderMaterial_cgkpw")
+cast_shadow = 0
+
+[node name="HotChocolateSteam" parent="." index="2" unique_id=345153375 instance=ExtResource("4_cgkpw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16644256, 0)
