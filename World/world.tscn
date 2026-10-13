@@ -726,4 +726,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 3)
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.436975, 0, 37.34714)
 
 [node name="PumpkinCartDeliveryDestination" parent="." unique_id=1228330110 instance=ExtResource("22_dqu5g")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18.3, 0, 0.5)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26.8, 0, 3)

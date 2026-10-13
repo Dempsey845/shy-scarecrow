@@ -31,6 +31,8 @@ var _painting := false
 var _erase := false
 var _finished_pending := false
 
+var find_hot_choco_machine: PlayerTask = preload("uid://dlfnddrmge31p")
+
 
 func _ready() -> void:
 	camera_pose.look_at($PumpkinCarving.global_position + Vector3(0, 0.38, 0), Vector3.UP)
@@ -125,6 +127,8 @@ func _on_left() -> void:
 	carving_ended.emit()
 	if _finished_pending:
 		_finished_pending = false
+		PlayerTasks.complete_task(&"carve_pumpkin")
+		PlayerTasks.add_task(find_hot_choco_machine)
 		task_completed.emit(pumpkin_visual)
 
 
