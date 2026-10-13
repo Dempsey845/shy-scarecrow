@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://bsvihe7y14j2h"]
+
+[ext_resource type="PackedScene" uid="uid://cgv7uesl4vrcg" path="res://World/Environment/autumn_hedge.tscn" id="1_vr1ja"]
+
+[sub_resource type="BoxShape3D" id="GroundShape"]
+size = Vector3(31, 0.2, 23)
+
+[node name="Maze" type="Node3D" unique_id=694593406]
+
+[node name="AutumnHedge" parent="." unique_id=2074646967 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4, 0, -9.9)
+
+[node name="AutumnHedge2" parent="." unique_id=1967818503 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6, 0, -9.9)
+
+[node name="AutumnHedge3" parent="." unique_id=904090780 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.6, 0, 10.1)
+
+[node name="AutumnHedge4" parent="." unique_id=1757621735 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4, 0, 10.1)
+
+[node name="InteriorHedges" type="Node3D" parent="." unique_id=1405381586]
+
+[node name="Hedge01" parent="InteriorHedges" unique_id=1351317758 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, 9.5, 0, -3.9)
+
+[node name="Hedge02" parent="InteriorHedges" unique_id=1829769952 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, 9.5, 0, 0.1)
+
+[node name="Hedge03" parent="InteriorHedges" unique_id=1162090284 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, 4.7, 0, 4.1)
+
+[node name="Hedge04" parent="InteriorHedges" unique_id=1204800694 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, -0.1, 0, 8.1)
+
+[node name="Hedge05" parent="InteriorHedges" unique_id=1480007857 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -12.1, 0, -5.9)
+
+[node name="Hedge06" parent="InteriorHedges" unique_id=2009065734 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -7.3, 0, -5.9)
+
+[node name="Hedge07" parent="InteriorHedges" unique_id=1808066301 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -2.5, 0, -5.9)
+
+[node name="Hedge08" parent="InteriorHedges" unique_id=47484766 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 2.3, 0, -5.9)
+
+[node name="Hedge09" parent="InteriorHedges" unique_id=245665753 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -7.3, 0, -1.9)
+
+[node name="Hedge10" parent="InteriorHedges" unique_id=770463747 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -2.5, 0, -1.9)
+
+[node name="Hedge11" parent="InteriorHedges" unique_id=1528981763 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 2.3, 0, -1.9)
+
+[node name="Hedge12" parent="InteriorHedges" unique_id=1279600347 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 7.1, 0, -1.9)
+
+[node name="Hedge13" parent="InteriorHedges" unique_id=1886922877 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -12.1, 0, 2.1)
+
+[node name="Hedge14" parent="InteriorHedges" unique_id=542927739 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -7.3, 0, 2.1)
+
+[node name="Hedge15" parent="InteriorHedges" unique_id=1453821582 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -2.5, 0, 2.1)
+
+[node name="Hedge16" parent="InteriorHedges" unique_id=1177933981 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 2.3, 0, 2.1)
+
+[node name="Hedge17" parent="InteriorHedges" unique_id=1968356100 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 11.9, 0, 2.1)
+
+[node name="Hedge18" parent="InteriorHedges" unique_id=2130489488 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -7.3, 0, 6.1)
+
+[node name="Hedge19" parent="InteriorHedges" unique_id=1897065373 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -2.5, 0, 6.1)
+
+[node name="Hedge20" parent="InteriorHedges" unique_id=327843427 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 7.1, 0, 6.1)
+
+[node name="BoundaryExtensions" type="Node3D" parent="." unique_id=314917047]
+
+[node name="West1" parent="BoundaryExtensions" unique_id=2091493673 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, -14.5, 0, -7.9)
+
+[node name="East1" parent="BoundaryExtensions" unique_id=956437443 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, 14.3, 0, -7.9)
+
+[node name="West2" parent="BoundaryExtensions" unique_id=1719091385 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, -14.5, 0, -3.9)
+
+[node name="East2" parent="BoundaryExtensions" unique_id=1431451295 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, 14.3, 0, -3.9)
+
+[node name="West3" parent="BoundaryExtensions" unique_id=1593840618 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, -14.5, 0, 0.1)
+
+[node name="East3" parent="BoundaryExtensions" unique_id=1380325765 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, 14.3, 0, 0.1)
+
+[node name="West4" parent="BoundaryExtensions" unique_id=2032171619 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, -14.5, 0, 4.1)
+
+[node name="East4" parent="BoundaryExtensions" unique_id=1676809015 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, 14.3, 0, 4.1)
+
+[node name="West5" parent="BoundaryExtensions" unique_id=1247919880 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, -14.5, 0, 8.1)
+
+[node name="East5" parent="BoundaryExtensions" unique_id=990435389 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0, 0, -0.694915, 0, 1, 0, 0.78, 0, 0, 14.3, 0, 8.1)
+
+[node name="North1" parent="BoundaryExtensions" unique_id=388943766 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -7.3, 0, -9.9)
+
+[node name="North2" parent="BoundaryExtensions" unique_id=444056449 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -2.5, 0, -9.9)
+
+[node name="North4" parent="BoundaryExtensions" unique_id=481917239 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 7.1, 0, -9.9)
+
+[node name="South1" parent="BoundaryExtensions" unique_id=904383699 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, -7.3, 0, 10.1)
+
+[node name="South3" parent="BoundaryExtensions" unique_id=736740402 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 2.3, 0, 10.1)
+
+[node name="South4" parent="BoundaryExtensions" unique_id=1398510357 instance=ExtResource("1_vr1ja")]
+transform = Transform3D(0.830508, 0, 0, 0, 1, 0, 0, 0, 0.78, 7.1, 0, 10.1)
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=611949469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.26, 0.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1710748217]
+shape = SubResource("GroundShape")
+
+[node name="StartPoint" type="Marker3D" parent="." unique_id=860147107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 8.1)
+
+[node name="EndPoint" type="Marker3D" parent="." unique_id=1609845149]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 0, -7.9)

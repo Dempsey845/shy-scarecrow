@@ -5,6 +5,9 @@ extends AnimatableBody3D
 
 var is_up: bool = true
 
+func _ready() -> void:
+	global_rotation_degrees.x = 90.0
+
 func draw_up():
 	animation_player.play("draw_up")
 	is_up = true
