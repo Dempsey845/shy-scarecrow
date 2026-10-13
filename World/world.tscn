@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://y31gv7rprctf" path="res://World/Environment/autumn_farm.tscn" id="15_oeat8"]
 [ext_resource type="PackedScene" uid="uid://slvs84fq485a" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand.tscn" id="16_oeat8"]
 [ext_resource type="PackedScene" uid="uid://6fogmgvyiao" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine_pickup.tscn" id="17_5xkvv"]
+[ext_resource type="PackedScene" uid="uid://dxiqftgecagjs" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart_delivery_destination.tscn" id="22_dqu5g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lo5ox"]
 shader = ExtResource("3_lo5ox")
@@ -722,3 +723,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 3)
 
 [node name="HotChocolateMachinePickup" parent="." unique_id=1768625590 instance=ExtResource("17_5xkvv")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.436975, 0, 37.34714)
+
+[node name="PumpkinCartDeliveryDestination" parent="." unique_id=1228330110 instance=ExtResource("22_dqu5g")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 18.3, 0, 0.5)

@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dxiqftgecagjs"]
+
+[ext_resource type="Texture2D" uid="uid://ejebfoo00j1p" path="res://Systems/Objectives/PumpkinCart/PumpkinCart.png" id="1_xrs43"]
+[ext_resource type="Script" uid="uid://c8cqfr06vy5vj" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart_delivery_destination.gd" id="1_xtspp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njqwk"]
+albedo_color = Color(0.16470589, 0.12941177, 0.22745098, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xrivr"]
+size = Vector3(3, 0.2, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b1lj4"]
+transparency = 1
+albedo_texture = ExtResource("1_xrs43")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_13qdw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(3, 0.2, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_13qdw"]
+size = Vector3(2, 1, 3)
+
+[node name="PumpkinCartDeliveryDestination" type="StaticBody3D" unique_id=1803267543]
+script = ExtResource("1_xtspp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1872923048]
+material_override = SubResource("StandardMaterial3D_njqwk")
+mesh = SubResource("BoxMesh_xrivr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1085972222]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2287345, 0.112127244, 0)
+material_override = SubResource("StandardMaterial3D_b1lj4")
+mesh = SubResource("PlaneMesh_13qdw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1613345264]
+shape = SubResource("BoxShape3D_xrivr")
+
+[node name="DeliveryDetectionArea" type="Area3D" parent="." unique_id=1396107871]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeliveryDetectionArea" unique_id=297806690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("BoxShape3D_13qdw")
