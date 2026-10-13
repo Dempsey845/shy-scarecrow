@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerTask" format=3 uid="uid://dlfnddrmge31p"]
+
+[ext_resource type="Script" uid="uid://dg2sgemrt71fl" path="res://Systems/PlayerTasks/player_task.gd" id="1_mnk3i"]
+
+[resource]
+script = ExtResource("1_mnk3i")
+id = &"find_hot_choco_machine"
+text = "Find the hot chocolate machine."

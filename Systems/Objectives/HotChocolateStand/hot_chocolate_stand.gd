@@ -16,5 +16,7 @@ func try_add_hot_chocolate_machine() -> bool:
     
     hot_chocolate_machine_visual.visible = true
 
+    PlayerTasks.complete_task(&"return_hot_choco_machine")
+
     return true
 

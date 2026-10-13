@@ -31,7 +31,7 @@ var has_large_pumpkin: bool = false
 var pushing_player: CharacterBody3D
 
 var deliver_cart_task: PlayerTask = preload("uid://dbrt5i4eh850j")
-var help_scarecrow_bridge_task: PlayerTask = preload("uid://bxf8lq8vtfayh")
+var help_scarecrow_bridge_task: PlayerTask = preload("uid://ctil4sb5asmu")
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(pushing_player):
