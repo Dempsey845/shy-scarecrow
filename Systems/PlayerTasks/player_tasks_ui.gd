@@ -6,6 +6,8 @@ extends CanvasLayer
 @export var completed_color: Color = Color("787269")
 
 @onready var task_list: VBoxContainer = $TaskContainer/ScrollContainer/TaskList
+@onready var scroll_container: ScrollContainer = $TaskContainer/ScrollContainer
+
 var _labels: Dictionary = {}
 
 var font = preload("uid://d2nvj85t61y54")
@@ -48,6 +50,10 @@ func _on_task_added(task: PlayerTask) -> void:
 	task_list.add_child(label)
 	_labels[task.id] = label
 	_update_label(task)
+	
+	await get_tree().process_frame
+	if is_instance_valid(label) and label.is_inside_tree():
+		scroll_container.ensure_control_visible(label)
 
 func _on_task_completed(task_id: StringName) -> void:
 	for task in PlayerTasks.get_tasks():
