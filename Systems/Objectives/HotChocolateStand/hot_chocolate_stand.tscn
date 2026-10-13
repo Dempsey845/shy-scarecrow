@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://slvs84fq485a"]
+
+[ext_resource type="Script" uid="uid://ddowk1drs8bwo" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand.gd" id="1_ewsde"]
+[ext_resource type="PackedScene" uid="uid://dex1rlmmnhobf" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine.glb" id="2_ewsde"]
+[ext_resource type="PackedScene" uid="uid://b2hnllu1tcvc8" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand_visual.tscn" id="2_pdyae"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
+size = Vector3(1.7651367, 2.7995727, 0.9916992)
+
+[node name="HotChocolateStand" type="StaticBody3D" unique_id=157226431]
+collision_layer = 257
+script = ExtResource("1_ewsde")
+
+[node name="HotChocolateStandVisual" parent="." unique_id=1430613974 instance=ExtResource("2_pdyae")]
+
+[node name="hot_chocolate_machine" parent="." unique_id=1893789103 instance=ExtResource("2_ewsde")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.0732636, 0.10000014)
+visible = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=989025860]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03149414, 1.3487731, 0.0041503906)
+shape = SubResource("BoxShape3D_xrivr")

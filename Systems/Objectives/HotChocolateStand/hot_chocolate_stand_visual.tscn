@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b2hnllu1tcvc8"]
+
+[ext_resource type="PackedScene" uid="uid://ca2lnu2lv2yha" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand.glb" id="1_64poe"]
+[ext_resource type="Script" uid="uid://07g832yx8l6v" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand_visual.gd" id="2_usoyk"]
+[ext_resource type="Shader" uid="uid://cqab3ky70xe4j" path="res://Shaders/outline.gdshader" id="3_r1djl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10gqw"]
+render_priority = 0
+shader = ExtResource("3_r1djl")
+shader_parameter/outline_color = Color(0.05, 0.03, 0.1, 1)
+shader_parameter/outline_thickness = 0.02
+
+[node name="HotChocolateStandVisual" unique_id=1430613974 instance=ExtResource("1_64poe")]
+script = ExtResource("2_usoyk")
+
+[node name="Base" parent="." index="2" unique_id=1543634527]
+material_overlay = SubResource("ShaderMaterial_10gqw")

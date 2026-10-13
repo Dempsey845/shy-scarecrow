@@ -2,11 +2,15 @@ extends Node
 
 @onready var interact_cast: RayCast3D = %InteractCast
 @onready var pumpkin_slot: Node3D = %PumpkinSlot
+@onready var hot_chocolate_machine_slot: Node3D = %HotChocolateMachineSlot
 @onready var player: Player = get_parent()
 
 var current_hovered_target: Node3D
 var current_held_pumpkin: Node3D
 
+var current_held_hot_chocolate_machine: Node3D
+
+var hot_chocolate_machine_visual_scene: PackedScene = preload("uid://c7dwfgxsto6qj")
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(player.pushing_cart):
@@ -38,11 +42,22 @@ func _process(_delta: float) -> void:
 				target = collider
 		
 		elif collider is PumpkinWorkbench:
-			if not is_instance_valid(current_held_pumpkin) and collider.can_interact(player):
+			if (not is_instance_valid(current_held_hot_chocolate_machine) 
+				and not is_instance_valid(current_held_pumpkin) 
+				and collider.can_interact(player)
+			):
 				target = collider
 
 		elif collider is DrawWheel and collider.can_player_interact:
 			target = collider
+
+		elif collider is HotChocolateStand:
+			if is_instance_valid(current_held_hot_chocolate_machine):
+				target = collider
+
+		elif collider is HotChocolateMachinePickup:
+			if not is_instance_valid(current_held_pumpkin):
+				target = collider
 
 	_set_hovered_target(target)
 
@@ -66,6 +81,12 @@ func _process(_delta: float) -> void:
 
 		elif current_hovered_target is DrawWheel and current_hovered_target.can_player_interact:
 			_interact_with_draw_wheel(current_hovered_target)
+
+		elif current_hovered_target is HotChocolateStand:
+			_interact_with_hot_chocolate_stand(current_hovered_target)
+
+		elif current_hovered_target is HotChocolateMachinePickup:
+			_interact_with_hot_chocolate_machine_pickup(current_hovered_target)
 
 
 func _can_interact_with_cart(cart: PumpkinCart) -> bool:
@@ -129,3 +150,14 @@ func _interact_with_patch(patch: PumpkinGroundPatch):
 
 func _interact_with_draw_wheel(wheel: DrawWheel):
 	wheel.try_spin_wheel(player)
+
+func _interact_with_hot_chocolate_stand(stand: HotChocolateStand):
+	if stand.try_add_hot_chocolate_machine() and is_instance_valid(current_held_hot_chocolate_machine):
+		current_held_hot_chocolate_machine.queue_free()
+		current_held_hot_chocolate_machine = null
+
+func _interact_with_hot_chocolate_machine_pickup(pickup: HotChocolateMachinePickup):
+	pickup.pickup()
+
+	current_held_hot_chocolate_machine = hot_chocolate_machine_visual_scene.instantiate()
+	hot_chocolate_machine_slot.add_child(current_held_hot_chocolate_machine)

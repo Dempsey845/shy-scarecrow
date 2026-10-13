@@ -88,6 +88,8 @@ interact={
 3d_physics/layer_6="Scarecrow"
 3d_physics/layer_7="PumpkinGroundPatch"
 3d_physics/layer_8="DrawWheel"
+3d_physics/layer_9="HotChocolateStand"
+3d_physics/layer_10="HotChocolateMachinePickup"
 
 [physics]
 

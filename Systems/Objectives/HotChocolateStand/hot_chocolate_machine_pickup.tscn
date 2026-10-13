@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://6fogmgvyiao"]
+
+[ext_resource type="Script" uid="uid://cvuq1ag8igly2" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine_pickup.gd" id="1_3obmv"]
+[ext_resource type="PackedScene" uid="uid://c7dwfgxsto6qj" path="res://Systems/Objectives/HotChocolateStand/hot_chcolate_machine_visual.tscn" id="1_xp0au"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xrivr"]
+height = 0.8
+radius = 0.27148438
+
+[node name="HotChocolateMachinePickup" type="StaticBody3D" unique_id=1768625590]
+collision_layer = 513
+script = ExtResource("1_3obmv")
+
+[node name="HotChocolateMachineVisual" parent="." unique_id=1893789103 instance=ExtResource("1_xp0au")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2086452882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+shape = SubResource("CylinderShape3D_xrivr")

@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://dmo5wolb11jgn" path="res://World/Environment/Fence/fence.tscn" id="12_f23eu"]
 [ext_resource type="PackedScene" uid="uid://cr80ypw5hfrux" path="res://Systems/Objectives/PumpkinCarving/pumpkin_workbench.tscn" id="13_0wqet"]
 [ext_resource type="PackedScene" uid="uid://y31gv7rprctf" path="res://World/Environment/autumn_farm.tscn" id="15_oeat8"]
-[ext_resource type="PackedScene" uid="uid://ca2lnu2lv2yha" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand.glb" id="16_oeat8"]
+[ext_resource type="PackedScene" uid="uid://slvs84fq485a" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand.tscn" id="16_oeat8"]
+[ext_resource type="PackedScene" uid="uid://6fogmgvyiao" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine_pickup.tscn" id="17_5xkvv"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lo5ox"]
 shader = ExtResource("3_lo5ox")
@@ -708,5 +709,8 @@ gate = NodePath("../NavigationRegion3D/Gate")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.439, -0.08191994, -10.566999)
 gate = NodePath("../NavigationRegion3D/Gate")
 
-[node name="hot_chocolate_stand" parent="." unique_id=1348784661 instance=ExtResource("16_oeat8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21, 0, 3)
+[node name="HotChocolateStand" parent="." unique_id=1399182672 instance=ExtResource("16_oeat8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 3)
+
+[node name="HotChocolateMachinePickup" parent="." unique_id=1768625590 instance=ExtResource("17_5xkvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 3)
