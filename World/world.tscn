@@ -705,10 +705,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.40
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1, -29)
 
-[node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player", "pumpkin_workbench") instance=ExtResource("2_8a836")]
+[node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player", "pumpkin_workbench", "next_area") instance=ExtResource("2_8a836")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, -28)
 player = NodePath("../Player")
 pumpkin_workbench = NodePath("../NavigationRegion3D/PumpkinWorkbench")
+next_area = NodePath("../NavigationRegion3D/Bridge/NextArea")
 
 [node name="GatePressurePlate" parent="." unique_id=856560751 node_paths=PackedStringArray("gate") instance=ExtResource("8_eidgh")]
 transform = Transform3D(0.7660444, 0, -0.6427876, 0, 1, 0, 0.6427876, 0, 0.7660444, -29.239, -0.08191994, -25.367)

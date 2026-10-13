@@ -21,6 +21,7 @@ signal attempt_drop
 @export_category("References")
 @export var player: Player
 @export var pumpkin_workbench: PumpkinWorkbench
+@export var next_area: Area3D
 
 @export_category("Pumpkin Interaction")
 @export var interaction_distance: float = 1.5
@@ -54,6 +55,8 @@ func _ready() -> void:
 	notifier.screen_entered.connect(_on_screen_entered)
 	notifier.screen_exited.connect(_on_screen_exited)
 	pumpkin_workbench.task_completed.connect(_on_pumpkin_workbench_task_completed)
+
+	next_area.body_entered.connect(_on_next_area_body_entered)
 
 func change_task(task: Task):
 	if current_task == task:
@@ -100,3 +103,7 @@ func _on_screen_exited():
 func _on_pumpkin_workbench_task_completed(pumpkin_visual: PumpkinVisual):
 	target_mask = pumpkin_visual
 	change_task(Task.EquipMask)
+
+func _on_next_area_body_entered(body: Node3D):
+	if body is Scarecrow:
+		PlayerTasks.complete_task(&"help_scarecrow_bridge")

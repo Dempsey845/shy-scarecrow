@@ -31,6 +31,7 @@ var has_large_pumpkin: bool = false
 var pushing_player: CharacterBody3D
 
 var deliver_cart_task: PlayerTask = preload("uid://dbrt5i4eh850j")
+var help_scarecrow_bridge_task: PlayerTask = preload("uid://bxf8lq8vtfayh")
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(pushing_player):
@@ -80,6 +81,7 @@ func try_start_next_task():
 	if is_full():
 		PlayerTasks.complete_task(&"load_cart")
 		PlayerTasks.add_task(deliver_cart_task)
+		PlayerTasks.add_task(help_scarecrow_bridge_task)
 
 func is_full() -> bool:
 	return (
