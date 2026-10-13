@@ -1,12 +1,14 @@
 extends CanvasLayer
 
 @export var tasks: Array[PlayerTask] = []
-@export var task_font_size: int = 16
+@export var task_font_size: int = 22
 @export var task_color: Color = Color("302b25")
 @export var completed_color: Color = Color("787269")
 
 @onready var task_list: VBoxContainer = $TaskContainer/ScrollContainer/TaskList
 var _labels: Dictionary = {}
+
+var font = preload("uid://d2nvj85t61y54")
 
 func _ready() -> void:
 	PlayerTasks.task_added.connect(_on_task_added)
@@ -41,6 +43,7 @@ func _on_task_added(task: PlayerTask) -> void:
 	label.scroll_active = false
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	label.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	label.add_theme_font_override("normal_font", font)
 	label.add_theme_font_size_override("normal_font_size", task_font_size)
 	task_list.add_child(label)
 	_labels[task.id] = label
