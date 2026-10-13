@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerTask" format=3 uid="uid://b72mn218bt582"]
+
+[ext_resource type="Script" uid="uid://dg2sgemrt71fl" path="res://Systems/PlayerTasks/player_task.gd" id="1_bbnk3"]
+
+[resource]
+script = ExtResource("1_bbnk3")
+id = &"make_hot_choco"
+text = "Make a hot chocolate."
+metadata/_custom_type_script = "uid://dg2sgemrt71fl"

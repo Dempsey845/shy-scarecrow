@@ -29,7 +29,6 @@ unique_name_in_owner = true
 avoidance_enabled = true
 radius = 0.6
 use_3d_avoidance = true
-debug_enabled = true
 
 [node name="VisibleOnScreenNotifier" type="VisibleOnScreenNotifier3D" parent="." unique_id=1949276570]
 unique_name_in_owner = true

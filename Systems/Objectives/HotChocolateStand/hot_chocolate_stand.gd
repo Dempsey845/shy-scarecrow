@@ -15,6 +15,8 @@ var claimed_hot_chocolate: bool = false
 
 var is_hot_chocolate_made: bool = false
 
+var make_hot_choco: PlayerTask = preload("uid://b72mn218bt582")
+
 func _ready() -> void:
 	hot_chocolate_cup.filled.connect(func():
 		is_hot_chocolate_made = true
@@ -45,6 +47,8 @@ func try_add_hot_chocolate_machine() -> bool:
 
 	PlayerTasks.complete_task(&"return_hot_choco_machine")
 
+	PlayerTasks.add_task(make_hot_choco)
+
 	has_chocolate_machine = true
 
 	return true
@@ -60,6 +64,8 @@ func try_make_hot_chocolate():
 			hot_chocolate_cup.position = Vector3.ZERO
 			hot_chocolate_cup.rotation_degrees = Vector3.ZERO
 			claimed_hot_chocolate = true
+
+			PlayerTasks.complete_task(&"make_hot_choco")
 		return
 
 	hot_chocolate_cup.visible = true
