@@ -30,6 +30,7 @@ var has_large_pumpkin: bool = false
 
 var pushing_player: CharacterBody3D
 
+var deliver_cart_task: PlayerTask = preload("uid://dbrt5i4eh850j")
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(pushing_player):
@@ -57,6 +58,9 @@ func add_small_pumpkin() -> bool:
 
 	current_small_slot += 1
 	small_slots[current_small_slot].visible = true
+
+	try_start_next_task()
+
 	return true
 
 
@@ -66,8 +70,16 @@ func add_large_pumpkin() -> bool:
 
 	has_large_pumpkin = true
 	large_slot.visible = true
+
+	try_start_next_task()
+
 	return true
 
+
+func try_start_next_task():
+	if is_full():
+		PlayerTasks.complete_task(&"load_cart")
+		PlayerTasks.add_task(deliver_cart_task)
 
 func is_full() -> bool:
 	return (

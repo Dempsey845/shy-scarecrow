@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c6tpu2kje65lq"]
+
+[ext_resource type="Texture2D" uid="uid://racblvfn32l4" path="res://Systems/PlayerTasks/Clipboard.png" id="1_7ovgh"]
+[ext_resource type="Script" uid="uid://dix3v55xuomdg" path="res://Systems/PlayerTasks/player_tasks_ui.gd" id="2_script"]
+
+[node name="PlayerTasksUI" type="CanvasLayer" unique_id=1815330927]
+script = ExtResource("2_script")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=42001930]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -402.0
+offset_top = 19.0
+offset_right = -26.0
+offset_bottom = 395.0
+grow_horizontal = 0
+mouse_filter = 2
+texture = ExtResource("1_7ovgh")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="TaskContainer" type="Control" parent="." unique_id=673566263]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -305.0
+offset_top = 109.0
+offset_right = -123.0
+offset_bottom = 334.0
+grow_horizontal = 0
+mouse_filter = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TaskContainer" unique_id=240793169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="TaskList" type="VBoxContainer" parent="TaskContainer/ScrollContainer" unique_id=1418787567]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 10

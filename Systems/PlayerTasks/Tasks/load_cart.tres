@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerTask" format=3 uid="uid://lba5qcm0ggw6"]
+
+[ext_resource type="Script" uid="uid://dg2sgemrt71fl" path="res://Systems/PlayerTasks/player_task.gd" id="1_susm8"]
+
+[resource]
+script = ExtResource("1_susm8")
+id = &"load_cart"
+text = "Load the cart with pumpkins."

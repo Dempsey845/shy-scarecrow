@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerTask" format=3 uid="uid://dbrt5i4eh850j"]
+
+[ext_resource type="Script" uid="uid://dg2sgemrt71fl" path="res://Systems/PlayerTasks/player_task.gd" id="1_qmi7h"]
+
+[resource]
+script = ExtResource("1_qmi7h")
+id = &"deliver_cart"
+text = "Deliver the cart across the bridge."

@@ -4,7 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://c0t1c3gn7vxji" path="res://Player/player.tscn" id="1_62w18"]
 [ext_resource type="Script" uid="uid://b11cankabkl3" path="res://Systems/day_night_cycle.gd" id="1_h2aik"]
 [ext_resource type="Script" uid="uid://b6ucma8ueu0d6" path="res://Systems/Shared/player_scarecrow_shared_resources.gd" id="1_k8do8"]
+[ext_resource type="PackedScene" uid="uid://c6tpu2kje65lq" path="res://Systems/PlayerTasks/player_tasks_ui.tscn" id="1_xw5lg"]
 [ext_resource type="PackedScene" uid="uid://ftdsrb54n214" path="res://Scarecrow/scarecrow.tscn" id="2_8a836"]
+[ext_resource type="Script" uid="uid://dg2sgemrt71fl" path="res://Systems/PlayerTasks/player_task.gd" id="2_26uyv"]
+[ext_resource type="Resource" uid="uid://lba5qcm0ggw6" path="res://Systems/PlayerTasks/Tasks/load_cart.tres" id="3_dqu5g"]
 [ext_resource type="Shader" uid="uid://10lice7qhj2k" path="res://Shaders/sky.gdshader" id="3_lo5ox"]
 [ext_resource type="PackedScene" uid="uid://bb2g0rm668mut" path="res://World/Environment/Pumpkin/pumpkin_ground_patch.tscn" id="5_eidgh"]
 [ext_resource type="PackedScene" uid="uid://uv8xbhg5xeb3" path="res://Systems/Objectives/Gate/gate.tscn" id="5_yf0ba"]
@@ -57,12 +60,8 @@ size = Vector3(10, 5, 2.6000001)
 
 [node name="World" type="Node3D" unique_id=1489149135]
 
-[node name="DayNightCycle" type="Node3D" parent="." unique_id=1145751351 node_paths=PackedStringArray("world_environment", "sun_light", "moon_light")]
-script = ExtResource("1_h2aik")
-world_environment = NodePath("../WorldEnvironment")
-sun_light = NodePath("../Sun")
-moon_light = NodePath("../Moon")
-cycle_duration_seconds = 300.0
+[node name="PlayerTasksUI" parent="." unique_id=1815330927 instance=ExtResource("1_xw5lg")]
+tasks = Array[ExtResource("2_26uyv")]([ExtResource("3_dqu5g")])
 
 [node name="PlayerScarecrowSharedResources" type="Node" parent="." unique_id=1082040689]
 script = ExtResource("1_k8do8")
@@ -75,6 +74,13 @@ pumpkin_cart = NodePath("../NavigationRegion3D/PumpkinCart")
 draw_wheel = NodePath("../NavigationRegion3D/Bridge/DrawWheel")
 lock_draw_wheel = NodePath("../NavigationRegion3D/Bridge/DrawWheel2")
 next_area = NodePath("../NavigationRegion3D/Bridge/NextArea")
+
+[node name="DayNightCycle" type="Node3D" parent="." unique_id=1145751351 node_paths=PackedStringArray("world_environment", "sun_light", "moon_light")]
+script = ExtResource("1_h2aik")
+world_environment = NodePath("../WorldEnvironment")
+sun_light = NodePath("../Sun")
+moon_light = NodePath("../Moon")
+cycle_duration_seconds = 300.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1389587368]
 environment = SubResource("Environment_8a836")
@@ -696,7 +702,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.40
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.402124, 0.016518593, -15.616606)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19, 1, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21, 1, -29)
 
 [node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player", "pumpkin_workbench") instance=ExtResource("2_8a836")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, -28)
