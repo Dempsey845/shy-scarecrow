@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://slvs84fq485a" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_stand.tscn" id="16_oeat8"]
 [ext_resource type="PackedScene" uid="uid://6fogmgvyiao" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine_pickup.tscn" id="17_5xkvv"]
 [ext_resource type="PackedScene" uid="uid://dxiqftgecagjs" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart_delivery_destination.tscn" id="22_dqu5g"]
-[ext_resource type="PackedScene" path="res://Systems/Objectives/Bench/ending_bench.tscn" id="24_x0pyu"]
+[ext_resource type="PackedScene" uid="uid://djnkoc2n0wrk1" path="res://Systems/Objectives/Bench/ending_bench.tscn" id="24_x0pyu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lo5ox"]
 shader = ExtResource("3_lo5ox")
@@ -739,7 +739,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.40
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.402124, 0.016518593, -15.616606)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, 7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 1, -27)
 
 [node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player", "pumpkin_workbench", "next_area") instance=ExtResource("2_8a836")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, -28)
