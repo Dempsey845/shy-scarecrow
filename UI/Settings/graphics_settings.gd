@@ -19,6 +19,7 @@ var _timer: float = 0.0
 
 
 func _ready() -> void:
+	UISounds.bind_controls(self)
 	hide()
 	_graphics = get_node_or_null("/root/GraphicsManager")
 	_checks = {
@@ -41,6 +42,9 @@ func _ready() -> void:
 
 
 func open_settings() -> void:
+	if visible:
+		return
+	UISounds.play("open")
 	show()
 	if is_instance_valid(_graphics):
 		_sync_settings(_graphics.get_settings())
@@ -51,6 +55,7 @@ func close_settings() -> void:
 	if not visible:
 		return
 	_flush_slider()
+	UISounds.play("back")
 	hide()
 	closed.emit()
 
@@ -171,7 +176,7 @@ func _reset_graphics() -> void:
 
 
 func _on_save_failed(_error: int) -> void:
-	pass
+	UISounds.play("error")
 
 
 func _exit_tree() -> void:

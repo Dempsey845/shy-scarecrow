@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dvu14jelin81c"]
+
+[ext_resource type="AudioStream" uid="uid://cnaqqheo4dxn8" path="res://Audio/Music/2.2 Falling Leaf Path_Autumnly Town - Loop1 - Blue Lava.wav" id="1_328tx"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" unique_id=1268018842]
+stream = ExtResource("1_328tx")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"

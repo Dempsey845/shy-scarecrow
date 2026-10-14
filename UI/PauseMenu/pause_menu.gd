@@ -20,6 +20,8 @@ var _changing_scene: bool = false
 
 
 func _ready() -> void:
+	UISounds.bind_controls(_interface)
+	UISounds.bind_dialog(_exit_dialog)
 	_interface.hide()
 	_exit_dialog.hide()
 	if not InputMap.has_action(toggle_action):
@@ -55,6 +57,7 @@ func toggle_menu() -> void:
 func open_menu() -> bool:
 	if is_open or _changing_scene or get_tree().paused:
 		return false
+	UISounds.play("open")
 	_previous_mouse_mode = Input.mouse_mode
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_owns_pause = true
@@ -70,6 +73,7 @@ func open_menu() -> bool:
 func close_menu() -> void:
 	if not is_open or _changing_scene:
 		return
+	UISounds.play("close")
 	_settings.close_settings()
 	_exit_dialog.hide()
 	_interface.hide()
@@ -130,6 +134,10 @@ func _confirm_exit() -> void:
 		_exit_dialog.hide()
 		_continue.grab_focus()
 	else:
+		if _changing_scene:
+			return
+		_changing_scene = true
+		await get_tree().create_timer(0.2, true).timeout
 		get_tree().quit()
 
 

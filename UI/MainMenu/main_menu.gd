@@ -11,6 +11,8 @@ var _starting: bool = false
 
 
 func _ready() -> void:
+	UISounds.bind_controls(_main)
+	UISounds.bind_dialog(_dialog)
 	_main.show()
 	_play.grab_focus()
 
@@ -72,6 +74,7 @@ func _confirm_quit() -> void:
 	if _quitting:
 		return
 	_quitting = true
+	await get_tree().create_timer(0.2, true).timeout
 	_flush_slider()
 	get_tree().quit()
 
