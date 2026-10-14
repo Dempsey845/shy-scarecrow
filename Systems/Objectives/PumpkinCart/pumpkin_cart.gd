@@ -14,6 +14,9 @@ const PumpkinSounds = preload("res://Audio/pumpkin_sounds.gd")
 @export_category("Steps")
 @export var step_height: float = 0.2
 
+@export_category("Rolling Audio")
+@export_range(-40.0, 6.0, 0.5) var rolling_volume_db: float = -18.0
+
 @onready var push_position: Marker3D = $PushPosition
 
 @onready var visual: PumpkinCartVisual = $PumpkinCartVisual
@@ -26,6 +29,9 @@ const PumpkinSounds = preload("res://Audio/pumpkin_sounds.gd")
 ]
 
 @onready var push_zone: Area3D = $PushZone
+@onready var cart_pushing_audio: AudioStreamPlayer3D = $CartPushing
+
+var _last_audio_position: Vector3
 
 var current_small_slot: int = -1
 var has_large_pumpkin: bool = false
@@ -35,7 +41,34 @@ var pushing_player: CharacterBody3D
 var deliver_cart_task: PlayerTask = preload("uid://dbrt5i4eh850j")
 var help_scarecrow_bridge_task: PlayerTask = preload("uid://ctil4sb5asmu")
 
+func _ready() -> void:
+	_last_audio_position = global_position
+	cart_pushing_audio.stop()
+
+func _update_rolling_audio(delta: float) -> void:
+	var motion: Vector3 = global_position - _last_audio_position
+	_last_audio_position = global_position
+	motion.y = 0.0
+	var speed: float = motion.length() / maxf(delta, 0.0001)
+
+	var moving: bool = speed > 0.05 and speed < maxf(push_speed, bump_push_speed) * 4.0
+	var target_volume: float = -60.0
+	if moving and cart_pushing_audio.stream != null:
+		var amount: float = clampf(speed / maxf(push_speed, 0.01), 0.0, 1.0)
+		target_volume = rolling_volume_db - (1.0 - amount) * 6.0
+		cart_pushing_audio.pitch_scale = lerpf(0.85, 1.05, amount)
+		if not cart_pushing_audio.playing:
+			cart_pushing_audio.play()
+	cart_pushing_audio.volume_db = move_toward(
+		cart_pushing_audio.volume_db, target_volume, 180.0 * delta
+	)
+	if not moving and cart_pushing_audio.volume_db <= -59.0:
+		cart_pushing_audio.stop()
+
+
+
 func _physics_process(delta: float) -> void:
+	_update_rolling_audio(delta)
 	if is_instance_valid(pushing_player):
 		return
 
