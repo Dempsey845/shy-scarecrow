@@ -1,0 +1,58 @@
+[gd_scene format=4 uid="uid://w0rs4cn20yfm"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0ckyj"]
+resource_name = "Tree autumn palette - double sided leaves"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+roughness = 0.95
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_77w2i"]
+resource_name = "Exact folded leaf extracted from tree canopy"
+_surfaces = [{
+"aabb": AABB(-0.11549944, -0.20778187, -0.01641948, 0.22744244, 0.41556334, 0.04925809),
+"attribute_data": PackedByteArray("////////////////////////////////////////////////////////////////"),
+"format": 34359738383,
+"material": SubResource("StandardMaterial3D_0ckyj"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("0RLpusXEVL5mgQY8EQhpO80EiLQfgoa8+Irsvc1cMbQlgoa8+Irsvc1cMbQlgoa8EQhpO80EiLQfgoa8txPpuqvEVD5tgQY8txPpuqvEVD5tgQY8EQhpO80EiLQfgoa8X0LlPQDJibTHgQY9X0LlPQDJibTHgQY9EQhpO80EiLQfgoa80RLpusXEVL5mgQY8JvStFGeSBZH//zXp8JVYjf//AAD/fwCA//8AAP9/AID//zXp8JVYjSb0Uet3nEmKJvRR63ecSYr//zXp8JVYjf//ANgEo3eZ//8A2ASjd5n//zXp8JVYjSb0rRRnkgWR")
+}]
+
+[sub_resource type="Curve" id="Curve_x35ji"]
+_data = [Vector2(0, 0.05), 0.0, 0.0, 0, 0, Vector2(0.06, 1), 0.0, 0.0, 0, 0, Vector2(0.88, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.02), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Gradient" id="Gradient_7jsdj"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(0.8, 0.2509804, 0.03529412, 1, 0.92156863, 0.4, 0.05490196, 1, 0.9490196, 0.47058824, 0.05490196, 1, 1, 0.69803923, 0.18039216, 1, 1, 0.5882353, 0.101960786, 1)
+
+[node name="AutumnLeafFall" type="Node3D" unique_id=1221637899]
+metadata/usage = "Standalone menu effect. Move root above/in front of the menu background; no tree required."
+
+[node name="FallingLeaves" type="CPUParticles3D" parent="." unique_id=335001514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 0)
+cast_shadow = 0
+amount = 48
+lifetime = 14.0
+preprocess = 14.0
+randomness = 0.65
+lifetime_randomness = 0.15
+fixed_fps = 30
+visibility_aabb = AABB(-9, -16, -4, 20, 18, 8)
+mesh = SubResource("ArrayMesh_77w2i")
+emission_shape = 3
+emission_box_extents = Vector3(0.645, 0.215, 0.78)
+direction = Vector3(0.22, -1, 0.08)
+spread = 24.0
+gravity = Vector3(0.012, -0.035, 0)
+initial_velocity_min = 0.55
+initial_velocity_max = 0.85
+angular_velocity_min = -50.0
+angular_velocity_max = 50.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.65
+scale_amount_max = 1.15
+scale_amount_curve = SubResource("Curve_x35ji")
+color_initial_ramp = SubResource("Gradient_7jsdj")
