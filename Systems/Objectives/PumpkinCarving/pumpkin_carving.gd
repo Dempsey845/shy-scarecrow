@@ -3,6 +3,26 @@ extends Node3D
 
 signal progress_changed(coverage: Vector3, stray_ratio: float, ready: bool)
 
+const CUT_SOUNDS := [
+	preload("res://Audio/PumpkinCarving/cut_pumpkin_01.ogg"),
+	preload("res://Audio/PumpkinCarving/cut_pumpkin_02.ogg"),
+	preload("res://Audio/PumpkinCarving/cut_pumpkin_03.ogg"),
+]
+const SCRAPE_SOUNDS := [
+	preload("res://Audio/PumpkinCarving/peel_pumpkin_01.ogg"),
+	preload("res://Audio/PumpkinCarving/peel_pumpkin_02.ogg"),
+	preload("res://Audio/PumpkinCarving/peel_pumpkin_03.ogg"),
+	preload("res://Audio/PumpkinCarving/peel_pumpkin_04.ogg"),
+	preload("res://Audio/PumpkinCarving/peel_pumpkin_05.ogg"),
+]
+@export_category("Carving Audio")
+@export_range(-40.0, 6.0, 0.5) var carving_volume_db: float = 0.0
+var _carve_audio: AudioStreamPlayer3D
+var _audio_contact: float = 0.0
+var _stroke_has_sound: bool = false
+var _last_cut: int = -1
+var _last_scrape: int = -1
+
 const SIZE := 256
 const FACE_SIZE := Vector2(0.72, 0.56)
 const MAX_UNDO := 20
@@ -31,6 +51,12 @@ var _dirty := false
 
 
 func _ready() -> void:
+	_carve_audio = AudioStreamPlayer3D.new()
+	_carve_audio.name = "CarvingSFX"
+	_carve_audio.bus = &"SFX"
+	_carve_audio.unit_size = 3.0
+	_carve_audio.max_distance = 18.0
+	add_child(_carve_audio)
 	var source := shell.get_active_material(0) as ShaderMaterial
 	material = source.duplicate() as ShaderMaterial
 	material.shader = preload("uid://so1kmm3rbjf3")
@@ -47,7 +73,12 @@ func _ready() -> void:
 	_update_progress()
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	_audio_contact = maxf(0.0, _audio_contact - delta)
+	if _carve_audio.playing and _audio_contact <= 0.0:
+		_carve_audio.volume_db = move_toward(_carve_audio.volume_db, -60.0, 420.0 * delta)
+		if _carve_audio.volume_db <= -59.0:
+			_carve_audio.stop()
 	if _dirty:
 		mask_texture.update(mask)
 		_dirty = false
@@ -64,10 +95,12 @@ func begin_stroke() -> void:
 	if _undo.size() > MAX_UNDO:
 		_undo.pop_front()
 	_stroke_active = true
+	_stroke_has_sound = false
 	_last_uv = Vector2(-1, -1)
 
 
 func end_stroke() -> void:
+	_audio_contact = 0.0
 	if not _stroke_active:
 		return
 	_stroke_active = false
@@ -78,16 +111,24 @@ func end_stroke() -> void:
 func carve_at(camera: Camera3D, screen_position: Vector2, erase: bool) -> void:
 	var uv := _pick_uv(camera, screen_position)
 	if uv.x < 0.0:
+		_audio_contact = 0.0
 		_last_uv = Vector2(-1, -1)
 		return
+	var changed := false
 	if _last_uv.x >= 0.0 and _last_uv.distance_to(uv) < 0.15:
 		var steps := maxi(1, int(ceil(_last_uv.distance_to(uv) / (brush_radius * 0.4))))
 		for i in range(1, steps + 1):
-			_stamp(_last_uv.lerp(uv, float(i) / steps), erase)
+			# Always stamp every interpolated point; avoid short-circuiting the call.
+			var stamped: bool = _stamp(_last_uv.lerp(uv, float(i) / steps), erase)
+			changed = stamped or changed
 	else:
-		_stamp(uv, erase)
+		changed = _stamp(uv, erase)
 	_last_uv = uv
 	_dirty = true
+	if changed and not erase:
+		_play_carving_contact()
+	elif erase:
+		_audio_contact = 0.0
 
 
 func undo() -> void:
@@ -124,7 +165,9 @@ func apply_to_visual(visual: Node3D) -> void:
 	target_mesh.material_overlay = null
 
 
-func _stamp(uv: Vector2, erase: bool) -> void:
+func _stamp(uv: Vector2, erase: bool) -> bool:
+	var changed := false
+	var color: Color = Color.BLACK if erase else Color.WHITE
 	var centre := uv * SIZE
 	var radius := brush_radius * SIZE
 	for y in range(maxi(0, int(centre.y - radius)), mini(SIZE, int(ceil(centre.y + radius)) + 1)):
@@ -132,7 +175,10 @@ func _stamp(uv: Vector2, erase: bool) -> void:
 			maxi(0, int(centre.x - radius)), mini(SIZE, int(ceil(centre.x + radius)) + 1)
 		):
 			if Vector2(x + 0.5, y + 0.5).distance_squared_to(centre) <= radius * radius:
-				mask.set_pixel(x, y, Color.BLACK if erase else Color.WHITE)
+				if mask.get_pixel(x, y).r != color.r:
+					mask.set_pixel(x, y, color)
+					changed = true
+	return changed
 
 
 func _region(uv: Vector2) -> int:
@@ -253,3 +299,24 @@ func _pick_uv(camera: Camera3D, screen: Vector2) -> Vector2:
 	if uv.x < 0.0 or uv.y < 0.0 or uv.x > 1.0 or uv.y > 1.0:
 		return Vector2(-1, -1)
 	return uv
+
+
+func _play_carving_contact() -> void:
+	_audio_contact = 0.10
+	_carve_audio.volume_db = carving_volume_db
+	# Continue the current clip while cutting; never restart it every frame.
+	if _carve_audio.playing:
+		return
+	var clips: Array = SCRAPE_SOUNDS if _stroke_has_sound else CUT_SOUNDS
+	var previous: int = _last_scrape if _stroke_has_sound else _last_cut
+	var index: int = randi_range(0, clips.size() - 2)
+	if index >= previous:
+		index += 1
+	if _stroke_has_sound:
+		_last_scrape = index
+	else:
+		_last_cut = index
+	_carve_audio.stream = clips[index]
+	_carve_audio.pitch_scale = randf_range(0.95, 1.05)
+	_carve_audio.play()
+	_stroke_has_sound = true
