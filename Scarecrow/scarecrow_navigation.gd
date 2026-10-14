@@ -1,5 +1,8 @@
 extends Node
 
+const RustleAudio = preload("res://Scarecrow/scarecrow_rustle.gd")
+var _rustle_audio: AudioStreamPlayer3D
+
 enum State {
 	FOLLOWING,
 	GO_TO_TARGET,
@@ -44,6 +47,8 @@ var current_interaction_position: Vector3
 var interacted_with_current_target: bool
 
 func _ready() -> void:
+	_rustle_audio = RustleAudio.new()
+	scarecrow.add_child.call_deferred(_rustle_audio)
 	navigation_agent.velocity_computed.connect(_on_navigation_velocity_computed)
 
 	scarecrow.screen_entered.connect(_on_scarecrow_screen_entered)
@@ -72,8 +77,14 @@ func _physics_process(delta: float) -> void:
 	else:
 		scarecrow.velocity.y -= gravity * delta
 
+	var before_motion: Vector3 = scarecrow.global_position
 	_try_step_up(delta)
 	scarecrow.move_and_slide()
+	var motion: Vector3 = scarecrow.global_position - before_motion
+	motion.y = 0.0
+	if is_instance_valid(_rustle_audio) and _rustle_audio.is_inside_tree():
+		# Actual horizontal movement avoids rustles when idle, blocked, or falling.
+		_rustle_audio.update_movement(can_move and motion.length_squared() > 0.000001, delta)
 
 func _process_following(delta: float):
 	if !is_instance_valid(scarecrow.player):
@@ -310,6 +321,8 @@ func _calculate_interaction_position() -> void:
 	)
 
 func _on_scarecrow_screen_entered():
+	if is_instance_valid(_rustle_audio) and _rustle_audio.is_inside_tree():
+		_rustle_audio.update_movement(false, 0.0)
 	navigation_agent.velocity = Vector3.ZERO
 	can_move = false
 
