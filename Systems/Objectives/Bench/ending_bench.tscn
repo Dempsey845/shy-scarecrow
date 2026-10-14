@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://djnkoc2n0wrk1"]
+
+[ext_resource type="Script" uid="uid://cuvh6eu2scbg4" path="res://Systems/Objectives/Bench/ending_bench.gd" id="1_script"]
+
+[sub_resource type="StandardMaterial3D" id="Wood"]
+albedo_color = Color(0.36, 0.17, 0.075, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="SeatPlank"]
+material = SubResource("Wood")
+size = Vector3(2.1, 0.16, 0.19)
+
+[sub_resource type="BoxMesh" id="BackPlank"]
+material = SubResource("Wood")
+size = Vector3(2.1, 0.24, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="Metal"]
+albedo_color = Color(0.17, 0.21, 0.16, 1)
+roughness = 0.8
+
+[sub_resource type="BoxMesh" id="Leg"]
+material = SubResource("Metal")
+size = Vector3(0.12, 0.56, 0.6)
+
+[sub_resource type="BoxMesh" id="BackPost"]
+material = SubResource("Metal")
+size = Vector3(0.1, 0.9, 0.1)
+
+[sub_resource type="BoxShape3D" id="SeatShape"]
+size = Vector3(2.1, 0.18, 0.7)
+
+[sub_resource type="BoxShape3D" id="BackShape"]
+size = Vector3(2.1, 0.65, 0.15)
+
+[sub_resource type="BoxShape3D" id="SupportShape"]
+size = Vector3(1.85, 0.52, 0.55)
+
+[sub_resource type="StandardMaterial3D" id="Highlight"]
+shading_mode = 0
+albedo_color = Color(0.95, 0.71, 0.3, 1)
+
+[sub_resource type="TorusMesh" id="HighlightRing"]
+material = SubResource("Highlight")
+inner_radius = 1.12
+outer_radius = 1.15
+rings = 24
+ring_segments = 8
+
+[node name="EndingBench" type="StaticBody3D" unique_id=1964647132]
+process_mode = 3
+collision_layer = 513
+script = ExtResource("1_script")
+
+[node name="Visual" type="Node3D" parent="." unique_id=731406050]
+
+[node name="SeatFront" type="MeshInstance3D" parent="Visual" unique_id=592946155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -0.24)
+mesh = SubResource("SeatPlank")
+
+[node name="SeatMiddle" type="MeshInstance3D" parent="Visual" unique_id=662594886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0)
+mesh = SubResource("SeatPlank")
+
+[node name="SeatRear" type="MeshInstance3D" parent="Visual" unique_id=1104223267]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0.24)
+mesh = SubResource("SeatPlank")
+
+[node name="BackLower" type="MeshInstance3D" parent="Visual" unique_id=1238065480]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, 0.35)
+mesh = SubResource("BackPlank")
+
+[node name="BackUpper" type="MeshInstance3D" parent="Visual" unique_id=420827245]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.28, 0.35)
+mesh = SubResource("BackPlank")
+
+[node name="LeftLeg" type="MeshInstance3D" parent="Visual" unique_id=1596480136]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84, 0.28, 0)
+mesh = SubResource("Leg")
+
+[node name="RightLeg" type="MeshInstance3D" parent="Visual" unique_id=718669084]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.84, 0.28, 0)
+mesh = SubResource("Leg")
+
+[node name="LeftPost" type="MeshInstance3D" parent="Visual" unique_id=399920484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.85, 0.98, 0.35)
+mesh = SubResource("BackPost")
+
+[node name="RightPost" type="MeshInstance3D" parent="Visual" unique_id=1393595426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.85, 0.98, 0.35)
+mesh = SubResource("BackPost")
+
+[node name="SeatCollision" type="CollisionShape3D" parent="." unique_id=2132142253]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0)
+shape = SubResource("SeatShape")
+
+[node name="BackCollision" type="CollisionShape3D" parent="." unique_id=1396848737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.12, 0.35)
+shape = SubResource("BackShape")
+
+[node name="SupportCollision" type="CollisionShape3D" parent="." unique_id=136476850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, 0)
+shape = SubResource("SupportShape")
+
+[node name="HoverHighlight" type="MeshInstance3D" parent="." unique_id=2047223321]
+transform = Transform3D(1.2, 0, 0, 0, 0.12, 0, 0, 0, 0.68, 0, 0.04, 0)
+visible = false
+cast_shadow = 0
+mesh = SubResource("HighlightRing")
+
+[node name="SitPrompt" type="Label3D" parent="." unique_id=121109770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4999999, 0)
+visible = false
+pixel_size = 0.007
+billboard = 1
+modulate = Color(0.96, 0.9, 0.79, 1)
+text = "Sit and rest"
+outline_size = 6
+
+[node name="SeatAnchor" type="Marker3D" parent="." unique_id=473134264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0)
+
+[node name="SeatedView" type="Marker3D" parent="." unique_id=1390732116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.05)
+
+[node name="ScarecrowReveal" type="Marker3D" parent="." unique_id=1766532105]
+transform = Transform3D(-1, 0, -3.2584137e-07, 0, 1, 0, 3.2584137e-07, 0, -1, 0, 0, -2.7)
+
+[node name="EndingCamera" type="Camera3D" parent="." unique_id=1271977532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -0.05)
+fov = 65.0
+
+[node name="EndingUI" type="CanvasLayer" parent="." unique_id=1275271772]
+layer = 100
+
+[node name="ScreenEffects" type="Control" parent="EndingUI" unique_id=1691350329]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopEyelid" type="ColorRect" parent="EndingUI/ScreenEffects" unique_id=464278271]
+layout_mode = 0
+anchor_right = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="BottomEyelid" type="ColorRect" parent="EndingUI/ScreenEffects" unique_id=1504061013]
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Fade" type="ColorRect" parent="EndingUI/ScreenEffects" unique_id=1877169530]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

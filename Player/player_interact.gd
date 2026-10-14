@@ -12,6 +12,7 @@ var current_held_hot_chocolate_machine: Node3D
 
 var hot_chocolate_machine_visual_scene: PackedScene = preload("uid://c7dwfgxsto6qj")
 
+
 func _process(_delta: float) -> void:
 	if is_instance_valid(player.pushing_cart):
 		_set_hovered_target(null)
@@ -27,10 +28,7 @@ func _process(_delta: float) -> void:
 		var collider := interact_cast.get_collider()
 
 		if collider is Pumpkin:
-			if (
-				not is_instance_valid(current_held_pumpkin)
-				or collider.is_too_large
-			):
+			if not is_instance_valid(current_held_pumpkin) or collider.is_too_large:
 				target = collider
 
 		elif collider is PumpkinCart:
@@ -40,10 +38,11 @@ func _process(_delta: float) -> void:
 		elif collider is PumpkinGroundPatch:
 			if !collider.is_too_large and !collider.has_pumpkin:
 				target = collider
-		
+
 		elif collider is PumpkinWorkbench:
-			if (not is_instance_valid(current_held_hot_chocolate_machine) 
-				and not is_instance_valid(current_held_pumpkin) 
+			if (
+				not is_instance_valid(current_held_hot_chocolate_machine)
+				and not is_instance_valid(current_held_pumpkin)
 				and collider.can_interact(player)
 			):
 				target = collider
@@ -52,11 +51,18 @@ func _process(_delta: float) -> void:
 			target = collider
 
 		elif collider is HotChocolateStand:
-			if is_instance_valid(current_held_hot_chocolate_machine) or collider.has_chocolate_machine:
+			if (
+				is_instance_valid(current_held_hot_chocolate_machine)
+				or collider.has_chocolate_machine
+			):
 				target = collider
 
 		elif collider is HotChocolateMachinePickup:
 			if not is_instance_valid(current_held_pumpkin):
+				target = collider
+
+		elif collider is EndingBench:
+			if collider.can_interact(player):
 				target = collider
 
 	_set_hovered_target(target)
@@ -87,6 +93,11 @@ func _process(_delta: float) -> void:
 
 		elif current_hovered_target is HotChocolateMachinePickup:
 			_interact_with_hot_chocolate_machine_pickup(current_hovered_target)
+
+		elif current_hovered_target is EndingBench:
+			var bench: EndingBench = current_hovered_target
+			_set_hovered_target(null)
+			bench.interact(player)
 
 
 func _can_interact_with_cart(cart: PumpkinCart) -> bool:
@@ -141,6 +152,7 @@ func _interact_with_cart(cart: PumpkinCart) -> void:
 	player.start_pushing_cart(cart)
 	_set_hovered_target(null)
 
+
 func _interact_with_patch(patch: PumpkinGroundPatch):
 	if is_instance_valid(current_held_pumpkin):
 		patch.add_pumpkin()
@@ -148,16 +160,22 @@ func _interact_with_patch(patch: PumpkinGroundPatch):
 		current_held_pumpkin = null
 		_set_hovered_target(null)
 
+
 func _interact_with_draw_wheel(wheel: DrawWheel):
 	wheel.try_spin_wheel(player)
 
+
 func _interact_with_hot_chocolate_stand(stand: HotChocolateStand):
 	if !stand.has_chocolate_machine:
-		if is_instance_valid(current_held_hot_chocolate_machine) and stand.try_add_hot_chocolate_machine():
+		if (
+			is_instance_valid(current_held_hot_chocolate_machine)
+			and stand.try_add_hot_chocolate_machine()
+		):
 			current_held_hot_chocolate_machine.queue_free()
 			current_held_hot_chocolate_machine = null
 	else:
 		stand.try_make_hot_chocolate()
+
 
 func _interact_with_hot_chocolate_machine_pickup(pickup: HotChocolateMachinePickup):
 	pickup.pickup()
