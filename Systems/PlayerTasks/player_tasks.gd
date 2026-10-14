@@ -4,6 +4,8 @@ signal task_added(task: PlayerTask)
 signal task_completed(task_id: StringName)
 signal tasks_reset
 
+var first_task: PlayerTask = preload("uid://lba5qcm0ggw6")
+
 var _tasks: Array[PlayerTask] = []
 var _by_id: Dictionary = {}
 var _completed: Dictionary = {}
@@ -37,6 +39,8 @@ func get_tasks() -> Array[PlayerTask]:
 
 func reset_tasks() -> void:
 	_completed.clear()
+	_tasks.clear()
+	_tasks.append(first_task)
 	tasks_reset.emit()
 
 func clear_tasks() -> void:

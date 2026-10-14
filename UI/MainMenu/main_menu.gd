@@ -15,6 +15,7 @@ func _ready() -> void:
 	UISounds.bind_dialog(_dialog)
 	_main.show()
 	_play.grab_focus()
+	PlayerTasks.reset_tasks()
 
 
 func _open_settings() -> void:

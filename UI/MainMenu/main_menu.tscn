@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://w0rs4cn20yfm" path="res://World/Environment/autumn_leaf_fall.tscn" id="4_iyy2y"]
 [ext_resource type="Script" uid="uid://c430vf7gass64" path="res://UI/MainMenu/main_menu.gd" id="6_menu"]
 [ext_resource type="PackedScene" uid="uid://8eu5y54d6lpk" path="res://UI/Settings/graphics_settings.tscn" id="7_settings"]
+[ext_resource type="PackedScene" uid="uid://lqqwx7ny4bvo" path="res://Scarecrow/scarecrow_visual.tscn" id="8_iau2q"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8rmy"]
 shader = ExtResource("2_3jj5y")
@@ -499,6 +500,9 @@ title = "Leaving so soon?"
 ok_button_text = "Quit"
 dialog_text = "Quit Shy Scarecrow?"
 cancel_button_text = "Stay"
+
+[node name="ScarecrowVisual" parent="." unique_id=1994586894 instance=ExtResource("8_iau2q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.3)
 
 [connection signal="pressed" from="MenuUI/Interface/MainPanel/MainContent/PlayButton" to="." method="_start_game"]
 [connection signal="pressed" from="MenuUI/Interface/MainPanel/MainContent/SettingsButton" to="." method="_open_settings"]

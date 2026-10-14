@@ -58,7 +58,9 @@ func open_menu() -> bool:
 	if is_open or _changing_scene or get_tree().paused:
 		return false
 	UISounds.play("open")
-	_previous_mouse_mode = Input.mouse_mode
+	_previous_mouse_mode = (
+		Input.MOUSE_MODE_CAPTURED if OS.has_feature("web") else Input.mouse_mode
+	)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_owns_pause = true
 	get_tree().paused = true

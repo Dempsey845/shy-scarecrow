@@ -27,6 +27,10 @@ func hide_outline() -> void:
 func pickup():
 	if is_queued_for_deletion():
 		return
+
+	if is_too_large:
+		await get_tree().create_timer(0.35).timeout
+
 	PumpkinSounds.play_at(self, "pickup")
 	queue_free()
 

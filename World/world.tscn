@@ -7,8 +7,6 @@
 [ext_resource type="PackedScene" path="res://UI/PauseMenu/pause_menu.tscn" id="1_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://c6tpu2kje65lq" path="res://Systems/PlayerTasks/player_tasks_ui.tscn" id="1_xw5lg"]
 [ext_resource type="PackedScene" uid="uid://ftdsrb54n214" path="res://Scarecrow/scarecrow.tscn" id="2_8a836"]
-[ext_resource type="Script" uid="uid://dg2sgemrt71fl" path="res://Systems/PlayerTasks/player_task.gd" id="2_26uyv"]
-[ext_resource type="Resource" uid="uid://lba5qcm0ggw6" path="res://Systems/PlayerTasks/Tasks/load_cart.tres" id="3_dqu5g"]
 [ext_resource type="Shader" uid="uid://10lice7qhj2k" path="res://Shaders/sky.gdshader" id="3_lo5ox"]
 [ext_resource type="PackedScene" uid="uid://bb2g0rm668mut" path="res://World/Environment/Pumpkin/pumpkin_ground_patch.tscn" id="5_eidgh"]
 [ext_resource type="PackedScene" uid="uid://uv8xbhg5xeb3" path="res://Systems/Objectives/Gate/gate.tscn" id="5_yf0ba"]
@@ -95,7 +93,6 @@ size = Vector3(8, 0.0024414063, 90)
 [node name="PauseMenu" parent="." unique_id=1482451172 instance=ExtResource("1_o6lw0")]
 
 [node name="PlayerTasksUI" parent="." unique_id=1815330927 instance=ExtResource("1_xw5lg")]
-tasks = Array[ExtResource("2_26uyv")]([ExtResource("3_dqu5g")])
 
 [node name="PlayerScarecrowSharedResources" type="Node" parent="." unique_id=1082040689]
 script = ExtResource("1_k8do8")
@@ -114,7 +111,7 @@ script = ExtResource("1_h2aik")
 world_environment = NodePath("../WorldEnvironment")
 sun_light = NodePath("../Sun")
 moon_light = NodePath("../Moon")
-cycle_duration_seconds = 30.0
+cycle_duration_seconds = 300.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1389587368]
 environment = SubResource("Environment_8a836")
@@ -764,9 +761,6 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 20.4
 
 [node name="PumpkinCartDeliveryDestination" parent="." unique_id=1228330110 instance=ExtResource("22_dqu5g")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26.8, 0, 3)
-
-[node name="HotChocolateMachinePickup2" parent="." unique_id=369292514 instance=ExtResource("17_5xkvv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 4)
 
 [node name="RiverBoundary" type="StaticBody3D" parent="." unique_id=1355782827]
 
