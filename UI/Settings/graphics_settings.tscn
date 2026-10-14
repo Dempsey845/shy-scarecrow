@@ -254,7 +254,6 @@ VBoxContainer/constants/separation = 12
 
 [node name="GraphicsSettings" type="ColorRect" unique_id=834051857]
 process_mode = 3
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -299,7 +298,7 @@ custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.8745098, 0.7176471, 0.44705883, 1)
 theme_override_font_sizes/font_size = 18
-text = "Graphics"
+text = "Audio & Graphics"
 autowrap_mode = 3
 
 [node name="SettingsNote" type="Label" parent="SettingsPanel/SettingsContent" unique_id=1656596844]
@@ -320,6 +319,57 @@ horizontal_scroll_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 10
+
+[node name="AudioHeading" type="Label" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=308994919]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8745098, 0.7176471, 0.44705883, 1)
+theme_override_font_sizes/font_size = 20
+text = "Audio"
+
+[node name="MasterVolumeLabel" type="Label" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1449887125]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Master · 100%"
+
+[node name="MasterVolume" type="HSlider" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=2069093680]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+value = 100.0
+
+[node name="SFXVolumeLabel" type="Label" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=605529752]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "SFX · 100%"
+
+[node name="SFXVolume" type="HSlider" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1288366495]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+value = 100.0
+
+[node name="MusicVolumeLabel" type="Label" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1900560082]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Music · 100%"
+
+[node name="MusicVolume" type="HSlider" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1548543070]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+value = 100.0
+
+[node name="AudioSeparator" type="HSeparator" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=460068815]
+layout_mode = 2
+
+[node name="GraphicsHeading" type="Label" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1083382149]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8745098, 0.7176471, 0.44705883, 1)
+theme_override_font_sizes/font_size = 20
+text = "Graphics"
 
 [node name="QualityRow" type="VBoxContainer" parent="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1253775860]
 layout_mode = 2
@@ -497,6 +547,13 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Reset graphics"
 
+[node name="ResetAudio" type="Button" parent="SettingsPanel/SettingsContent/Footer" unique_id=951018094]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Reset audio"
+
 [node name="DoneButton" type="Button" parent="SettingsPanel/SettingsContent/Footer" unique_id=1562924262]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 52)
@@ -506,6 +563,12 @@ mouse_default_cursor_shape = 2
 text = "Done"
 
 [connection signal="pressed" from="SettingsPanel/SettingsContent/Header/CloseButton" to="." method="close_settings"]
+[connection signal="drag_ended" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/MasterVolume" to="." method="_on_audio_drag_ended"]
+[connection signal="value_changed" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/MasterVolume" to="." method="_on_audio_volume_changed" binds= [&"Master"]]
+[connection signal="drag_ended" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/SFXVolume" to="." method="_on_audio_drag_ended"]
+[connection signal="value_changed" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/SFXVolume" to="." method="_on_audio_volume_changed" binds= [&"SFX"]]
+[connection signal="drag_ended" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/MusicVolume" to="." method="_on_audio_drag_ended"]
+[connection signal="value_changed" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/MusicVolume" to="." method="_on_audio_volume_changed" binds= [&"Music"]]
 [connection signal="item_selected" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/QualityRow/Quality" to="." method="_select_quality"]
 [connection signal="drag_ended" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/ResolutionScale" to="." method="_on_resolution_drag_ended"]
 [connection signal="value_changed" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/ResolutionScale" to="." method="_set_resolution"]
@@ -519,4 +582,5 @@ text = "Done"
 [connection signal="item_selected" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/FPSLimitRow/FPSLimit" to="." method="_on_fps_selected"]
 [connection signal="toggled" from="SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/Vsync" to="." method="_on_check_toggled" binds= ["vsync"]]
 [connection signal="pressed" from="SettingsPanel/SettingsContent/Footer/ResetGraphics" to="." method="_reset_graphics"]
+[connection signal="pressed" from="SettingsPanel/SettingsContent/Footer/ResetAudio" to="." method="_reset_audio"]
 [connection signal="pressed" from="SettingsPanel/SettingsContent/Footer/DoneButton" to="." method="close_settings"]

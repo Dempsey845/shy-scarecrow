@@ -2,6 +2,13 @@ extends ColorRect
 ## Reusable scene-owned settings UI. Its host owns pause/cursor state.
 signal closed
 
+const AUDIO_SAVE_PATH := "user://audio_settings.cfg"
+const AUDIO_BUSES := [&"Master", &"SFX", &"Music"]
+var _audio_sliders: Dictionary = {}
+var _audio_labels: Dictionary = {}
+var _audio_dirty: bool = false
+var _audio_timer: float = 0.0
+
 const FPS_VALUES := [0, 30, 60, 90, 120, 144, 240]
 const TARGET_VALUES := [30, 60, 90, 120]
 var _graphics: Node
@@ -19,6 +26,7 @@ var _timer: float = 0.0
 
 
 func _ready() -> void:
+	_setup_audio_settings()
 	UISounds.bind_controls(self)
 	hide()
 	_graphics = get_node_or_null("/root/GraphicsManager")
@@ -45,6 +53,7 @@ func open_settings() -> void:
 	if visible:
 		return
 	UISounds.play("open")
+	_sync_audio_controls()
 	show()
 	if is_instance_valid(_graphics):
 		_sync_settings(_graphics.get_settings())
@@ -101,12 +110,17 @@ func _on_resolution_drag_ended(_changed: bool) -> void:
 
 
 func _flush_slider() -> void:
+	_save_audio_settings()
 	if _slider_dirty and is_instance_valid(_graphics):
 		_slider_dirty = false
 		_graphics.save_settings()
 
 
 func _process(delta: float) -> void:
+	if _audio_dirty:
+		_audio_timer += delta
+		if _audio_timer >= 0.35:
+			_save_audio_settings()
 	if _slider_dirty:
 		_timer += delta
 		if _timer >= 0.5:
@@ -193,3 +207,77 @@ func _on_fps_selected(index: int) -> void:
 
 func _on_target_selected(index: int) -> void:
 	_set_option("target_fps", _target.get_item_id(index))
+
+
+func _setup_audio_settings() -> void:
+	_audio_sliders = {&"Master": %MasterVolume, &"SFX": %SFXVolume, &"Music": %MusicVolume}
+	_audio_labels = {&"Master": %MasterVolumeLabel, &"SFX": %SFXVolumeLabel, &"Music": %MusicVolumeLabel}
+	var config := ConfigFile.new()
+	_apply_audio_volume(&"Music", 15.0)
+	if config.load(AUDIO_SAVE_PATH) == OK:
+		for bus in AUDIO_BUSES:
+			var saved: Variant = config.get_value("volume", String(bus), null)
+			if saved is float or saved is int:
+				var level: float = float(saved)
+				if is_finite(level):
+					_apply_audio_volume(bus, clampf(level, 0.0, 100.0))
+	_sync_audio_controls()
+
+
+func _apply_audio_volume(bus: StringName, percent: float) -> void:
+	var index: int = AudioServer.get_bus_index(bus)
+	if index < 0:
+		return
+	AudioServer.set_bus_volume_db(index, linear_to_db(maxf(percent / 100.0, 0.0001)))
+	AudioServer.set_bus_mute(index, percent <= 0.0)
+
+
+func _audio_percent(bus: StringName) -> float:
+	var index: int = AudioServer.get_bus_index(bus)
+	if index < 0 or AudioServer.is_bus_mute(index):
+		return 0.0
+	return clampf(db_to_linear(AudioServer.get_bus_volume_db(index)) * 100.0, 0.0, 100.0)
+
+
+func _sync_audio_controls() -> void:
+	for bus in AUDIO_BUSES:
+		var available: bool = AudioServer.get_bus_index(bus) >= 0
+		var percent: float = _audio_percent(bus)
+		_audio_sliders[bus].editable = available
+		_audio_sliders[bus].set_value_no_signal(percent)
+		_audio_labels[bus].text = "%s · %d%%" % [String(bus), roundi(percent)] if available else "%s · unavailable" % String(bus)
+		_audio_sliders[bus].tooltip_text = "Adjust %s volume" % String(bus) if available else "Add a %s audio bus to enable this control." % String(bus)
+
+
+func _on_audio_volume_changed(value: float, bus: StringName) -> void:
+	_apply_audio_volume(bus, value)
+	_audio_labels[bus].text = "%s · %d%%" % [String(bus), roundi(value)]
+	_audio_dirty = true
+	_audio_timer = 0.0
+
+
+func _on_audio_drag_ended(_changed: bool) -> void:
+	_save_audio_settings()
+
+
+func _save_audio_settings() -> void:
+	if not _audio_dirty:
+		return
+	var config := ConfigFile.new()
+	# Preserve any unavailable bus's saved level.
+	config.load(AUDIO_SAVE_PATH)
+	for bus in AUDIO_BUSES:
+		if AudioServer.get_bus_index(bus) >= 0:
+			config.set_value("volume", String(bus), _audio_percent(bus))
+	var error: Error = config.save(AUDIO_SAVE_PATH)
+	_audio_dirty = false
+	if error != OK and is_instance_valid(_note):
+		_note.text = "Audio changes applied, but could not be saved."
+
+
+func _reset_audio() -> void:
+	for bus in AUDIO_BUSES:
+		_apply_audio_volume(bus, 100.0)
+	_sync_audio_controls()
+	_audio_dirty = true
+	_save_audio_settings()
