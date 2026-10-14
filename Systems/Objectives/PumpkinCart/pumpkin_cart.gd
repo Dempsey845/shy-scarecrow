@@ -1,6 +1,8 @@
 class_name PumpkinCart
 extends CharacterBody3D
 
+const PumpkinSounds = preload("res://Audio/pumpkin_sounds.gd")
+
 @export var push_speed: float = 2.5
 @export var gravity: float = 22.0
 @export var steering_speed: float = 5.0
@@ -59,6 +61,7 @@ func add_small_pumpkin() -> bool:
 
 	current_small_slot += 1
 	small_slots[current_small_slot].visible = true
+	PumpkinSounds.play_at(small_slots[current_small_slot], "cart")
 
 	try_start_next_task()
 
@@ -71,6 +74,7 @@ func add_large_pumpkin() -> bool:
 
 	has_large_pumpkin = true
 	large_slot.visible = true
+	PumpkinSounds.play_at(large_slot, "cart")
 
 	try_start_next_task()
 

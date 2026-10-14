@@ -1,6 +1,8 @@
 class_name Pumpkin
 extends StaticBody3D
 
+const PumpkinSounds = preload("res://Audio/pumpkin_sounds.gd")
+
 
 @onready var pumpkin_visual: PumpkinVisual = $PumpkinVisual
 @onready var too_heavy_warning: Warning = $TooHeavyWarning
@@ -23,6 +25,9 @@ func hide_outline() -> void:
 	pumpkin_visual.hide_outline()
 
 func pickup():
+	if is_queued_for_deletion():
+		return
+	PumpkinSounds.play_at(self, "pickup")
 	queue_free()
 
 func show_too_heavy_warning():

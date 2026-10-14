@@ -1,6 +1,8 @@
 class_name PumpkinGroundPatch
 extends StaticBody3D
 
+const PumpkinSounds = preload("res://Audio/pumpkin_sounds.gd")
+
 @export var patch_mesh: MeshInstance3D
 
 @onready var pumpkin_slot: Marker3D = $PumpkinSlot
@@ -16,9 +18,9 @@ var is_too_large: bool
 func _ready() -> void:
 	is_too_large = scale > Vector3.ONE
 	
-	add_pumpkin()
+	add_pumpkin(false)
 
-func add_pumpkin():
+func add_pumpkin(play_sound: bool = true):
 	current_pumpkin = PSSR.pumpkin_scene.instantiate()
 	current_pumpkin.patch = self
 	pumpkin_slot.add_child(current_pumpkin)
@@ -26,6 +28,8 @@ func add_pumpkin():
 	has_pumpkin = true
 
 	current_pumpkin.tree_exited.connect(_on_current_pumpkin_tree_exited)
+	if play_sound:
+		PumpkinSounds.play_at(current_pumpkin, "place")
 
 
 func show_outline(duration: float = 0.2) -> void:
