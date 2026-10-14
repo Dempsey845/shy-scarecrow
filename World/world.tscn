@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c0t1c3gn7vxji" path="res://Player/player.tscn" id="1_62w18"]
 [ext_resource type="Script" uid="uid://b11cankabkl3" path="res://Systems/day_night_cycle.gd" id="1_h2aik"]
 [ext_resource type="Script" uid="uid://b6ucma8ueu0d6" path="res://Systems/Shared/player_scarecrow_shared_resources.gd" id="1_k8do8"]
+[ext_resource type="PackedScene" path="res://UI/PauseMenu/pause_menu.tscn" id="1_o6lw0"]
 [ext_resource type="PackedScene" uid="uid://c6tpu2kje65lq" path="res://Systems/PlayerTasks/player_tasks_ui.tscn" id="1_xw5lg"]
 [ext_resource type="PackedScene" uid="uid://ftdsrb54n214" path="res://Scarecrow/scarecrow.tscn" id="2_8a836"]
 [ext_resource type="Script" uid="uid://dg2sgemrt71fl" path="res://Systems/PlayerTasks/player_task.gd" id="2_26uyv"]
@@ -43,12 +44,12 @@ shader_parameter/cloud_coverage = 0.45
 shader_parameter/cloud_opacity = 0.75
 shader_parameter/star_brightness = 0.8
 
-[sub_resource type="Sky" id="Sky_62w18"]
+[sub_resource type="Sky" id="Sky_x0pyu"]
 sky_material = SubResource("ShaderMaterial_lo5ox")
 
 [sub_resource type="Environment" id="Environment_8a836"]
 background_mode = 2
-sky = SubResource("Sky_62w18")
+sky = SubResource("Sky_x0pyu")
 ambient_light_source = 3
 ambient_light_energy = 0.85
 tonemap_mode = 2
@@ -83,6 +84,8 @@ geometry_source_geometry_mode = 1
 size = Vector3(10, 5, 2.6000001)
 
 [node name="World" type="Node3D" unique_id=1489149135]
+
+[node name="PauseMenu" parent="." unique_id=1482451172 instance=ExtResource("1_o6lw0")]
 
 [node name="PlayerTasksUI" parent="." unique_id=1815330927 instance=ExtResource("1_xw5lg")]
 tasks = Array[ExtResource("2_26uyv")]([ExtResource("3_dqu5g")])

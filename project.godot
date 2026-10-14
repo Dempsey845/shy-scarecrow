@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="shy-scarecrow"
-run/main_scene="uid://dqqwssul657tx"
+run/main_scene="uid://b4gyqx3cmtio4"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 

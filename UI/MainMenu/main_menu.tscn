@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://b4gyqx3cmtio4"]
 
+[ext_resource type="PackedScene" path="res://UI/Settings/graphics_settings.tscn" id="7_settings"]
+
 [ext_resource type="Script" uid="uid://b11cankabkl3" path="res://Systems/day_night_cycle.gd" id="1_t17p2"]
 [ext_resource type="Shader" uid="uid://10lice7qhj2k" path="res://Shaders/sky.gdshader" id="2_3jj5y"]
 [ext_resource type="PackedScene" uid="uid://bc5rrrv8n2im" path="res://World/Environment/Tree/tree.tscn" id="3_3jj5y"]
 [ext_resource type="PackedScene" uid="uid://cn74elrusxvsl" path="res://World/Environment/Pumpkin/pumpkin_visual.tscn" id="4_h8rmy"]
 [ext_resource type="PackedScene" uid="uid://w0rs4cn20yfm" path="res://World/Environment/autumn_leaf_fall.tscn" id="4_iyy2y"]
-[ext_resource type="Script" uid="uid://c430vf7gass64" path="res://UI/MainMenu/main_menu.gd" id="6_menu"]
+[ext_resource type="Script" path="main_menu.gd" id="6_menu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_h8rmy"]
 shader = ExtResource("2_3jj5y")
@@ -488,253 +490,8 @@ theme_override_colors/font_color = Color(0.78431374, 0.72156864, 0.6, 1)
 theme_override_font_sizes/font_size = 14
 autowrap_mode = 3
 
-[node name="SettingsOverlay" type="ColorRect" parent="MenuUI/Interface" unique_id=176562925]
+[node name="GraphicsSettings" parent="MenuUI/Interface" instance=ExtResource("7_settings")]
 unique_name_in_owner = true
-visible = false
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color(0.025, 0.04, 0.025, 0.72)
-
-[node name="SettingsPanel" type="PanelContainer" parent="MenuUI/Interface/SettingsOverlay" unique_id=1564541599]
-unique_name_in_owner = true
-layout_mode = 0
-anchor_left = 0.2
-anchor_top = 0.05
-anchor_right = 0.8
-anchor_bottom = 0.95
-
-[node name="SettingsContent" type="VBoxContainer" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel" unique_id=1171575026]
-layout_mode = 2
-
-[node name="Header" type="HBoxContainer" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent" unique_id=99177684]
-layout_mode = 2
-
-[node name="Heading" type="Label" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/Header" unique_id=1741842338]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
-theme_override_font_sizes/font_size = 28
-text = "Make yourself comfortable"
-autowrap_mode = 3
-
-[node name="CloseButton" type="Button" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/Header" unique_id=323573619]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 52)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Close"
-
-[node name="SectionLabel" type="Label" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent" unique_id=413512030]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8745098, 0.7176471, 0.44705883, 1)
-theme_override_font_sizes/font_size = 18
-text = "Graphics"
-autowrap_mode = 3
-
-[node name="SettingsNote" type="Label" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent" unique_id=1656596844]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.78431374, 0.72156864, 0.6, 1)
-theme_override_font_sizes/font_size = 14
-text = "Changes apply immediately and save automatically."
-autowrap_mode = 3
-
-[node name="OptionsScroll" type="ScrollContainer" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent" unique_id=1249477837]
-layout_mode = 2
-size_flags_vertical = 3
-horizontal_scroll_mode = 0
-
-[node name="GraphicsOptions" type="VBoxContainer" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll" unique_id=1959537465]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 10
-
-[node name="QualityRow" type="VBoxContainer" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1253775860]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="Label" type="Label" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/QualityRow" unique_id=639958874]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
-theme_override_font_sizes/font_size = 16
-text = "Graphics quality"
-autowrap_mode = 3
-
-[node name="Quality" type="OptionButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/QualityRow" unique_id=1679065348]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-size_flags_horizontal = 3
-selected = 0
-item_count = 6
-popup/item_0/text = "Ultra Low"
-popup/item_0/id = 0
-popup/item_1/text = "Very Low"
-popup/item_1/id = 1
-popup/item_2/text = "Low"
-popup/item_2/id = 2
-popup/item_3/text = "Medium"
-popup/item_3/id = 3
-popup/item_4/text = "High"
-popup/item_4/id = 4
-popup/item_5/text = "Ultra"
-popup/item_5/id = 5
-
-[node name="ResolutionLabel" type="Label" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=163661210]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
-theme_override_font_sizes/font_size = 16
-text = "3D resolution · 75%"
-autowrap_mode = 3
-
-[node name="ResolutionScale" type="HSlider" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1821753112]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-min_value = 40.0
-step = 5.0
-value = 75.0
-
-[node name="DirectionalShadows" type="CheckButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=485479216]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-text = "Sun and moon shadows"
-
-[node name="LocalShadows" type="CheckButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=979516632]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-text = "Lantern shadows"
-
-[node name="Fog" type="CheckButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=459428371]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-text = "Autumn haze"
-
-[node name="Glow" type="CheckButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=747999015]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-text = "Soft glow"
-
-[node name="Ssao" type="CheckButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=1058933625]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-text = "Contact shading"
-
-[node name="DynamicResolution" type="CheckButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=241443945]
-unique_name_in_owner = true
-visible = false
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-text = "Automatically adjust resolution"
-
-[node name="DynamicTargetRow" type="VBoxContainer" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=690075427]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="Label" type="Label" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/DynamicTargetRow" unique_id=1674745990]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
-theme_override_font_sizes/font_size = 16
-text = "Automatic resolution target"
-autowrap_mode = 3
-
-[node name="DynamicTarget" type="OptionButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/DynamicTargetRow" unique_id=329960466]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-size_flags_horizontal = 3
-selected = 0
-item_count = 4
-popup/item_0/text = "30 FPS"
-popup/item_0/id = 30
-popup/item_1/text = "60 FPS"
-popup/item_1/id = 60
-popup/item_2/text = "90 FPS"
-popup/item_2/id = 90
-popup/item_3/text = "120 FPS"
-popup/item_3/id = 120
-
-[node name="FPSLimitRow" type="VBoxContainer" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=342765557]
-layout_mode = 2
-theme_override_constants/separation = 5
-
-[node name="Label" type="Label" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/FPSLimitRow" unique_id=1792968152]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
-theme_override_font_sizes/font_size = 16
-text = "Frame rate limit"
-autowrap_mode = 3
-
-[node name="FPSLimit" type="OptionButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/FPSLimitRow" unique_id=950064139]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-size_flags_horizontal = 3
-selected = 0
-item_count = 7
-popup/item_0/text = "Unlimited"
-popup/item_0/id = 0
-popup/item_1/text = "30 FPS"
-popup/item_1/id = 30
-popup/item_2/text = "60 FPS"
-popup/item_2/id = 60
-popup/item_3/text = "90 FPS"
-popup/item_3/id = 90
-popup/item_4/text = "120 FPS"
-popup/item_4/id = 120
-popup/item_5/text = "144 FPS"
-popup/item_5/id = 144
-popup/item_6/text = "240 FPS"
-popup/item_6/id = 240
-
-[node name="Vsync" type="CheckButton" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=317398511]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-layout_mode = 2
-text = "VSync"
-
-[node name="GraphicsHelp" type="Label" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions" unique_id=927577426]
-visible = false
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.78431374, 0.72156864, 0.6, 1)
-theme_override_font_sizes/font_size = 14
-text = "Lower quality reduces effects and detail. Frame rate is your choice.
-The 2D menu stays sharp when 3D resolution is reduced."
-autowrap_mode = 3
-
-[node name="Footer" type="HBoxContainer" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent" unique_id=131826520]
-layout_mode = 2
-
-[node name="ResetGraphics" type="Button" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/Footer" unique_id=124241218]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 52)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-text = "Reset graphics"
-
-[node name="DoneButton" type="Button" parent="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/Footer" unique_id=1562924262]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 52)
-layout_mode = 2
-size_flags_horizontal = 3
-mouse_default_cursor_shape = 2
-text = "Done"
 
 [node name="QuitDialog" type="ConfirmationDialog" parent="MenuUI/Interface" unique_id=210271950]
 unique_name_in_owner = true
@@ -746,19 +503,6 @@ cancel_button_text = "Stay"
 [connection signal="pressed" from="MenuUI/Interface/MainPanel/MainContent/PlayButton" to="." method="_start_game"]
 [connection signal="pressed" from="MenuUI/Interface/MainPanel/MainContent/SettingsButton" to="." method="_open_settings"]
 [connection signal="pressed" from="MenuUI/Interface/MainPanel/MainContent/QuitButton" to="." method="_request_quit"]
-[connection signal="pressed" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/Header/CloseButton" to="." method="_close_settings"]
-[connection signal="item_selected" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/QualityRow/Quality" to="." method="_select_quality"]
-[connection signal="drag_ended" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/ResolutionScale" to="." method="_on_resolution_drag_ended"]
-[connection signal="value_changed" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/ResolutionScale" to="." method="_set_resolution"]
-[connection signal="toggled" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/DirectionalShadows" to="." method="_on_check_toggled" binds= ["directional_shadows"]]
-[connection signal="toggled" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/LocalShadows" to="." method="_on_check_toggled" binds= ["local_shadows"]]
-[connection signal="toggled" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/Fog" to="." method="_on_check_toggled" binds= ["fog"]]
-[connection signal="toggled" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/Glow" to="." method="_on_check_toggled" binds= ["glow"]]
-[connection signal="toggled" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/Ssao" to="." method="_on_check_toggled" binds= ["ssao"]]
-[connection signal="toggled" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/DynamicResolution" to="." method="_on_check_toggled" binds= ["dynamic_resolution"]]
-[connection signal="item_selected" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/DynamicTargetRow/DynamicTarget" to="." method="_on_target_selected"]
-[connection signal="item_selected" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/FPSLimitRow/FPSLimit" to="." method="_on_fps_selected"]
-[connection signal="toggled" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/OptionsScroll/GraphicsOptions/Vsync" to="." method="_on_check_toggled" binds= ["vsync"]]
-[connection signal="pressed" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/Footer/ResetGraphics" to="." method="_reset_graphics"]
-[connection signal="pressed" from="MenuUI/Interface/SettingsOverlay/SettingsPanel/SettingsContent/Footer/DoneButton" to="." method="_close_settings"]
 [connection signal="confirmed" from="MenuUI/Interface/QuitDialog" to="." method="_confirm_quit"]
+
+[connection signal="closed" from="MenuUI/Interface/GraphicsSettings" to="." method="_on_settings_closed"]
