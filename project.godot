@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 PlayerTasks="*uid://cco4wrxfdeiho"
+GraphicsManager="*uid://bg1vywat2tvqi"
 
 [display]
 
@@ -29,6 +30,8 @@ window/stretch/aspect="expand"
 [global_group]
 
 navigation_mesh_source_group=""
+graphics_decoration=""
+graphics_no_shadow_low=""
 
 [input]
 

@@ -574,7 +574,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.30190384, 0)
 material_override = SubResource("WaterMat")
 mesh = ExtResource("4")
 
-[node name="ScatteredGrass" type="MultiMeshInstance3D" parent="." unique_id=24211252]
+[node name="ScatteredGrass" type="MultiMeshInstance3D" parent="." unique_id=24211252 groups=["graphics_no_shadow_low"]]
 material_override = SubResource("GrassMat")
 multimesh = SubResource("GrassScatter")
 
