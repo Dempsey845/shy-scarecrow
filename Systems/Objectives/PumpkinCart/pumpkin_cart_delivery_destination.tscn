@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://ejebfoo00j1p" path="res://Systems/Objectives/PumpkinCart/PumpkinCart.png" id="1_xrs43"]
 [ext_resource type="Script" uid="uid://c8cqfr06vy5vj" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart_delivery_destination.gd" id="1_xtspp"]
+[ext_resource type="AudioStream" uid="uid://bxpt1mrfhdlat" path="res://Audio/soft-ui-sfx-free/WAV/reward/coin.wav" id="3_yojnu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_njqwk"]
 albedo_color = Color(0.16470589, 0.12941177, 0.22745098, 1)
@@ -43,3 +44,8 @@ collision_mask = 16
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeliveryDetectionArea" unique_id=297806690]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 shape = SubResource("BoxShape3D_13qdw")
+
+[node name="DeliverChimePlayer" type="AudioStreamPlayer" parent="." unique_id=1810618181]
+stream = ExtResource("3_yojnu")
+volume_db = -10.0
+bus = &"SFX"
