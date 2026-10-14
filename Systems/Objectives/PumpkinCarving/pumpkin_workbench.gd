@@ -17,6 +17,7 @@ signal carving_ended
 @onready var _status: Label = $CarvingUI/Panel/Column/Status
 @onready var _finish: Button = $CarvingUI/Panel/Column/Buttons/Finish
 @onready var _guide: CheckButton = $CarvingUI/Panel/Column/Guide
+@onready var success_player: AudioStreamPlayer = $SuccessPlayer
 
 var active := false
 var transitioning := false
@@ -129,6 +130,7 @@ func _on_left() -> void:
 		_finished_pending = false
 		PlayerTasks.complete_task(&"carve_pumpkin")
 		PlayerTasks.add_task(find_hot_choco_machine)
+		success_player.play()
 		task_completed.emit(pumpkin_visual)
 
 

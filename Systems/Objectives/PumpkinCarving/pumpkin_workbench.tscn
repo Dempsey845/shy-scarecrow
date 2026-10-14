@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://csoyhw1u0iu5d" path="res://Systems/Objectives/PumpkinCarving/pumpkin_workbench.gd" id="1"]
 [ext_resource type="Script" uid="uid://5lnjs3d08ah3" path="res://Systems/Objectives/PumpkinCarving/pumpkin_carving.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://cn74elrusxvsl" path="res://World/Environment/Pumpkin/pumpkin_visual.tscn" id="3"]
+[ext_resource type="AudioStream" uid="uid://bxpt1mrfhdlat" path="res://Audio/soft-ui-sfx-free/WAV/reward/coin.wav" id="4_yujp8"]
 
 [sub_resource type="StandardMaterial3D" id="Wood"]
 albedo_color = Color(0.29, 0.15, 0.09, 1)
@@ -34,7 +35,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [node name="PumpkinWorkbench" type="StaticBody3D" unique_id=882102942]
-collision_layer = 8
+collision_layer = 9
 collision_mask = 5
 script = ExtResource("1")
 
@@ -72,7 +73,7 @@ script = ExtResource("2")
 
 [node name="PumpkinVisual" parent="PumpkinCarving" unique_id=743098668 instance=ExtResource("3")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.042268038, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0076218843, 0)
 
 [node name="CameraPose" type="Marker3D" parent="." unique_id=2123496333]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 1.9)
@@ -133,6 +134,11 @@ text = "Finish mask"
 [node name="Leave" type="Button" parent="CarvingUI/Panel/Column/Buttons" unique_id=427960188]
 layout_mode = 2
 text = "Leave"
+
+[node name="SuccessPlayer" type="AudioStreamPlayer" parent="." unique_id=283023628]
+stream = ExtResource("4_yujp8")
+volume_db = -10.0
+bus = &"SFX"
 
 [connection signal="toggled" from="CarvingUI/Panel/Column/Guide" to="." method="_on_guide_toggled"]
 [connection signal="pressed" from="CarvingUI/Panel/Column/Buttons/Undo" to="." method="_on_undo_pressed"]

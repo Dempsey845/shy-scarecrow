@@ -6,6 +6,9 @@ extends StaticBody3D
 @onready var hot_chocolate_machine_visual: HotChocolateMachineVisual = $HotChocolateMachineVisual
 @onready var hot_chocolate_stand_visual: HotChocolateStandVisual = $HotChocolateStandVisual
 @onready var hot_chocolate_cup: HotChocolateCup = $HotChocolateCup
+@onready var machine_buzz_player: AudioStreamPlayer = $MachineBuzzPlayer
+@onready var success_chime_player: AudioStreamPlayer = $SuccessChimePlayer
+@onready var claim_hot_chocolate_player: AudioStreamPlayer = $ClaimHotChocolatePlayer
 
 var has_chocolate_machine: bool = false
 
@@ -20,6 +23,7 @@ var make_hot_choco: PlayerTask = preload("uid://b72mn218bt582")
 func _ready() -> void:
 	hot_chocolate_cup.filled.connect(func():
 		is_hot_chocolate_made = true
+		success_chime_player.play()
 	)
 
 func show_outline():
@@ -64,6 +68,7 @@ func try_make_hot_chocolate():
 			hot_chocolate_cup.position = Vector3.ZERO
 			hot_chocolate_cup.rotation_degrees = Vector3.ZERO
 			claimed_hot_chocolate = true
+			claim_hot_chocolate_player.play()
 
 			PlayerTasks.complete_task(&"make_hot_choco")
 		return
@@ -71,6 +76,8 @@ func try_make_hot_chocolate():
 	hot_chocolate_cup.visible = true
 
 	hot_chocolate_cup.fill_cup()
+
+	machine_buzz_player.play()
 
 	hot_chocolate_machine_visual.hide_outline()
 

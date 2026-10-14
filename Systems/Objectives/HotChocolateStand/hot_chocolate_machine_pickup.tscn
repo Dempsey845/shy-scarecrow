@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvuq1ag8igly2" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine_pickup.gd" id="1_3obmv"]
 [ext_resource type="PackedScene" uid="uid://c7dwfgxsto6qj" path="res://Systems/Objectives/HotChocolateStand/hot_chocolate_machine_visual.tscn" id="1_xp0au"]
+[ext_resource type="AudioStream" uid="uid://byatuedo3igmh" path="res://Audio/soft-ui-sfx-free/WAV/clicks/click_pop_01.wav" id="3_no4oi"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_xrivr"]
 height = 0.8
@@ -16,3 +17,8 @@ script = ExtResource("1_3obmv")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2086452882]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 shape = SubResource("CylinderShape3D_xrivr")
+
+[node name="PickupPlayer" type="AudioStreamPlayer" parent="." unique_id=1407732296]
+stream = ExtResource("3_no4oi")
+volume_db = -10.0
+bus = &"SFX"
