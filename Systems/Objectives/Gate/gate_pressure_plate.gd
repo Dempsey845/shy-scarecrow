@@ -8,6 +8,12 @@ extends StaticBody3D
 @export var press_duration: float = 0.25
 @export var release_duration: float = 0.35
 
+@export_category("Pressure Pad Audio")
+@export var press_sound: AudioStream = preload("res://Audio/10 Clicks and Switches/click.2.ogg")
+@export var release_sound: AudioStream = preload("res://Audio/10 Clicks and Switches/click.3.ogg")
+@export_range(-40.0, 6.0, 0.5) var sound_volume_db: float = -14.0
+var _pad_audio: AudioStreamPlayer3D
+
 @onready var pressure_detection_area: Area3D = $PressureDetectionArea
 
 var gate_active: bool = false
@@ -18,6 +24,12 @@ var plate_tween: Tween
 
 
 func _ready() -> void:
+	_pad_audio = AudioStreamPlayer3D.new()
+	_pad_audio.name = "PressurePadSFX"
+	_pad_audio.bus = &"SFX"
+	_pad_audio.unit_size = 4.0
+	_pad_audio.max_distance = 22.0
+	plate.add_child(_pad_audio)
 	plate_rest_y = plate.position.y
 
 	pressure_detection_area.body_entered.connect(
@@ -61,6 +73,11 @@ func _exit_tree() -> void:
 
 
 func _animate_plate(pressed: bool) -> void:
+	# Called only when occupancy changes, not for every body entering the pad.
+	_pad_audio.stream = press_sound if pressed else release_sound
+	_pad_audio.volume_db = sound_volume_db
+	if _pad_audio.stream != null:
+		_pad_audio.play()
 	if plate_tween != null and plate_tween.is_valid():
 		plate_tween.kill()
 
