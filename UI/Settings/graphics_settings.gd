@@ -278,6 +278,7 @@ func _save_audio_settings() -> void:
 func _reset_audio() -> void:
 	for bus in AUDIO_BUSES:
 		_apply_audio_volume(bus, 100.0)
+	_apply_audio_volume(&"Music", 15.0)
 	_sync_audio_controls()
 	_audio_dirty = true
 	_save_audio_settings()

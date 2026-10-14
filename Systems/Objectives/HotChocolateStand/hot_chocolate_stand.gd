@@ -55,6 +55,8 @@ func try_add_hot_chocolate_machine() -> bool:
 
 	has_chocolate_machine = true
 
+	claim_hot_chocolate_player.play()
+
 	return true
 
 func try_make_hot_chocolate():

@@ -739,7 +739,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.40
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.402124, 0.016518593, -15.616606)
 
 [node name="Player" parent="." unique_id=691486365 instance=ExtResource("1_62w18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, 6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, -30)
 
 [node name="Scarecrow" parent="." unique_id=974775381 node_paths=PackedStringArray("player", "pumpkin_workbench", "next_area") instance=ExtResource("2_8a836")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.4, -28)

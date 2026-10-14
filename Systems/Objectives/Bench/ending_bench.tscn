@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://djnkoc2n0wrk1"]
 
 [ext_resource type="Script" uid="uid://cuvh6eu2scbg4" path="res://Systems/Objectives/Bench/ending_bench.gd" id="1_script"]
+[ext_resource type="AudioStream" uid="uid://byatuedo3igmh" path="res://Audio/soft-ui-sfx-free/WAV/clicks/click_pop_01.wav" id="2_b8bkk"]
+[ext_resource type="AudioStream" uid="uid://k5t6tihqc6y4" path="res://Audio/soft-ui-sfx-free/WAV/notification/notify_03.wav" id="3_rcvkh"]
 
 [sub_resource type="StandardMaterial3D" id="Wood"]
 albedo_color = Color(0.36, 0.17, 0.075, 1)
@@ -163,3 +165,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="SitDownPlayer" type="AudioStreamPlayer" parent="." unique_id=1015072688]
+stream = ExtResource("2_b8bkk")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="SuccessPlayer" type="AudioStreamPlayer" parent="." unique_id=1902378026]
+stream = ExtResource("3_rcvkh")
+volume_db = -5.0
+bus = &"SFX"

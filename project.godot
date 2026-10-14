@@ -39,6 +39,10 @@ navigation_mesh_source_group=""
 graphics_decoration=""
 graphics_no_shadow_low=""
 
+[gui]
+
+theme/custom_font="uid://d2nvj85t61y54"
+
 [input]
 
 move_left={
