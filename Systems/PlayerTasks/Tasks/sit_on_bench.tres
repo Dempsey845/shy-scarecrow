@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerTask" format=3 uid="uid://coj1c00j8q463"]
+
+[ext_resource type="Script" uid="uid://dg2sgemrt71fl" path="res://Systems/PlayerTasks/player_task.gd" id="1_uc0v6"]
+
+[resource]
+script = ExtResource("1_uc0v6")
+id = &"sit_on_bench"
+text = "Sit on the bench and enjoy your hot chocolate."
+metadata/_custom_type_script = "uid://dg2sgemrt71fl"

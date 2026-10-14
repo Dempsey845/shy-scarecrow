@@ -44,3 +44,13 @@ func clear_tasks() -> void:
 	_by_id.clear()
 	_completed.clear()
 	tasks_reset.emit()
+
+func is_all_tasks_completed() -> bool:
+	if _tasks.is_empty():
+		return false
+
+	for task in _tasks:
+		if not is_completed(task.id):
+			return false
+
+	return true

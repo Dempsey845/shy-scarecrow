@@ -39,6 +39,12 @@ var _spawned := false
 var _transitioning := false
 var _tween: Tween
 
+var completed_all_tasks: bool = false
+
+var sit_on_bench: PlayerTask = preload("uid://coj1c00j8q463")
+
+func _ready() -> void:
+	PlayerTasks.task_completed.connect(_on_task_completed)
 
 func show_outline() -> void:
 	if not _busy:
@@ -52,7 +58,7 @@ func hide_outline() -> void:
 
 
 func can_interact(_actor: Node3D) -> bool:
-	return not _busy and not get_tree().paused
+	return completed_all_tasks and not _busy and not get_tree().paused
 
 
 func interact(actor: Node3D) -> void:
@@ -62,34 +68,45 @@ func interact(actor: Node3D) -> void:
 	if not is_instance_valid(scarecrow):
 		return
 
+	PlayerTasks.complete_task(&"sit_on_bench")
+
 	_busy = true
 	_player = actor
+
 	_old_camera = get_viewport().get_camera_3d()
 	_old_player_transform = actor.global_transform
 	_old_player_visible = actor.visible
 	_old_mouse = Input.mouse_mode
 	_old_paused = get_tree().paused
+
 	_scarecrow_transform = scarecrow.global_transform
 	_scarecrow_visible = scarecrow.visible
+
 	_save_and_disable(actor)
 	_save_and_disable(scarecrow)
+
 	get_tree().paused = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	hide_outline()
+
 	_ui.show()
 	_fade.modulate.a = 0.0
 	_set_blink(0.0)
 	scarecrow.hide()
+
 	if is_instance_valid(_old_camera):
 		_camera.global_transform = _old_camera.global_transform
 		_camera.fov = _old_camera.fov
 	else:
 		_camera.global_transform = _view.global_transform
+
 	_camera.make_current()
 	actor.global_transform = _seat.global_transform
 	actor.hide()
+
 	if actor is CharacterBody3D:
 		actor.velocity = Vector3.ZERO
+
 	sequence_started.emit()
 	_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	(
@@ -98,9 +115,11 @@ func interact(actor: Node3D) -> void:
 		. set_trans(Tween.TRANS_SINE)
 		. set_ease(Tween.EASE_IN_OUT)
 	)
+
 	_tween.tween_method(_set_blink, 0.0, 1.0, blink_duration).set_trans(Tween.TRANS_SINE).set_ease(
 		Tween.EASE_IN_OUT
 	)
+
 	_tween.tween_callback(_reveal_scarecrow)
 	_tween.tween_interval(0.18)
 	(
@@ -109,6 +128,7 @@ func interact(actor: Node3D) -> void:
 		. set_trans(Tween.TRANS_SINE)
 		. set_ease(Tween.EASE_IN_OUT)
 	)
+
 	_tween.tween_interval(reveal_duration)
 	(
 		_tween
@@ -116,6 +136,7 @@ func interact(actor: Node3D) -> void:
 		. set_trans(Tween.TRANS_SINE)
 		. set_ease(Tween.EASE_IN_OUT)
 	)
+
 	_tween.tween_interval(0.35)
 	_tween.tween_callback(_finish_sequence)
 
@@ -186,3 +207,12 @@ func _restore() -> void:
 func _exit_tree() -> void:
 	if _busy and not _transitioning:
 		_restore()
+
+func _on_task_completed(task_id: StringName):
+	if task_id != &"make_hot_choco":
+		return
+
+	if !completed_all_tasks and PlayerTasks.is_all_tasks_completed():
+		completed_all_tasks = true
+		PlayerTasks.add_task(sit_on_bench)
+	
