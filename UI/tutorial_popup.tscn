@@ -383,7 +383,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 28
-text = "A little help before you begin"
+text = "A little help..."
 autowrap_mode = 3
 
 [node name="Close" type="Button" parent="Overlay/TutorialPanel/Content/Header" unique_id=349390539]
@@ -396,7 +396,7 @@ text = "Close"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.87451, 0.717647, 0.447059, 1)
 theme_override_font_sizes/font_size = 14
-text = "SHY SCARECROW  /  FIELD GUIDE"
+text = "TUTORIAL"
 autowrap_mode = 3
 
 [node name="Divider" type="HSeparator" parent="Overlay/TutorialPanel/Content" unique_id=574746026]
