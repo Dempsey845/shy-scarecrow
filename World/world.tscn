@@ -93,7 +93,8 @@ size = Vector3(8, 0.0024414063, 90)
 
 [node name="TutorialPopup" parent="." unique_id=1488694310 instance=ExtResource("1_x0pyu")]
 
-[node name="PauseMenu" parent="." unique_id=1482451172 instance=ExtResource("1_o6lw0")]
+[node name="PauseMenu" parent="." unique_id=1482451172 node_paths=PackedStringArray("tutorial_popup") instance=ExtResource("1_o6lw0")]
+tutorial_popup = NodePath("../TutorialPopup")
 
 [node name="PlayerTasksUI" parent="." unique_id=1815330927 instance=ExtResource("1_xw5lg")]
 

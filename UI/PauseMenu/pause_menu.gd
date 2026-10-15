@@ -4,6 +4,7 @@ signal menu_opened
 signal menu_closed
 
 @export_file("*.tscn") var main_menu_scene_path: String = "res://UI/MainMenu/main_menu.tscn"
+@export var tutorial_popup: CanvasLayer
 @export var toggle_action: StringName = &"ui_cancel"
 
 @onready var _settings: Control = %GraphicsSettings
@@ -162,3 +163,25 @@ func _on_settings_closed() -> void:
 	if is_open and not _changing_scene:
 		_interface.show()
 		_settings_button.grab_focus()
+
+
+func _open_tutorial() -> void:
+	if not is_open or _changing_scene:
+		return
+
+	# Reuse the tutorial already instanced in the gameplay scene.
+	if not is_instance_valid(tutorial_popup):
+		var scene := get_tree().current_scene
+		if is_instance_valid(scene):
+			for candidate in scene.find_children("*", "CanvasLayer", true, false):
+				if candidate.has_method("open_tutorial"):
+					tutorial_popup = candidate as CanvasLayer
+					break
+
+	if not is_instance_valid(tutorial_popup) or not tutorial_popup.has_method("open_tutorial"):
+		_status.text = "Assign your TutorialPopup node in the PauseMenu inspector."
+		return
+
+	# Release our pause first so the tutorial restores gameplay when closed.
+	close_menu()
+	tutorial_popup.open_tutorial()

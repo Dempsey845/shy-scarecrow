@@ -378,6 +378,13 @@ layout_mode = 2
 mouse_default_cursor_shape = 2
 text = "Settings"
 
+[node name="StuckButton" type="Button" parent="PauseInterface/ScreenMargins/Center/PausePanel/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Stuck?"
+
 [node name="ExitButton" type="Button" parent="PauseInterface/ScreenMargins/Center/PausePanel/Content"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 52)
@@ -410,3 +417,5 @@ unique_name_in_owner = true
 
 [connection signal="pressed" from="PauseInterface/ScreenMargins/Center/PausePanel/Content/SettingsButton" to="." method="_open_settings"]
 [connection signal="closed" from="GraphicsSettings" to="." method="_on_settings_closed"]
+
+[connection signal="pressed" from="PauseInterface/ScreenMargins/Center/PausePanel/Content/StuckButton" to="." method="_open_tutorial"]
