@@ -9,7 +9,7 @@ signal sequence_finished
 
 @export var scarecrow: Node3D
 
-@export_range(0.1, 5.0) var sit_duration := 4.0
+@export_range(0.1, 5.0) var sit_duration := 2.0
 @export_range(0.05, 2.0) var blink_duration := 0.22
 @export_range(0.1, 10.0) var reveal_duration := 2.5
 @export_range(0.1, 5.0) var fade_duration := 1.8
