@@ -21,6 +21,7 @@ var previous_pause: bool = false
 var previous_mouse_mode: Input.MouseMode = Input.MOUSE_MODE_VISIBLE
 
 func _ready() -> void:
+	UISounds.bind_controls(overlay)
 	overlay.hide()
 	panel.resized.connect(_update_pivot)
 	if open_on_ready:
@@ -48,6 +49,7 @@ func open_tutorial() -> void:
 
 	_update_pivot()
 
+	UISounds.play("open")
 	animation.play("open")
 	await animation.animation_finished
 
@@ -84,6 +86,7 @@ func close_tutorial(completed: bool = false) -> void:
 	if busy or not is_open:
 		return
 	busy = true
+	UISounds.play("close")
 	animation.play("close")
 	await animation.animation_finished
 	overlay.hide()
