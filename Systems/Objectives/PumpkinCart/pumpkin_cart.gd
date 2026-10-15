@@ -21,6 +21,8 @@ const PumpkinSounds = preload("res://Audio/pumpkin_sounds.gd")
 
 @onready var visual: PumpkinCartVisual = $PumpkinCartVisual
 
+@onready var successfully_filled_player: AudioStreamPlayer = $SuccessfullyFilledPlayer
+
 @onready var large_slot: Marker3D = %LargeSlot
 @onready var small_slots: Array[Marker3D] = [
 	%SmallSlot,
@@ -116,6 +118,7 @@ func add_large_pumpkin() -> bool:
 
 func try_start_next_task():
 	if is_full():
+		successfully_filled_player.play()
 		PlayerTasks.complete_task(&"load_cart")
 		PlayerTasks.add_task(deliver_cart_task)
 		PlayerTasks.add_task(help_scarecrow_bridge_task)

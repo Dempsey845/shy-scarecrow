@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bx6dkjkkd7pgq" path="res://Systems/Objectives/PumpkinCart/pumpkin_cart.gd" id="1_yl3ed"]
 [ext_resource type="PackedScene" uid="uid://cn74elrusxvsl" path="res://World/Environment/Pumpkin/pumpkin_visual.tscn" id="3_3s4ov"]
 [ext_resource type="AudioStream" uid="uid://duivi7es2b0kt" path="res://Audio/cart-pushing-loop.wav" id="4_iltuk"]
+[ext_resource type="AudioStream" uid="uid://bxpt1mrfhdlat" path="res://Audio/soft-ui-sfx-free/WAV/reward/coin.wav" id="5_hlvv4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xrivr"]
 size = Vector3(2.0786743, 1.2004395, 2.5950928)
@@ -80,4 +81,9 @@ stream = ExtResource("4_iltuk")
 volume_db = -60.0
 unit_size = 5.0
 max_distance = 28.0
+bus = &"SFX"
+
+[node name="SuccessfullyFilledPlayer" type="AudioStreamPlayer" parent="." unique_id=1581627219]
+stream = ExtResource("5_hlvv4")
+volume_db = -5.0
 bus = &"SFX"

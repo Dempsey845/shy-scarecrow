@@ -12,6 +12,7 @@ var current_held_hot_chocolate_machine: Node3D
 
 var hot_chocolate_machine_visual_scene: PackedScene = preload("uid://c7dwfgxsto6qj")
 
+var held_pumpkin_patch: PumpkinGroundPatch
 
 func _process(_delta: float) -> void:
 	if is_instance_valid(player.pushing_cart):
@@ -68,6 +69,8 @@ func _process(_delta: float) -> void:
 	_set_hovered_target(target)
 
 	if not is_instance_valid(current_hovered_target):
+		if Input.is_action_just_pressed("interact"):
+			_return_held_pumpkin_to_patch()
 		return
 
 	if Input.is_action_just_pressed("interact"):
@@ -132,6 +135,7 @@ func _interact_with_pumpkin(pumpkin: Pumpkin) -> void:
 	_set_hovered_target(null)
 
 	var pumpkin_scale: Vector3 = pumpkin.patch.scale
+	held_pumpkin_patch = pumpkin.patch
 	pumpkin.pickup()
 
 	current_held_pumpkin = PSSR.pumpkin_item_scene.instantiate()
@@ -144,7 +148,7 @@ func _interact_with_cart(cart: PumpkinCart) -> void:
 		if cart.add_small_pumpkin():
 			current_held_pumpkin.queue_free()
 			current_held_pumpkin = null
-
+			held_pumpkin_patch = null
 			_set_hovered_target(null)
 
 		return
@@ -159,6 +163,7 @@ func _interact_with_patch(patch: PumpkinGroundPatch):
 		current_held_pumpkin.queue_free()
 		current_held_pumpkin = null
 		_set_hovered_target(null)
+		held_pumpkin_patch = null
 
 
 func _interact_with_draw_wheel(wheel: DrawWheel):
@@ -182,3 +187,19 @@ func _interact_with_hot_chocolate_machine_pickup(pickup: HotChocolateMachinePick
 
 	current_held_hot_chocolate_machine = hot_chocolate_machine_visual_scene.instantiate()
 	hot_chocolate_machine_slot.add_child(current_held_hot_chocolate_machine)
+
+func _return_held_pumpkin_to_patch() -> void:
+	if not is_instance_valid(current_held_pumpkin):
+		return
+
+	if not is_instance_valid(held_pumpkin_patch):
+		return
+
+	if held_pumpkin_patch.has_pumpkin:
+		return
+
+	held_pumpkin_patch.add_pumpkin()
+
+	current_held_pumpkin.queue_free()
+	current_held_pumpkin = null
+	held_pumpkin_patch = null
