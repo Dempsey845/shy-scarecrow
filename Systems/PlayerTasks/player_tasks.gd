@@ -38,10 +38,8 @@ func get_tasks() -> Array[PlayerTask]:
 	return _tasks.duplicate()
 
 func reset_tasks() -> void:
-	_completed.clear()
-	_tasks.clear()
+	clear_tasks()
 	_tasks.append(first_task)
-	tasks_reset.emit()
 
 func clear_tasks() -> void:
 	_tasks.clear()
