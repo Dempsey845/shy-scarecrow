@@ -1,0 +1,591 @@
+[gd_scene format=3 uid="uid://brtc8v1h8ba14"]
+
+[ext_resource type="Script" uid="uid://dj8insxonbcrm" path="res://UI/tutorial_popup.gd" id="1_o0kvj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqhrx"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.22352941, 0.23921569, 0.20784314, 1)
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x6sdk"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9411765, 0.76862746, 0.49019608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fc4mc"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.28235295, 0.34509805, 0.24313726, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.70980394, 0.7294118, 0.5372549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_holsx"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.1882353, 0.23921569, 0.19215687, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3882353, 0.4392157, 0.3529412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrn8y"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.14901961, 0.2, 0.15686275, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9019608, 0.7372549, 0.46666667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yj4ay"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.8392157, 0.6745098, 0.4117647, 1)
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m51i7"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.3254902, 0.3764706, 0.28627452, 1)
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0d7t3"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.22352941, 0.23921569, 0.20784314, 1)
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ejj0h"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(1, 1, 1, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9411765, 0.76862746, 0.49019608, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ock3n"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.28235295, 0.34509805, 0.24313726, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.70980394, 0.7294118, 0.5372549, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fosb5"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.1882353, 0.23921569, 0.19215687, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3882353, 0.4392157, 0.3529412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk3do"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.14901961, 0.2, 0.15686275, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.9019608, 0.7372549, 0.46666667, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwjlp"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.13, 0.17, 0.135, 0.96)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.5411765, 0.5372549, 0.39215687, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_res6b"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.28235295, 0.34509805, 0.24313726, 1)
+border_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axclw"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.15294118, 0.2, 0.16078432, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.47058824, 0.5137255, 0.39607844, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_waxpm"]
+default_font_size = 18
+Button/colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
+Button/colors/font_disabled_color = Color(0.5882353, 0.5411765, 0.45000002, 1)
+Button/colors/font_hover_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_yqhrx")
+Button/styles/focus = SubResource("StyleBoxFlat_x6sdk")
+Button/styles/hover = SubResource("StyleBoxFlat_fc4mc")
+Button/styles/normal = SubResource("StyleBoxFlat_holsx")
+Button/styles/pressed = SubResource("StyleBoxFlat_nrn8y")
+CheckButton/colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_yj4ay")
+HSlider/styles/slider = SubResource("StyleBoxFlat_m51i7")
+Label/colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
+OptionButton/colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
+OptionButton/colors/font_disabled_color = Color(0.5882353, 0.5411765, 0.45000002, 1)
+OptionButton/colors/font_hover_color = Color(1, 1, 1, 1)
+OptionButton/colors/font_pressed_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
+OptionButton/styles/disabled = SubResource("StyleBoxFlat_0d7t3")
+OptionButton/styles/focus = SubResource("StyleBoxFlat_ejj0h")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_ock3n")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_fosb5")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_tk3do")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_pwjlp")
+PopupMenu/colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_res6b")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_axclw")
+VBoxContainer/constants/separation = 12
+
+[sub_resource type="Animation" id="Animation_RESET"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay/TutorialPanel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_close"]
+resource_name = "close"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay/TutorialPanel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.96, 0.96)]
+}
+
+[sub_resource type="Animation" id="Animation_open"]
+resource_name = "open"
+length = 0.28
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Overlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Overlay/TutorialPanel:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.28),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.96, 0.96), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tutorial"]
+_data = {
+&"RESET": SubResource("Animation_RESET"),
+&"close": SubResource("Animation_close"),
+&"open": SubResource("Animation_open")
+}
+
+[node name="TutorialPopup" type="CanvasLayer" unique_id=1488694310]
+process_mode = 3
+layer = 100
+script = ExtResource("1_o0kvj")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=2000558683]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_waxpm")
+color = Color(0.025, 0.04, 0.025, 0.72)
+
+[node name="TutorialPanel" type="PanelContainer" parent="Overlay" unique_id=33502285]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34500003
+anchor_top = 0.277
+anchor_right = 0.651
+anchor_bottom = 0.71500003
+offset_left = 17.599976
+offset_top = -0.16000366
+offset_right = 17.279907
+offset_bottom = -0.2000122
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(293.6, 236.5)
+
+[node name="Content" type="VBoxContainer" parent="Overlay/TutorialPanel" unique_id=824198467]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Header" type="HBoxContainer" parent="Overlay/TutorialPanel/Content" unique_id=313307873]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Overlay/TutorialPanel/Content/Header" unique_id=1764942980]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 28
+text = "A little help before you begin"
+autowrap_mode = 3
+
+[node name="Close" type="Button" parent="Overlay/TutorialPanel/Content/Header" unique_id=349390539]
+custom_minimum_size = Vector2(80, 44)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Close"
+
+[node name="Eyebrow" type="Label" parent="Overlay/TutorialPanel/Content" unique_id=1551789347]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.87451, 0.717647, 0.447059, 1)
+theme_override_font_sizes/font_size = 14
+text = "SHY SCARECROW  /  FIELD GUIDE"
+autowrap_mode = 3
+
+[node name="Divider" type="HSeparator" parent="Overlay/TutorialPanel/Content" unique_id=574746026]
+layout_mode = 2
+
+[node name="PagesScroll" type="ScrollContainer" parent="Overlay/TutorialPanel/Content" unique_id=377980490]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Pages" type="VBoxContainer" parent="Overlay/TutorialPanel/Content/PagesScroll" unique_id=1776913996]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Controls" type="VBoxContainer" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages" unique_id=1995929446]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Heading" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls" unique_id=5614785]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Make yourself at home"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls" unique_id=578528917]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Everything you need to get moving."
+autowrap_mode = 3
+
+[node name="ControlsGrid" type="GridContainer" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls" unique_id=1695440003]
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 10
+columns = 2
+
+[node name="Key0" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls/ControlsGrid" unique_id=1848412417]
+custom_minimum_size = Vector2(165.81, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.76862746, 0.49019608, 1)
+theme_override_font_sizes/font_size = 19
+text = "W A S D"
+autowrap_mode = 3
+
+[node name="Action0" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls/ControlsGrid" unique_id=1668228852]
+custom_minimum_size = Vector2(165.81, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Move"
+autowrap_mode = 3
+
+[node name="Key1" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls/ControlsGrid" unique_id=976519282]
+custom_minimum_size = Vector2(165.81, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.76862746, 0.49019608, 1)
+theme_override_font_sizes/font_size = 19
+text = "Space"
+autowrap_mode = 3
+
+[node name="Action1" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls/ControlsGrid" unique_id=1649189606]
+custom_minimum_size = Vector2(165.81, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Jump"
+autowrap_mode = 3
+
+[node name="Key2" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls/ControlsGrid" unique_id=666409331]
+custom_minimum_size = Vector2(165.81, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.76862746, 0.49019608, 1)
+theme_override_font_sizes/font_size = 19
+text = "E"
+autowrap_mode = 3
+
+[node name="Action2" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls/ControlsGrid" unique_id=1738091496]
+custom_minimum_size = Vector2(165.81, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Interact / use the cart"
+autowrap_mode = 3
+
+[node name="Key3" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls/ControlsGrid" unique_id=1973816572]
+custom_minimum_size = Vector2(165.81, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9411765, 0.76862746, 0.49019608, 1)
+theme_override_font_sizes/font_size = 19
+text = "Escape"
+autowrap_mode = 3
+
+[node name="Action3" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Controls/ControlsGrid" unique_id=2117951575]
+custom_minimum_size = Vector2(165.81, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Open the menu"
+autowrap_mode = 3
+
+[node name="Scarecrow" type="VBoxContainer" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages" unique_id=1334374786]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Heading" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Scarecrow" unique_id=177595911]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "A rather shy scarecrow"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Scarecrow" unique_id=150611633]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Keep an eye on your quiet companion."
+autowrap_mode = 3
+
+[node name="Looking" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Scarecrow" unique_id=140577499]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "When you look at it, the scarecrow stops in place."
+autowrap_mode = 3
+
+[node name="LookAway" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Scarecrow" unique_id=1289927394]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "When you look away, the scarecrow moves."
+autowrap_mode = 3
+
+[node name="Cart" type="VBoxContainer" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages" unique_id=2059880526]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Heading" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Cart" unique_id=127600436]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "A little cart trouble?"
+autowrap_mode = 3
+
+[node name="Description" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Cart" unique_id=11871873]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "The cart can sometimes get stuck. Here is how to get moving again."
+autowrap_mode = 3
+
+[node name="Step1" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Cart" unique_id=1653419606]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "1. Press E to get off the cart."
+autowrap_mode = 3
+
+[node name="Step2" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Cart" unique_id=594444208]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "2. Nudge the cart forward a little."
+autowrap_mode = 3
+
+[node name="Step3" type="Label" parent="Overlay/TutorialPanel/Content/PagesScroll/Pages/Cart" unique_id=1818609654]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "3. Press E to use the cart again when you need it."
+autowrap_mode = 3
+
+[node name="Footer" type="HBoxContainer" parent="Overlay/TutorialPanel/Content" unique_id=604416597]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Back" type="Button" parent="Overlay/TutorialPanel/Content/Footer" unique_id=1325598637]
+custom_minimum_size = Vector2(100, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+disabled = true
+text = "Back"
+
+[node name="Counter" type="Label" parent="Overlay/TutorialPanel/Content/Footer" unique_id=434694509]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 16
+text = "1 / 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Next" type="Button" parent="Overlay/TutorialPanel/Content/Footer" unique_id=1749620987]
+custom_minimum_size = Vector2(150, 48)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+text = "Next"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1116968752]
+libraries/ = SubResource("AnimationLibrary_tutorial")
+
+[connection signal="pressed" from="Overlay/TutorialPanel/Content/Header/Close" to="." method="_on_close"]
+[connection signal="pressed" from="Overlay/TutorialPanel/Content/Footer/Back" to="." method="_on_back"]
+[connection signal="pressed" from="Overlay/TutorialPanel/Content/Footer/Next" to="." method="_on_next"]

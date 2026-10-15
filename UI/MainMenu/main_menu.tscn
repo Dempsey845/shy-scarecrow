@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cn74elrusxvsl" path="res://World/Environment/Pumpkin/pumpkin_visual.tscn" id="4_h8rmy"]
 [ext_resource type="PackedScene" uid="uid://w0rs4cn20yfm" path="res://World/Environment/autumn_leaf_fall.tscn" id="4_iyy2y"]
 [ext_resource type="Script" uid="uid://c430vf7gass64" path="res://UI/MainMenu/main_menu.gd" id="6_menu"]
+[ext_resource type="Texture2D" uid="uid://bfujva607ejar" path="res://ShyScarecrowLogo.png" id="7_pbebc"]
 [ext_resource type="PackedScene" uid="uid://8eu5y54d6lpk" path="res://UI/Settings/graphics_settings.tscn" id="7_settings"]
 [ext_resource type="PackedScene" uid="uid://lqqwx7ny4bvo" path="res://Scarecrow/scarecrow_visual.tscn" id="8_iau2q"]
 
@@ -414,15 +415,16 @@ color = Color(0.055, 0.075, 0.045, 0.22)
 
 [node name="MainPanel" type="PanelContainer" parent="MenuUI/Interface" unique_id=201999141]
 unique_name_in_owner = true
-layout_mode = 0
-anchor_left = 0.04
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08800001
 anchor_top = 0.5
-anchor_right = 0.04
+anchor_right = 0.08800001
 anchor_bottom = 0.5
+offset_left = 0.039993286
 offset_top = -256.5
-offset_right = 380.0
+offset_right = 380.03998
 offset_bottom = 256.5
-grow_vertical = 2
 
 [node name="MainContent" type="VBoxContainer" parent="MenuUI/Interface/MainPanel" unique_id=1852373932]
 layout_mode = 2
@@ -436,26 +438,15 @@ theme_override_font_sizes/font_size = 14
 text = "AN AUTUMN ADVENTURE"
 autowrap_mode = 3
 
-[node name="Title" type="Label" parent="MenuUI/Interface/MainPanel/MainContent" unique_id=907034329]
-custom_minimum_size = Vector2(180, 0)
+[node name="TextureRect" type="TextureRect" parent="MenuUI/Interface/MainPanel/MainContent" unique_id=187316394]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.9607843, 0.9019608, 0.7882353, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.3)
-theme_override_constants/shadow_offset_y = 2
-theme_override_font_sizes/font_size = 52
-text = "Shy
-Scarecrow"
-autowrap_mode = 3
-
-[node name="Subtitle" type="Label" parent="MenuUI/Interface/MainPanel/MainContent" unique_id=1146950984]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.78431374, 0.72156864, 0.6, 1)
-theme_override_font_sizes/font_size = 17
-text = "by Dempsey Newton :)"
-autowrap_mode = 3
+texture = ExtResource("7_pbebc")
+expand_mode = 2
+stretch_mode = 5
 
 [node name="Spacer" type="Control" parent="MenuUI/Interface/MainPanel/MainContent" unique_id=2119411763]
+visible = false
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
@@ -484,14 +475,24 @@ text = "Quit"
 
 [node name="StatusLabel" type="Label" parent="MenuUI/Interface/MainPanel/MainContent" unique_id=297360228]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(180, 22)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78431374, 0.72156864, 0.6, 1)
 theme_override_font_sizes/font_size = 14
 autowrap_mode = 3
 
+[node name="Subtitle" type="Label" parent="MenuUI/Interface/MainPanel/MainContent" unique_id=1146950984]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.78431374, 0.72156864, 0.6, 1)
+theme_override_font_sizes/font_size = 17
+text = "by Dempsey Newton :)"
+autowrap_mode = 3
+
 [node name="GraphicsSettings" parent="MenuUI/Interface" unique_id=1921714678 instance=ExtResource("7_settings")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 
 [node name="QuitDialog" type="ConfirmationDialog" parent="MenuUI/Interface" unique_id=210271950]

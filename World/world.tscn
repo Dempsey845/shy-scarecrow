@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b11cankabkl3" path="res://Systems/day_night_cycle.gd" id="1_h2aik"]
 [ext_resource type="Script" uid="uid://b6ucma8ueu0d6" path="res://Systems/Shared/player_scarecrow_shared_resources.gd" id="1_k8do8"]
 [ext_resource type="PackedScene" path="res://UI/PauseMenu/pause_menu.tscn" id="1_o6lw0"]
+[ext_resource type="PackedScene" uid="uid://brtc8v1h8ba14" path="res://UI/tutorial_popup.tscn" id="1_x0pyu"]
 [ext_resource type="PackedScene" uid="uid://c6tpu2kje65lq" path="res://Systems/PlayerTasks/player_tasks_ui.tscn" id="1_xw5lg"]
 [ext_resource type="PackedScene" uid="uid://ftdsrb54n214" path="res://Scarecrow/scarecrow.tscn" id="2_8a836"]
 [ext_resource type="Shader" uid="uid://10lice7qhj2k" path="res://Shaders/sky.gdshader" id="3_lo5ox"]
@@ -89,6 +90,8 @@ size = Vector3(8, 11, 38.3)
 size = Vector3(8, 0.0024414063, 90)
 
 [node name="World" type="Node3D" unique_id=1489149135]
+
+[node name="TutorialPopup" parent="." unique_id=1488694310 instance=ExtResource("1_x0pyu")]
 
 [node name="PauseMenu" parent="." unique_id=1482451172 instance=ExtResource("1_o6lw0")]
 
